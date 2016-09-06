@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IUserService {
 
-    public User Login(String userName,String password);
+    public User login(String userName,String password);
     public List<User> getUserList();
     public void register(UserRegister userRegister);
     public User singleUser(String username);

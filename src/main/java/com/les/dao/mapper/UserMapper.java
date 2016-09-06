@@ -2,9 +2,11 @@ package com.les.dao.mapper;
 
 import com.les.dto.UserRegister;
 import com.les.po.User;
+import com.les.po.UserGoal;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,7 +26,9 @@ public interface UserMapper {
 
     User singleUser(String name);
 
-    void insertGoal(int userId,String totalGoal);
+    void insertGoal(int userId, String totalGoal);
 
+    void insertUserGoal(@Param("userId") int userId, @Param("startDate") Date startDate);
 
+    UserGoal getLatestUserGoal(int userId);
 }

@@ -43,8 +43,8 @@ public class UserController {
     public List<User> login(HttpServletRequest request) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        User user = userService.Login(userName,password);
-        List<User> userList = new ArrayList<User>();
+        User user = userService.login(userName, password);
+        List<User> userList = new ArrayList<>();
         userList.add(user);
         return userList;
 
@@ -76,7 +76,7 @@ public class UserController {
         String graduateInstitution = request.getParameter("graduateInstitution");
         String major = request.getParameter("major");
         String workingLife = request.getParameter("workingLife");
-        UserRegister userRegister = new UserRegister(userName,password,fullname,graduateInstitution,major,workingLife);
+        UserRegister userRegister = new UserRegister(userName, password, fullname, graduateInstitution, major, workingLife);
         userService.register(userRegister);
         return result;
     }

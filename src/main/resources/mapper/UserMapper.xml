@@ -19,8 +19,15 @@
         SELECT USER_ID,USER_NAME,PASSWORD FROM USER_INFO WHERE USER_NAME=#{userName}
     </select>
 
+    <select id="getLatestUserGoal" resultType="com.les.po.UserGoal">
+        SELECT GOAL_ID,TOTAL_GOAL,USER_ID,START_TIME,END_TIME,EXAM_FLAG,REEXAM_FLAG FROM user_goal WHERE user_id=#{userId} order by GOAL_ID desc limit 1;
+    </select>
+
     <insert id="insertGoal">
         INSERT INTO user_goal(total_goal)VALUES(#{totalGoal})WHERE user_id=#{userId}
+    </insert>
+    <insert id="insertUserGoal">
+        INSERT INTO user_goal(user_id,start_time,exam_flag,reexam_flag)VALUES(#{userId},#{startDate},0,0)
     </insert>
 
 </mapper>
