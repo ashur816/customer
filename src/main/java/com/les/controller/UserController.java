@@ -32,6 +32,7 @@ public class UserController {
     @ResponseBody
     public List<User> getUserList() {
         logger.info("从数据库读取User集合");
+        //ss
         List<User> userList = userService.getUserList();
         return userList;
     }
