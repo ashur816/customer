@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.les.dao.mapper.UserMapper">
+
+    <select id="getUserList" resultType="com.les.po.User">
+        SELECT USER_ID,USER_NAME,PASSWORD FROM USER_INFO;
+    </select>
+
+    <select id="getUser" resultType="com.les.po.User">
+        SELECT USER_ID,USER_NAME,PASSWORD FROM USER_INFO WHERE USER_NAME=#{userName} AND PASSWORD=#{password};
+    </select>
+
+    <insert id="register">
+        INSERT INTO user_info(user_name,password,fullname,graduate_institution,major,working_life)
+        VALUES (#{userName},#{password},#{fullname},#{graduateInstitution},#{major},#{workingLife});
+    </insert>
+
+    <select id="singleUser" resultType="com.les.po.User">
+        SELECT USER_ID,USER_NAME,PASSWORD FROM USER_INFO WHERE USER_NAME=#{userName}
+    </select>
+
+    <insert id="insertGoal">
+        INSERT INTO user_goal(total_goal)VALUES(#{totalGoal})WHERE user_id=#{userId}
+    </insert>
+
+</mapper>

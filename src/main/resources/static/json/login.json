@@ -1,0 +1,103 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "演示接口 API",
+    "description": "这里是对接口功能的描述",
+    "version": "1.0.0"
+  },
+  "host": "192.168.30.234:8080",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/",
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "登录",
+        "description": "用户登录的反馈.",
+        "parameters": [
+          {
+            "name": "user_name",
+            "in": "formData",
+            "type": "string",
+            "format": "int32",
+            "required": true,
+            "description": "用户名."
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "type": "string",
+            "format": "int32",
+            "required": true,
+            "description": "密码."
+          }
+        ],
+        "tags": [
+          "用户管理"
+        ],
+        "responses": {
+          "200": {
+            "description": "登录时的返回信息模型",
+            "schema": {
+              "$ref": "#/definitions/result"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string",
+            "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of product."
+          },
+          "display_name": {
+            "type": "string",
+            "description": "Display name of product."
+          },
+          "capacity": {
+            "type": "string",
+            "description": "Capacity of product. For example, 4 people."
+          },
+          "image": {
+            "type": "string",
+            "description": "Image URL representing the product."
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "string"
+          }
+        }
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
