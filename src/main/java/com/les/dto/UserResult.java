@@ -8,15 +8,15 @@ import java.io.Serializable;
 public class UserResult implements Serializable{
     private static final long serialVersionUID = -503720886795820883L;
 
-    private String user_name;
+    private String userName;
     private String password;
     private String fullname;
-    private String graduate_institution;
+    private String graduateInstitution;
     private String major;
-    private String working_life;
+    private String workingLife;
 
-    public String getUser_name() { return user_name; }
-    public void setUser_name(String user_name) { this.user_name = user_name; }
+    public String getUserName() { return userName; }
+    public void setUserName(String userName) { this.userName = userName; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
@@ -24,12 +24,12 @@ public class UserResult implements Serializable{
     public String getFullname() { return fullname; }
     public void setFullname(String fullname) { this.fullname = fullname; }
 
-    public String getGraduate_institution() { return graduate_institution; }
-    public void setGraduate_institution(String graduate_institution) { this.graduate_institution = graduate_institution; }
+    public String getGraduateInstitution() { return graduateInstitution; }
+    public void setGraduateInstitution(String graduateInstitution) { this.graduateInstitution = graduateInstitution; }
 
     public String getMajor() { return major; }
     public void setMajor(String major) { this.major = major; }
 
-    public String getWorking_life() { return working_life; }
-    public void setWorking_life(String working_life) { this.working_life = working_life; }
+    public String getWorkingLife() { return workingLife; }
+    public void setWorkingLife(String workingLife) { this.workingLife = workingLife; }
 }

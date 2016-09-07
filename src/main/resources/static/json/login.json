@@ -17,7 +17,7 @@
         "description": "用户登录的反馈.",
         "parameters": [
           {
-            "name": "user_name",
+            "name": "userName",
             "in": "formData",
             "type": "string",
             "format": "int32",

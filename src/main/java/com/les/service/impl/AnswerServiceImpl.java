@@ -29,7 +29,7 @@ public class AnswerServiceImpl implements IAnswerService {
         if (answer == null) {
             answerMapper.insertAnswer(answerContent, examId, userId);
         } else {
-            answerMapper.updateAnswer(answer.getAnswer_id(), answerContent);
+            answerMapper.updateAnswer(answer.getAnswerId(), answerContent);
         }
     }
 

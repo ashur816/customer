@@ -56,7 +56,7 @@ public class ExaminationController {
     @ResponseBody
     public void insertExam(@RequestBody String body) {
         Examination examination = (Examination) JSONObject.toBean(JSONObject.fromObject(body), Examination.class);
-        String examinationQusetion = examination.getExamination_question();
+        String examinationQusetion = examination.getExaminationQuestion();
         examinationService.insertExam(examinationQusetion);
     }
 }

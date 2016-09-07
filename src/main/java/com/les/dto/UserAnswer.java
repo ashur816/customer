@@ -9,56 +9,56 @@ public class UserAnswer implements Serializable{
 
     private static final long serialVersionUID = -3589441755411346330L;
 
-    private int examination_id;
-    private String examination_question;
-    private String examination_score;
-    private int answer_id;
-    private int user_id;
-    private String answer_content;
+    private int examinationId;
+    private String examinationQuestion;
+    private String examinationScore;
+    private int answerId;
+    private int userId;
+    private String answerContent;
     private String goal;
-    private String reference_answer;
+    private String referenceAnswer;
 
-    public String getReference_answer() { return reference_answer; }
-    public void setReference_answer(String reference_answer) {
-        this.reference_answer = reference_answer;
-    }
-
-    public int getExamination_id() {
-        return examination_id;
-    }
-    public void setExamination_id(int examination_id) {
-        this.examination_id = examination_id;
+    public String getReferenceAnswer() { return referenceAnswer; }
+    public void setReferenceAnswer(String referenceAnswer) {
+        this.referenceAnswer = referenceAnswer;
     }
 
-    public String getExamination_question() {
-        return examination_question;
+    public int getExaminationId() {
+        return examinationId;
     }
-    public void setExamination_question(String examination_question) {
-        this.examination_question = examination_question;
-    }
-
-    public String getExamination_score() {
-        return examination_score;
-    }
-    public void setExamination_score(String examination_score) {
-        this.examination_score = examination_score;
+    public void setExaminationId(int examinationId) {
+        this.examinationId = examinationId;
     }
 
-    public int getAnswer_id() {
-        return answer_id;
+    public String getExaminationQuestion() {
+        return examinationQuestion;
     }
-    public int getUser_id() { return user_id;}
-
-    public void setUser_id(int user_id) { this.user_id = user_id; }
-    public void setAnswer_id(int answer_id) {
-        this.answer_id = answer_id;
+    public void setExaminationQuestion(String examinationQuestion) {
+        this.examinationQuestion = examinationQuestion;
     }
 
-    public String getAnswer_content() {
-        return answer_content;
+    public String getExaminationScore() {
+        return examinationScore;
     }
-    public void setAnswer_content(String answer_content) {
-        this.answer_content = answer_content;
+    public void setExaminationScore(String examinationScore) {
+        this.examinationScore = examinationScore;
+    }
+
+    public int getAnswerId() {
+        return answerId;
+    }
+    public int getUserId() { return userId;}
+
+    public void setUserId(int userId) { this.userId = userId; }
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
+    }
+
+    public String getAnswerContent() {
+        return answerContent;
+    }
+    public void setAnswerContent(String answerContent) {
+        this.answerContent = answerContent;
     }
 
     public String getGoal() {

@@ -45,9 +45,9 @@ public class AnswerController {
         String result = "保存成功";
 
         Answer answer = (Answer) JSONObject.toBean(JSONObject.fromObject(body), Answer.class);
-        String answerContent = answer.getAnswer_content();
-        int examinationId = answer.getExamination_id();
-        int userId = answer.getUser_id();
+        String answerContent = answer.getAnswerContent();
+        int examinationId = answer.getExaminationId();
+        int userId = answer.getUserId();
         answerService.insertAnswer(answerContent, examinationId, userId);
         return result;
     }

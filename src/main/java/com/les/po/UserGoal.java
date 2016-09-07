@@ -8,32 +8,32 @@ import java.util.Date;
  */
 public class UserGoal implements Serializable{
     private static final long serialVersionUID = 991645840664690855L;
-    private int goal_id;
-    private String total_goal;
-    private int user_id;
-    private Date start_time;
-    private Date end_time;
-    private int exam_flag;
-    private int reexam_flag;
+    private int goalId;
+    private String totalGoal;
+    private int userId;
+    private Date startTime;
+    private Date endTime;
+    private int examFlag;
+    private int reexamFlag;
 
-    public int getGoal_id() { return goal_id; }
-    public void setGoal_id(int goal_id) { this.goal_id = goal_id; }
+    public int getGoalId() { return goalId; }
+    public void setGoalId(int goalId) { this.goalId = goalId; }
 
-    public String getTotal_goal() { return total_goal; }
-    public void setTotal_goal(String total_goal) { this.total_goal = total_goal; }
+    public String getTotalGoal() { return totalGoal; }
+    public void setTotalGoal(String totalGoal) { this.totalGoal = totalGoal; }
 
-    public int getUser_id() { return user_id; }
-    public void setUser_id(int user_id) { this.user_id = user_id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 
-    public Date getStart_time() { return start_time; }
-    public void setStart_time(Date start_time) { this.start_time = start_time; }
+    public Date getStartTime() { return startTime; }
+    public void setStartTime(Date startTime) { this.startTime = startTime; }
 
-    public Date getEnd_time() { return end_time; }
-    public void setEnd_time(Date end_time) { this.end_time = end_time; }
+    public Date getEndTime() { return endTime; }
+    public void setEndTime(Date endTime) { this.endTime = endTime; }
 
-    public int getExam_flag() { return exam_flag; }
-    public void setExam_flag(int exam_flag) { this.exam_flag = exam_flag; }
+    public int getExamFlag() { return examFlag; }
+    public void setExamFlag(int examFlag) { this.examFlag = examFlag; }
 
-    public int getReexam_flag() { return reexam_flag; }
-    public void setReexam_flag(int reexam_flag) { this.reexam_flag = reexam_flag; }
+    public int getReexamFlag() { return reexamFlag; }
+    public void setReexamFlag(int reexamFlag) { this.reexamFlag = reexamFlag; }
 }

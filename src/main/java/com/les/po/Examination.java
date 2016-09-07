@@ -11,30 +11,30 @@ import java.io.Serializable;
 public class Examination implements Serializable {
     private static final long serialVersionUID = 2120869894112984147L;
 
-    private int examination_id;
-    private String examination_question;
-    private String examination_score;
-    private String reference_answer;
+    private int examinationId;
+    private String examinationQuestion;
+    private String examinationScore;
+    private String referenceAnswer;
 
-    public void setExamination_id(int examination_id) {
-        this.examination_id = examination_id;
+    public void setExaminationId(int examinationId) {
+        this.examinationId = examinationId;
     }
-    public void setExamination_question(String examination_question) {
-        this.examination_question = examination_question;
+    public void setExaminationQuestion(String examinationQuestion) {
+        this.examinationQuestion = examinationQuestion;
     }
-    public void setExamination_score(String examination_score) {
-        this.examination_score = examination_score;
+    public void setExaminationScore(String examinationScore) {
+        this.examinationScore = examinationScore;
     }
-    public void setReference_answer(String reference_answer) {
-        this.reference_answer = reference_answer;
+    public void setReferenceAnswer(String referenceAnswer) {
+        this.referenceAnswer = referenceAnswer;
     }
 
-    public int getExamination_id() {
-        return examination_id;
+    public int getExaminationId() {
+        return examinationId;
     }
-    public String getExamination_question() {
-        return examination_question;
+    public String getExaminationQuestion() {
+        return examinationQuestion;
     }
-    public String getExamination_score() { return examination_score; }
-    public String getReference_answer() { return reference_answer; }
+    public String getExaminationScore() { return examinationScore; }
+    public String getReferenceAnswer() { return referenceAnswer; }
 }

@@ -36,8 +36,8 @@ public class UserServiceImpl implements IUserService {
             UserGoal userGoal = userMapper.getLatestUserGoal(userId);
             Date now = new Date();
             //不能重考的，校验时间，能重考的，插入新的考试记录
-            if (userGoal != null && userGoal.getReexam_flag() == 0) {
-                Date startDate = userGoal.getStart_time();
+            if (userGoal != null && userGoal.getReexamFlag() == 0) {
+                Date startDate = userGoal.getStartTime();
                 //理论结束时间
                 Date needEndDate = DateUtils.addMinutes(startDate, 40);
                 //needEndDate小于now 返回-1，大于返回1，相等返回0
@@ -79,9 +79,9 @@ public class UserServiceImpl implements IUserService {
         if (user == null) {
             userMapper.register(userRegister);
             userResult.setFullname(userRegister.getFullname());
-            userResult.setGraduate_institution(userRegister.getGraduateInstitution());
+            userResult.setGraduateInstitution(userRegister.getGraduateInstitution());
             userResult.setMajor(userRegister.getMajor());
-            userResult.setWorking_life(userRegister.getWorkingLife());
+            userResult.setWorkingLife(userRegister.getWorkingLife());
         } else {
 
         }
