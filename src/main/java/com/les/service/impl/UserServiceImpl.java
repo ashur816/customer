@@ -1,5 +1,6 @@
 package com.les.service.impl;
 
+import com.les.common.MapCacheManager;
 import com.les.dao.mapper.UserMapper;
 import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Lydia
@@ -47,6 +49,10 @@ public class UserServiceImpl implements IUserService {
             } else {//插入新记录
                 userMapper.insertUserGoal(userId, now);
             }
+            //生成uuid，记录到map缓存
+            String token = UUID.randomUUID().toString().replace("-", "");
+            MapCacheManager cacheManager = MapCacheManager.getInstance();
+            cacheManager.updateCache(token, String.valueOf(userId));
         }
         return user;
 
