@@ -8,14 +8,22 @@ public class UserRegister {
     private String user_name;
     private String password;
     private String fullname;
+    private int age;
+    private String sex;
     private String graduate_institution;
     private String major;
     private String working_life;
 
-    public UserRegister(String user_name, String password, String fullname, String graduate_institution, String major, String working_life) {
+
+    public UserRegister() {
+    }
+
+    public UserRegister(String user_name, String password, String fullname, int age, String sex, String graduate_institution, String major, String working_life) {
         this.user_name = user_name;
         this.password = password;
         this.fullname = fullname;
+        this.age = age;
+        this.sex = sex;
         this.graduate_institution = graduate_institution;
         this.major = major;
         this.working_life = working_life;
@@ -43,6 +51,22 @@ public class UserRegister {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getGraduate_institution() {

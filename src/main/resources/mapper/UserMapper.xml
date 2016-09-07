@@ -10,9 +10,9 @@
         SELECT USER_ID,USER_NAME,PASSWORD FROM USER_INFO WHERE USER_NAME=#{userName} AND PASSWORD=#{password};
     </select>
 
-    <insert id="register">
-        INSERT INTO user_info(user_name,password,fullname,graduate_institution,major,working_life)
-        VALUES (#{userName},#{password},#{fullname},#{graduateInstitution},#{major},#{workingLife});
+    <insert id="register" parameterType="com.les.dto.UserRegister">
+        INSERT INTO user_info(user_name,password,fullname,age,sex,graduate_institution,major,working_life)
+        VALUES (#{userName},#{password},#{fullname},#{age},#{sex},#{graduateInstitution},#{major},#{workingLife});
     </insert>
 
     <select id="singleUser" resultType="com.les.po.User">

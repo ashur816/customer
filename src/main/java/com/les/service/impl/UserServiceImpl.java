@@ -73,19 +73,25 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void register(UserRegister userRegister) {
+    public UserResult register(UserRegister userRegister) {
         User user = singleUser(userRegister.getUser_name());
         UserResult userResult = new UserResult();
         if (user == null) {
             userMapper.register(userRegister);
+            userResult.setUser_name(userRegister.getUser_name());
+            userResult.setPassword(userRegister.getPassword());
             userResult.setFullname(userRegister.getFullname());
+            userResult.setAge(userRegister.getAge());
+            userResult.setSex(userRegister.getSex());
             userResult.setGraduate_institution(userRegister.getGraduate_institution());
             userResult.setMajor(userRegister.getMajor());
             userResult.setWorking_life(userRegister.getWorking_life());
-        } else {
-
+            userResult.setMessage("{\"id\": \"u\", \"umessage\":\"注册成功\"}");
         }
-
+        else{
+            userResult.setMessage("{\"id\": \"n\", \"nmessage\":\"用户名已存在\"}");
+        }
+        return userResult;
 
     }
 

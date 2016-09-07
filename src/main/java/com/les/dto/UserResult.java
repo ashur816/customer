@@ -11,9 +11,12 @@ public class UserResult implements Serializable{
     private String user_name;
     private String password;
     private String fullname;
+    private int age;
+    private String sex;
     private String graduate_institution;
     private String major;
     private String working_life;
+    private String message;
 
     public String getUser_name() { return user_name; }
     public void setUser_name(String user_name) { this.user_name = user_name; }
@@ -24,6 +27,12 @@ public class UserResult implements Serializable{
     public String getFullname() { return fullname; }
     public void setFullname(String fullname) { this.fullname = fullname; }
 
+    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }
+
+    public String getSex() { return sex; }
+    public void setSex(String sex) { this.sex = sex; }
+
     public String getGraduate_institution() { return graduate_institution; }
     public void setGraduate_institution(String graduate_institution) { this.graduate_institution = graduate_institution; }
 
@@ -32,4 +41,7 @@ public class UserResult implements Serializable{
 
     public String getWorking_life() { return working_life; }
     public void setWorking_life(String working_life) { this.working_life = working_life; }
+
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
 }
