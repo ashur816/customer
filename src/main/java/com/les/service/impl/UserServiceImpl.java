@@ -41,11 +41,10 @@ public class UserServiceImpl implements IUserService {
                 //理论结束时间
                 Date needEndDate = DateUtils.addMinutes(startDate, 40);
                 //needEndDate小于now 返回-1，大于返回1，相等返回0
-                if(needEndDate.compareTo(now) < 0){//理论结束时间<当前时间 报错
+                if (needEndDate.compareTo(now) < 0) {//理论结束时间<当前时间 报错
                     System.out.println("已经超过考试时间，不能登陆");
                 }
-            }
-            else {//插入新记录
+            } else {//插入新记录
                 userMapper.insertUserGoal(userId, now);
             }
         }
@@ -73,7 +72,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void register(UserRegister userRegister) {
+    public UserResult register(UserRegister userRegister) {
         User user = singleUser(userRegister.getUserName());
         UserResult userResult = new UserResult();
         if (user == null) {
@@ -87,7 +86,7 @@ public class UserServiceImpl implements IUserService {
             userResult.setMajor(userRegister.getMajor());
             userResult.setWorkingLife(userRegister.getWorkingLife());
             userResult.setMessage("{\"id\": \"u\", \"umessage\":\"注册成功\"}");
-        else{
+        } else {
             userResult.setMessage("{\"id\": \"n\", \"nmessage\":\"用户名已存在\"}");
         }
         return userResult;

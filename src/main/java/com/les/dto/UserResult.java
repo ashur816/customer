@@ -41,4 +41,12 @@ public class UserResult implements Serializable{
 
     public String getWorkingLife() { return workingLife; }
     public void setWorkingLife(String workingLife) { this.workingLife = workingLife; }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
