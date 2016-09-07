@@ -1,6 +1,7 @@
 package com.les.service.impl;
 
 import com.les.common.MapCacheManager;
+import com.les.common.StaticConst;
 import com.les.dao.mapper.UserMapper;
 import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
@@ -41,7 +42,7 @@ public class UserServiceImpl implements IUserService {
             if (userGoal != null && userGoal.getReexamFlag() == 0) {
                 Date startDate = userGoal.getStartTime();
                 //理论结束时间
-                Date needEndDate = DateUtils.addMinutes(startDate, 40);
+                Date needEndDate = DateUtils.addMinutes(startDate, StaticConst.examTime);
                 //needEndDate小于now 返回-1，大于返回1，相等返回0
                 if (needEndDate.compareTo(now) < 0) {//理论结束时间<当前时间 报错
                     System.out.println("已经超过考试时间，不能登陆");
