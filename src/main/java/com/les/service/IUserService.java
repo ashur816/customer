@@ -1,8 +1,10 @@
 package com.les.service;
 
 import com.les.dto.UserRegister;
+import com.les.dto.UserResult;
 import com.les.po.User;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,7 +17,8 @@ public interface IUserService {
 
     public User login(String userName,String password);
     public List<User> getUserList();
-    public void register(UserRegister userRegister);
+    public UserResult register(UserRegister userRegister);
     public User singleUser(String username);
     public void insertGoal(int userId,String totalGoal);
+    public void commit(Date endDate);
 }

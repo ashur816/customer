@@ -26,9 +26,11 @@ public interface UserMapper {
 
     User singleUser(String name);
 
-    void insertGoal(int userId, String totalGoal);
+    void insertGoal(@Param("userId") int userId, @Param("totalGoal") String totalGoal);
 
     void insertUserGoal(@Param("userId") int userId, @Param("startDate") Date startDate);
 
     UserGoal getLatestUserGoal(int userId);
+
+    void commit(Date endDate);
 }

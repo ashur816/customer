@@ -15,6 +15,8 @@ public class User implements Serializable{
     private String userName;
     private String password;
     private String fullname;
+    private int age;
+    private String sex;
     private String graduateInstitution;
     private String major;
     private String workingLife;
@@ -30,6 +32,12 @@ public class User implements Serializable{
 
     public String getFullname() { return fullname; }
     public void setFullname(String name) { this.fullname = fullname; }
+
+    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }
+
+    public String getSex() { return sex; }
+    public void setSex(String sex) { this.sex = sex; }
 
     public String getGraduateInstitution() { return graduateInstitution; }
     public void setGraduateInstitution(String graduateInstitution) { this.graduateInstitution = graduateInstitution; }

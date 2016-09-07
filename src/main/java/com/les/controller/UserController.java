@@ -1,6 +1,7 @@
 package com.les.controller;
 
 import com.les.dto.UserRegister;
+import com.les.dto.UserResult;
 import com.les.po.User;
 import com.les.service.IUserService;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,7 +34,6 @@ public class UserController {
     @ResponseBody
     public List<User> getUserList() {
         logger.info("从数据库读取User集合");
-        //ss
         List<User> userList = userService.getUserList();
         return userList;
     }
@@ -68,17 +69,27 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String register(HttpServletRequest request) {
-        String result = "{\"id\": \"u\", \"umessage\":\"注册成功\"}";
+    public UserResult register(HttpServletRequest request) {
+//        String result = "{\"id\": \"u\", \"umessage\":\"注册成功\"}";
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         String fullname = request.getParameter("fullname");
-        String graduateInstitution = request.getParameter("graduateInstitution");
+        int age = Integer.parseInt(request.getParameter("age"));
+        String sex = request.getParameter("sex");
+        String graduateInstitution = request.getParameter("school");
         String major = request.getParameter("major");
-        String workingLife = request.getParameter("workingLife");
-        UserRegister userRegister = new UserRegister(userName, password, fullname, graduateInstitution, major, workingLife);
-        userService.register(userRegister);
-        return result;
+        String workingLife = request.getParameter("year");
+
+        UserRegister userRegister = new UserRegister(userName,password,fullname,age,sex,graduateInstitution,major,workingLife);
+        UserResult userResult = userService.register(userRegister);
+        return userResult;
+    }
+
+    @RequestMapping(value = "/commit", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void commit(){
+        Date now = new Date();
+        userService.commit(now);
     }
 }
 

@@ -78,14 +78,19 @@ public class UserServiceImpl implements IUserService {
         UserResult userResult = new UserResult();
         if (user == null) {
             userMapper.register(userRegister);
+            userResult.setUserName(userRegister.getUserName());
+            userResult.setPassword(userRegister.getPassword());
             userResult.setFullname(userRegister.getFullname());
             userResult.setGraduateInstitution(userRegister.getGraduateInstitution());
+            userResult.setAge(userRegister.getAge());
+            userResult.setSex(userRegister.getSex());
             userResult.setMajor(userRegister.getMajor());
             userResult.setWorkingLife(userRegister.getWorkingLife());
-        } else {
-
+            userResult.setMessage("{\"id\": \"u\", \"umessage\":\"注册成功\"}");
+        else{
+            userResult.setMessage("{\"id\": \"n\", \"nmessage\":\"用户名已存在\"}");
         }
-
+        return userResult;
 
     }
 
@@ -97,6 +102,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void insertGoal(int userId, String totalGoal) {
         userMapper.insertGoal(userId, totalGoal);
+    }
+
+    @Override
+    public void commit(Date endDate) {
+        userMapper.commit(endDate);
     }
 
 }

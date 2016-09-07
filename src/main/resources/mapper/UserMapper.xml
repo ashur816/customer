@@ -10,9 +10,9 @@
         SELECT USER_ID,USER_NAME,PASSWORD FROM USER_INFO WHERE USER_NAME=#{userName} AND PASSWORD=#{password};
     </select>
 
-    <insert id="register">
-        INSERT INTO user_info(user_name,password,fullname,graduate_institution,major,working_life)
-        VALUES (#{userName},#{password},#{fullname},#{graduateInstitution},#{major},#{workingLife});
+    <insert id="register" parameterType="com.les.dto.UserRegister">
+        INSERT INTO user_info(user_name,password,fullname,age,sex,graduate_institution,major,working_life)
+        VALUES (#{userName},#{password},#{fullname},#{age},#{sex},#{graduateInstitution},#{major},#{workingLife});
     </insert>
 
     <select id="singleUser" resultType="com.les.po.User">
@@ -26,8 +26,13 @@
     <insert id="insertGoal">
         INSERT INTO user_goal(total_goal)VALUES(#{totalGoal})WHERE user_id=#{userId}
     </insert>
+
     <insert id="insertUserGoal">
         INSERT INTO user_goal(user_id,start_time,exam_flag,reexam_flag)VALUES(#{userId},#{startDate},0,0)
+    </insert>
+
+    <insert id="commit">
+        INSERT INTO user_goal(end_time)VALUES (#{endDate}) WHERE user_id=#{userId}
     </insert>
 
 </mapper>
