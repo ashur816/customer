@@ -26,8 +26,13 @@
     <insert id="insertGoal">
         INSERT INTO user_goal(total_goal)VALUES(#{totalGoal})WHERE user_id=#{userId}
     </insert>
+
     <insert id="insertUserGoal">
         INSERT INTO user_goal(user_id,start_time,exam_flag,reexam_flag)VALUES(#{userId},#{startDate},0,0)
+    </insert>
+
+    <insert id="commit">
+        INSERT INTO user_goal(end_time)VALUES (#{endDate}) WHERE user_id=#{userId}
     </insert>
 
 </mapper>

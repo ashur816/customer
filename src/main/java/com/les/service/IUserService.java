@@ -4,6 +4,7 @@ import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
 import com.les.po.User;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,4 +20,5 @@ public interface IUserService {
     public UserResult register(UserRegister userRegister);
     public User singleUser(String username);
     public void insertGoal(int userId,String totalGoal);
+    public void commit(Date endDate);
 }

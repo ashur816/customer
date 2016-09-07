@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -82,6 +83,13 @@ public class UserController {
         UserRegister userRegister = new UserRegister(userName,password,fullname,age,sex,graduateInstitution,major,workingLife);
         UserResult userResult = userService.register(userRegister);
         return userResult;
+    }
+
+    @RequestMapping(value = "/commit", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void commit(){
+        Date now = new Date();
+        userService.commit(now);
     }
 }
 
