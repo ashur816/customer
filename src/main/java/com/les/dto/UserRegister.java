@@ -5,28 +5,28 @@ package com.les.dto;
  */
 public class UserRegister {
 
-    private String user_name;
+    private String userName;
     private String password;
     private String fullname;
-    private String graduate_institution;
+    private String graduateInstitution;
     private String major;
-    private String working_life;
+    private String workingLife;
 
-    public UserRegister(String user_name, String password, String fullname, String graduate_institution, String major, String working_life) {
-        this.user_name = user_name;
+    public UserRegister(String userName, String password, String fullname, String graduateInstitution, String major, String workingLife) {
+        this.userName = userName;
         this.password = password;
         this.fullname = fullname;
-        this.graduate_institution = graduate_institution;
+        this.graduateInstitution = graduateInstitution;
         this.major = major;
-        this.working_life = working_life;
+        this.workingLife = workingLife;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -45,12 +45,12 @@ public class UserRegister {
         this.fullname = fullname;
     }
 
-    public String getGraduate_institution() {
-        return graduate_institution;
+    public String getGraduateInstitution() {
+        return graduateInstitution;
     }
 
-    public void setGraduate_institution(String graduate_institution) {
-        this.graduate_institution = graduate_institution;
+    public void setGraduateInstitution(String graduateInstitution) {
+        this.graduateInstitution = graduateInstitution;
     }
 
     public String getMajor() {
@@ -61,11 +61,11 @@ public class UserRegister {
         this.major = major;
     }
 
-    public String getWorking_life() {
-        return working_life;
+    public String getWorkingLife() {
+        return workingLife;
     }
 
-    public void setWorking_life(String working_life) {
-        this.working_life = working_life;
+    public void setWorkingLife(String workingLife) {
+        this.workingLife = workingLife;
     }
 }

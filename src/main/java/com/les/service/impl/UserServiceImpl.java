@@ -31,7 +31,7 @@ public class UserServiceImpl implements IUserService {
     public User login(String userName, String password) {
         User user = userMapper.getUser(userName, password);
         if (user != null) {
-            int userId = user.getUser_Id();
+            int userId = user.getUserId();
             //根据userId查询用户最近一次考试结果
             UserGoal userGoal = userMapper.getLatestUserGoal(userId);
             Date now = new Date();
@@ -74,14 +74,14 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void register(UserRegister userRegister) {
-        User user = singleUser(userRegister.getUser_name());
+        User user = singleUser(userRegister.getUserName());
         UserResult userResult = new UserResult();
         if (user == null) {
             userMapper.register(userRegister);
             userResult.setFullname(userRegister.getFullname());
-            userResult.setGraduate_institution(userRegister.getGraduate_institution());
+            userResult.setGraduate_institution(userRegister.getGraduateInstitution());
             userResult.setMajor(userRegister.getMajor());
-            userResult.setWorking_life(userRegister.getWorking_life());
+            userResult.setWorking_life(userRegister.getWorkingLife());
         } else {
 
         }

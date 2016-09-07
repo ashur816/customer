@@ -11,19 +11,19 @@ import java.io.Serializable;
 public class User implements Serializable{
     private static final long serialVersionUID = 2120869894112984147L;
 
-    private int user_Id;
-    private String user_Name;
+    private int userId;
+    private String userName;
     private String password;
     private String fullname;
-    private String graduate_institution;
+    private String graduateInstitution;
     private String major;
-    private String working_life;
+    private String workingLife;
 
-    public int getUser_Id() { return user_Id; }
-    public void setUser_Id(int user_Id) { this.user_Id = user_Id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 
-    public String getUser_Name() { return user_Name; }
-    public void setUser_Name(String user_Name) { this.user_Name = user_Name; }
+    public String getUserName() { return userName; }
+    public void setUserName(String userName) { this.userName = userName; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
@@ -31,12 +31,12 @@ public class User implements Serializable{
     public String getFullname() { return fullname; }
     public void setFullname(String name) { this.fullname = fullname; }
 
-    public String getGraduate_institution() { return graduate_institution; }
-    public void setGraduate_institution(String graduate_institution) { this.graduate_institution = graduate_institution; }
+    public String getGraduateInstitution() { return graduateInstitution; }
+    public void setGraduateInstitution(String graduateInstitution) { this.graduateInstitution = graduateInstitution; }
 
     public String getMajor() { return major; }
     public void setMajor(String address) { this.major = major; }
 
-    public String getWorking_life() { return working_life; }
-    public void setWorking_life(String working_life) { this.working_life = working_life; }
+    public String getWorkingLife() { return workingLife; }
+    public void setWorkingLife(String workingLife) { this.workingLife = workingLife; }
 }
