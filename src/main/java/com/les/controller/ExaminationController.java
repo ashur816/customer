@@ -35,7 +35,7 @@ public class ExaminationController {
 
     /**
      * @param body json体
-     * @return Examination
+     * @return UserAnswer
      * @Description: 根据题目id + 用户id 查询题目及已填答案
      */
     @RequestMapping(value = "/getExamAndAnswer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
