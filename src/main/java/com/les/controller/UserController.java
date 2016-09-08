@@ -79,7 +79,7 @@ public class UserController {
             try {
                 if (StaticConst.USER_TYPE_ADMIN == userType) {
                     //重定向管理页
-                    response.sendRedirect("http://www.baidu.com");
+                    response.sendRedirect("http://192.168.30.245/project3/member-list.html");
                 } else {
                     //重定向考试页
                     response.sendRedirect("http://192.168.30.218/Exam/exam.html");
