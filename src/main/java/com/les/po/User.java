@@ -13,6 +13,7 @@ public class User implements Serializable{
 
     private int userId;
     private String userName;
+    private int userType;
     private String password;
     private String fullname;
     private int age;
@@ -23,6 +24,15 @@ public class User implements Serializable{
 
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
+
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
 
     public String getUserName() { return userName; }
     public void setUserName(String userName) { this.userName = userName; }

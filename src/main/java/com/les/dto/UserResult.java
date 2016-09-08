@@ -8,7 +8,9 @@ import java.io.Serializable;
 public class UserResult implements Serializable{
     private static final long serialVersionUID = -503720886795820883L;
 
+    private String token;
     private String userName;
+    private int userType;
     private String password;
     private String fullname;
     private String graduateInstitution;
@@ -18,8 +20,24 @@ public class UserResult implements Serializable{
     private String workingLife;
     private String message;
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public String getUserName() { return userName; }
     public void setUserName(String userName) { this.userName = userName; }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }

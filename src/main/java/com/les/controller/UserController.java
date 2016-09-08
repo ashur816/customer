@@ -1,5 +1,6 @@
 package com.les.controller;
 
+import com.les.common.StaticConst;
 import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
 import com.les.po.User;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -39,15 +40,15 @@ public class UserController {
     }
 
     //把下面method改成get请求，可以直接访问http://localhost:8080/login.jsp?userName=lsm&password=1212
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public List<User> login(HttpServletRequest request) {
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        User user = userService.login(userName, password);
-        List<User> userList = new ArrayList<>();
-        userList.add(user);
-        return userList;
+//    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+//    @ResponseBody
+//    public List<User> login(HttpServletRequest request) {
+//        String userName = request.getParameter("userName");
+//        String password = request.getParameter("password");
+//        User user = userService.login(userName, password);
+//        List<User> userList = new ArrayList<>();
+//        userList.add(user);
+//        return userList;
 
 //        String result = "{\"id\": \"f\", \"fmessage\":\"登陆成功\"}";
 //        if (StringUtils.isBlank(userName)) {
@@ -65,6 +66,28 @@ public class UserController {
 //            }
 //        }
 //        return result;
+//    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void login(HttpServletRequest request, HttpServletResponse response) {
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
+        UserResult userResult = userService.login(userName, password);
+        if(userResult != null){
+            int userType = userResult.getUserType();
+            try {
+                if (StaticConst.USER_TYPE_ADMIN == userType) {
+                    //重定向管理页
+                    response.sendRedirect("http://www.baidu.com");
+                } else {
+                    //重定向考试页
+                    response.sendRedirect("http://www.qbao.com");
+                }
+            }catch (Exception e){
+
+            }
+        }
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
