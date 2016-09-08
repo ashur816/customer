@@ -18,6 +18,8 @@ public interface IUserService {
     public UserResult login(String userName,String password);
     public List<User> getUserList();
     public UserResult register(UserRegister userRegister);
+    public void updateUser(int userId,String userName,int userType,String password, String fullname,int age, String sex,  String graduateInstitution, String major,String workingLife);
+    public void deleteUser(int userId);
     public User singleUser(String username);
     public void insertGoal(int userId,String totalGoal);
     public void commit(Date endDate);

@@ -24,6 +24,12 @@ public interface UserMapper {
 
     void register(UserRegister userRegister);
 
+    void updateUser(@Param("userId") int userId,@Param("userName") String userName,@Param("userType") int userType, @Param("password") String password,
+                    @Param("fullname") String fullname,@Param("age") int age, @Param("sex") String sex,
+                    @Param("graduateInstitution") String graduateInstitution,@Param("major") String major,@Param("workingLife") String workingLife);
+
+    void deleteUser(int userId);
+
     User singleUser(String name);
 
     void insertGoal(@Param("userId") int userId, @Param("totalGoal") String totalGoal);

@@ -109,6 +109,32 @@ public class UserController {
         return userResult;
     }
 
+    @RequestMapping(value = "/updateUser", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void updateUser(HttpServletRequest request){
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        String userName = request.getParameter("userName");
+        int userType = Integer.parseInt(request.getParameter("userType"));
+        String password = request.getParameter("password");
+        String fullname = request.getParameter("fullname");
+        int age = Integer.parseInt(request.getParameter("age"));
+        String sex = request.getParameter("sex");
+        String graduateInstitution = request.getParameter("school");
+        String major = request.getParameter("major");
+        String workingLife = request.getParameter("year");
+
+        userService.updateUser(userId,userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife);
+    }
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void deleteUser(HttpServletRequest request){
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        userService.deleteUser(userId);
+
+    }
+
+
     @RequestMapping(value = "/commit", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public void commit(){

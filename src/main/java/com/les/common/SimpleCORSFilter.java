@@ -44,8 +44,8 @@ public class SimpleCORSFilter implements Filter {
             }
             if (noLogin) {
                 //重定向登陆页面
-                response.sendRedirect("http://192.168.30.218/Exam/index.html");
-                return;
+//                response.sendRedirect("http://192.168.30.218/Exam/index.html");
+//                return;
             }
         }
         chain.doFilter(req, res);

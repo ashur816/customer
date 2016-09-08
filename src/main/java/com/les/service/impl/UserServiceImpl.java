@@ -92,6 +92,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public void updateUser(int userId, String userName, int userType, String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife) {
+        userMapper.updateUser(userId,userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife);
+    }
+
+
+    @Override
+    public void deleteUser(int userId) {
+        userMapper.deleteUser(userId);
+    }
+
+    @Override
     public User singleUser(String username) {
         return userMapper.singleUser(username);
     }
