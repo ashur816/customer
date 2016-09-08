@@ -1,6 +1,7 @@
 package com.les.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2016/9/6.
@@ -19,6 +20,8 @@ public class UserResult implements Serializable{
     private String major;
     private String workingLife;
     private String message;
+    private Date startTime;
+    private Date endTime;
 
     public String getToken() {
         return token;
@@ -66,5 +69,21 @@ public class UserResult implements Serializable{
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 }

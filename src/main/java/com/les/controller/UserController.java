@@ -31,7 +31,7 @@ public class UserController {
     @Resource
     private IUserService userService;
 
-    @RequestMapping("/getUserList")
+    @RequestMapping(value = "/getUserList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public List<User> getUserList() {
         logger.info("从数据库读取User集合");

@@ -41,7 +41,7 @@ public class User implements Serializable{
     public void setPassword(String password) { this.password = password; }
 
     public String getFullname() { return fullname; }
-    public void setFullname(String name) { this.fullname = fullname; }
+    public void setFullname(String fullname) { this.fullname = fullname; }
 
     public int getAge() { return age; }
     public void setAge(int age) { this.age = age; }
@@ -53,7 +53,7 @@ public class User implements Serializable{
     public void setGraduateInstitution(String graduateInstitution) { this.graduateInstitution = graduateInstitution; }
 
     public String getMajor() { return major; }
-    public void setMajor(String address) { this.major = major; }
+    public void setMajor(String major) { this.major = major; }
 
     public String getWorkingLife() { return workingLife; }
     public void setWorkingLife(String workingLife) { this.workingLife = workingLife; }
