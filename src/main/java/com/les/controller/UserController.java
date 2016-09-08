@@ -95,6 +95,7 @@ public class UserController {
     public UserResult register(HttpServletRequest request) {
 //        String result = "{\"id\": \"u\", \"umessage\":\"注册成功\"}";
         String userName = request.getParameter("userName");
+        int userType = Integer.parseInt(request.getParameter("userType"));
         String password = request.getParameter("password");
         String fullname = request.getParameter("fullname");
         int age = Integer.parseInt(request.getParameter("age"));
@@ -103,7 +104,7 @@ public class UserController {
         String major = request.getParameter("major");
         String workingLife = request.getParameter("year");
 
-        UserRegister userRegister = new UserRegister(userName,password,fullname,age,sex,graduateInstitution,major,workingLife);
+        UserRegister userRegister = new UserRegister(userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife);
         UserResult userResult = userService.register(userRegister);
         return userResult;
     }

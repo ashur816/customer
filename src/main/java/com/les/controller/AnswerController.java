@@ -60,7 +60,7 @@ public class AnswerController {
     @RequestMapping(value = "/getAnswerList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public List<UserAnswer> getAnswerList(@RequestBody String body) throws Exception {
-        String userId = JsonUtils.readValueByName(body, "user_id");
+        String userId = JsonUtils.readValueByName(body, "userId");
         return answerService.getAnswerList(Integer.parseInt(userId));
     }
 

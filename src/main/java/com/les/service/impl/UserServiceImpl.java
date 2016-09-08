@@ -75,6 +75,7 @@ public class UserServiceImpl implements IUserService {
         if (user == null) {
             userMapper.register(userRegister);
             userResult.setUserName(userRegister.getUserName());
+            userResult.setUserType(userRegister.getUserType());
             userResult.setPassword(userRegister.getPassword());
             userResult.setFullname(userRegister.getFullname());
             userResult.setGraduateInstitution(userRegister.getGraduateInstitution());

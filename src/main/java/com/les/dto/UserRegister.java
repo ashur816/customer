@@ -6,6 +6,7 @@ package com.les.dto;
 public class UserRegister {
 
     private String userName;
+    private int userType;
     private String password;
     private String fullname;
     private String graduateInstitution;
@@ -18,8 +19,9 @@ public class UserRegister {
     public UserRegister() {
     }
 
-    public UserRegister(String userName, String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife) {
+    public UserRegister(String userName, int userType,String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife) {
         this.userName = userName;
+        this.userType = userType;
         this.password = password;
         this.fullname = fullname;
         this.graduateInstitution = graduateInstitution;
@@ -36,6 +38,10 @@ public class UserRegister {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public int getUserType() { return userType; }
+
+    public void setUserType(int userType) { this.userType = userType; }
 
     public String getPassword() {
         return password;
