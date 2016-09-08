@@ -41,8 +41,8 @@ public class ExaminationController {
     @RequestMapping(value = "/getExamAndAnswer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     UserAnswer getExamAndAnswer(@RequestBody String body) throws IOException {
-        String examId = JsonUtils.readValueByName(body, "exam_id");
-        String userId = JsonUtils.readValueByName(body, "user_id");
+        String examId = JsonUtils.readValueByName(body, "examId");
+        String userId = JsonUtils.readValueByName(body, "userId");
         return examinationService.getExamAndAnswer(Integer.parseInt(userId), Integer.parseInt(examId));
 
     }

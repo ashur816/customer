@@ -82,7 +82,7 @@ public class UserController {
                     response.sendRedirect("http://www.baidu.com");
                 } else {
                     //重定向考试页
-                    response.sendRedirect("http://www.qbao.com");
+                    response.sendRedirect("http://192.168.30.218/Exam/exam.html");
                 }
             }catch (Exception e){
 
