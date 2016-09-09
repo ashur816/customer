@@ -1,6 +1,5 @@
 package com.les.controller;
 
-import com.les.common.StaticConst;
 import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
 import com.les.po.User;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
