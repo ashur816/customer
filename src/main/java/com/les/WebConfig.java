@@ -7,6 +7,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,7 +26,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @SpringBootApplication
 @ComponentScan
 @MapperScan("com.les.dao.mapper")
-public class WebConfig {
+public class WebConfig implements EmbeddedServletContainerCustomizer {
 
     //DataSource配置
     @Bean
@@ -55,4 +57,8 @@ public class WebConfig {
         System.out.println("============= SpringBoot Start Success =============");
     }
 
+    @Override
+    public void customize(ConfigurableEmbeddedServletContainer configurableEmbeddedServletContainer) {
+        configurableEmbeddedServletContainer.setPort(8081);
+    }
 }
