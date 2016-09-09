@@ -94,9 +94,10 @@ public class UserController {
 
     @RequestMapping(value = "/commit", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public void commit(){
+    public void commit(HttpServletRequest request){
+        int userId = Integer.parseInt(request.getParameter("userId"));
         Date now = new Date();
-        userService.commit(now);
+        userService.commit(userId,now);
     }
 }
 
