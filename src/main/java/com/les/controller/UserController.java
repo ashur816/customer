@@ -68,7 +68,7 @@ public class UserController {
 //        return result;
 //    }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public UserResult login(HttpServletRequest request, HttpServletResponse response) {
         String userName = request.getParameter("userName");
