@@ -37,35 +37,37 @@ public class UserServiceImpl implements IUserService {
         if (user != null) {
             userResult = new UserResult();
             int userId = user.getUserId();
-            //根据userId查询用户最近一次考试结果
-            UserGoal userGoal = userMapper.getLatestUserGoal(userId);
-            Date now = new Date();
-            //不能重考的，校验时间，能重考的，插入新的考试记录
-            if (userGoal != null && userGoal.getReexamFlag() == 0) {
-                Date startDate = userGoal.getStartTime();
-                //理论结束时间
-                Date needEndDate = DateUtils.addMinutes(startDate, StaticConst.examTime);
-                //needEndDate小于now 返回-1，大于返回1，相等返回0
-                if (needEndDate.compareTo(now) < 0) {//理论结束时间<当前时间 报错
-                    userResult.setMessage("{\"id\": \"u\", \"umessage\":\"已经超出考试时间，不能登陆\"}");
+            int userType = user.getUserType();
+            if (StaticConst.USER_TYPE_ADMIN == userType) {
+                //重定向管理页
+                userResult.setRedirectUrl("http://192.168.30.245/project3/member-list.html");
+            } else {
+                //根据userId查询用户最近一次考试结果
+                UserGoal userGoal = userMapper.getLatestUserGoal(userId);
+                Date now = new Date();
+                //不能重考的，校验时间，能重考的，插入新的考试记录
+                if (userGoal != null && userGoal.getReexamFlag() == 0) {
+                    Date startDate = userGoal.getStartTime();
+                    //理论结束时间
+                    Date needEndDate = DateUtils.addMinutes(startDate, StaticConst.examTime);
+                    //needEndDate小于now 返回-1，大于返回1，相等返回0
+                    if (needEndDate.compareTo(now) < 0) {//理论结束时间<当前时间 报错
+                        userResult.setMessage("{\"id\": \"u\", \"umessage\":\"已经超出考试时间，不能登陆\"}");
+                        return userResult;
+                    }
+                } else {//插入新记录
+                    userMapper.insertUserGoal(userId, now);
                 }
-            } else {//插入新记录
-                userMapper.insertUserGoal(userId, now);
+                //重定向考试页
+                userResult.setRedirectUrl("http://192.168.30.218/Exam/exam.html");
             }
+
             //生成uuid，记录到map缓存
             String token = UUID.randomUUID().toString().replace("-", "");
             MapCacheManager cacheManager = MapCacheManager.getInstance();
             cacheManager.updateCache(token, String.valueOf(userId));
 
             userResult.setToken(token);
-            int userType = userResult.getUserType();
-            if (StaticConst.USER_TYPE_ADMIN == userType) {
-                //重定向管理页
-                userResult.setRedirectUrl("http://192.168.30.245/project3/member-list.html");
-            } else {
-                //重定向考试页
-                userResult.setRedirectUrl("http://192.168.30.218/Exam/exam.html");
-            }
         }
         else {
             userResult.setMessage("{\"id\": \"u\", \"umessage\":\"用户名或密码错误\"}");
