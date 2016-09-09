@@ -1,6 +1,5 @@
 package com.les.controller;
 
-import com.les.common.StaticConst;
 import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
 import com.les.po.User;
@@ -8,13 +7,14 @@ import com.les.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,24 +31,24 @@ public class UserController {
     @Resource
     private IUserService userService;
 
-    @RequestMapping(value = "/getUserList", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getUserList/{userId}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public List<User> getUserList() {
+    public List<User> getUserList(@PathVariable int userId) {
         logger.info("从数据库读取User集合");
         List<User> userList = userService.getUserList();
         return userList;
     }
 
     //把下面method改成get请求，可以直接访问http://localhost:8080/login.jsp?userName=lsm&password=1212
-//    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-//    @ResponseBody
-//    public List<User> login(HttpServletRequest request) {
-//        String userName = request.getParameter("userName");
-//        String password = request.getParameter("password");
-//        User user = userService.login(userName, password);
-//        List<User> userList = new ArrayList<>();
-//        userList.add(user);
-//        return userList;
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public List login(HttpServletRequest request) {
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
+        UserResult userResult = userService.login(userName, password);
+        List userList = new ArrayList<>();
+        userList.add(userResult);
+        return userList;
 
 //        String result = "{\"id\": \"f\", \"fmessage\":\"登陆成功\"}";
 //        if (StringUtils.isBlank(userName)) {
@@ -68,26 +68,26 @@ public class UserController {
 //        return result;
 //    }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public void login(HttpServletRequest request, HttpServletResponse response) {
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        UserResult userResult = userService.login(userName, password);
-        if(userResult != null){
-            int userType = userResult.getUserType();
-            try {
-                if (StaticConst.USER_TYPE_ADMIN == userType) {
-                    //重定向管理页
-                    response.sendRedirect("http://192.168.30.245/project3/member-list.html");
-                } else {
-                    //重定向考试页
-                    response.sendRedirect("https://www.baidu.com/");
-                }
-            }catch (Exception e){
-
-            }
-        }
+//    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+//    @ResponseBody
+//    public void login(HttpServletRequest request, HttpServletResponse response) {
+//        String userName = request.getParameter("userName");
+//        String password = request.getParameter("password");
+//        UserResult userResult = userService.login(userName, password);
+//        if(userResult != null){
+//            int userType = userResult.getUserType();
+//            try {
+//                if (StaticConst.USER_TYPE_ADMIN == userType) {
+//                    //重定向管理页
+//                    response.sendRedirect("http://192.168.30.245/project3/member-list.html");
+//                } else {
+//                    //重定向考试页
+//                    response.sendRedirect("https://www.baidu.com/");
+//                }
+//            }catch (Exception e){
+//
+//            }
+//        }
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
