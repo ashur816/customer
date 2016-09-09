@@ -15,6 +15,7 @@ public class UserGoal implements Serializable{
     private Date endTime;
     private int examFlag;
     private int reexamFlag;
+    private String examMarker;
 
     public int getGoalId() { return goalId; }
     public void setGoalId(int goalId) { this.goalId = goalId; }
@@ -36,4 +37,7 @@ public class UserGoal implements Serializable{
 
     public int getReexamFlag() { return reexamFlag; }
     public void setReexamFlag(int reexamFlag) { this.reexamFlag = reexamFlag; }
+
+    public String getExamMarker() { return examMarker; }
+    public void setExamMarker(String examMarker) { this.examMarker = examMarker; }
 }
