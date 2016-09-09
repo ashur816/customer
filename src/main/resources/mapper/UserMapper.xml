@@ -8,7 +8,10 @@
         g.start_time,g.end_time
         FROM USER_INFO u
           LEFT JOIN USER_GOAL g
-            ON u.user_id = g.user_id WHERE u.USER_TYPE=1;
+            ON u.user_id = g.user_id WHERE u.USER_TYPE=1
+            <if test="userId != null">
+                AND user_id = #{userId}
+            </if>;
     </select>
 
     <select id="getUser" resultType="com.les.po.User">

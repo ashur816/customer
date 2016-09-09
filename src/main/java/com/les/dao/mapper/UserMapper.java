@@ -18,15 +18,15 @@ import java.util.List;
 @Component
 public interface UserMapper {
 
-    User getUser(@Param("userName") String userName, @Param("password") String password);
+    User getUser(@Param("userName")String userName, @Param("password")String password);
 
-    List<User> getUserList();
+    List<User> getUserList(int userId);
 
     void register(UserRegister userRegister);
 
-    void updateUser(@Param("userId") int userId,@Param("userName") String userName,@Param("userType") int userType, @Param("password") String password,
-                    @Param("fullname") String fullname,@Param("age") int age, @Param("sex") String sex,
-                    @Param("graduateInstitution") String graduateInstitution,@Param("major") String major,@Param("workingLife") String workingLife);
+    void updateUser(@Param("userId")int userId,@Param("userName")String userName,@Param("userType")int userType, @Param("password")String password,
+                    @Param("fullname")String fullname,@Param("age") int age, @Param("sex") String sex,
+                    @Param("graduateInstitution")String graduateInstitution,@Param("major")String major,@Param("workingLife")String workingLife);
 
     void deleteUser(int userId);
 

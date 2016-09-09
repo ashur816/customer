@@ -33,9 +33,8 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserResult login(String userName, String password) {
         User user = userMapper.getUser(userName, password);
-        UserResult userResult = null;
+        UserResult userResult = new UserResult();
         if (user != null) {
-            userResult = new UserResult();
             int userId = user.getUserId();
             int userType = user.getUserType();
             if (StaticConst.USER_TYPE_ADMIN == userType) {
@@ -52,7 +51,8 @@ public class UserServiceImpl implements IUserService {
                     Date needEndDate = DateUtils.addMinutes(startDate, StaticConst.examTime);
                     //needEndDate小于now 返回-1，大于返回1，相等返回0
                     if (needEndDate.compareTo(now) < 0) {//理论结束时间<当前时间 报错
-                        userResult.setMessage("{\"id\": \"u\", \"umessage\":\"已经超出考试时间，不能登陆\"}");
+                        userResult.setMessage("考试时间结束，不能重复登陆");
+                        userResult.setToken("n");
                         return userResult;
                     }
                 } else {//插入新记录
@@ -70,14 +70,15 @@ public class UserServiceImpl implements IUserService {
             userResult.setToken(token);
         }
         else {
-            userResult.setMessage("{\"id\": \"u\", \"umessage\":\"用户名或密码错误\"}");
+            userResult.setMessage("用户名或密码错误");
+            userResult.setToken("p");
         }
         return userResult;
     }
 
     @Override
-    public List<User> getUserList() {
-        return userMapper.getUserList();
+    public List<User> getUserList(int userId) {
+        return userMapper.getUserList(userId);
     }
 
     @Override

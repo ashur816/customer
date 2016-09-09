@@ -34,7 +34,7 @@ public class UserController {
     @ResponseBody
     public List<User> getUserList(@PathVariable int userId) {
         logger.info("从数据库读取User集合");
-        List<User> userList = userService.getUserList();
+        List<User> userList = userService.getUserList(userId);
         return userList;
     }
 
