@@ -61,10 +61,10 @@ public class UserServiceImpl implements IUserService {
             int userType = userResult.getUserType();
             if (StaticConst.USER_TYPE_ADMIN == userType) {
                 //重定向管理页
-                userResult.setRedirectUrl("http://www.baidu.com/");
+                userResult.setRedirectUrl("http://192.168.30.245/project3/member-list.html");
             } else {
                 //重定向考试页
-                userResult.setRedirectUrl("http://www.baidu.com/");
+                userResult.setRedirectUrl("http://192.168.30.218/Exam/exam.html");
             }
         }
         else {
