@@ -59,8 +59,8 @@ public class UserServiceImpl implements IUserService {
 
             userResult.setToken(token);
             userResult.setUserType(user.getUserType());
-            userResult.setMessage("{\"id\": \"e\", \"emessage\":\"http://192.168.30.218/Exam/exam.html\"}");
-            userResult.setMessage("{\"id\": \"l\", \"lmessage\":\"http://192.168.30.245/project3/member-list.html\"}");
+            userResult.setMessage("{\"id\": \"userId\", \"emessage\":\"http://192.168.30.218/Exam/exam.html\"}");
+            userResult.setMessage("{\"id\": \"userId\", \"lmessage\":\"http://192.168.30.245/project3/member-list.html\"}");
         }
         return userResult;
     }
