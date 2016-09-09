@@ -9,7 +9,7 @@
         FROM USER_INFO u
           LEFT JOIN USER_GOAL g
             ON u.user_id = g.user_id WHERE u.USER_TYPE=2
-            <if test="userId != null">
+            <if test="userId != 0">
                 AND u.user_id = #{userId}
             </if>;
     </select>
