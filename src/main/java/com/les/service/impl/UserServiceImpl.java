@@ -47,7 +47,7 @@ public class UserServiceImpl implements IUserService {
                 Date needEndDate = DateUtils.addMinutes(startDate, StaticConst.examTime);
                 //needEndDate小于now 返回-1，大于返回1，相等返回0
                 if (needEndDate.compareTo(now) < 0) {//理论结束时间<当前时间 报错
-                    userResult.setMessage("已经超出考试时间，不能登陆");
+                    userResult.setMessage("{\"id\": \"u\", \"umessage\":\"已经超出考试时间，不能登陆\"}");
                 }
             } else {//插入新记录
                 userMapper.insertUserGoal(userId, now);
@@ -58,7 +58,17 @@ public class UserServiceImpl implements IUserService {
             cacheManager.updateCache(token, String.valueOf(userId));
 
             userResult.setToken(token);
-            userResult.setUserType(user.getUserType());
+            int userType = userResult.getUserType();
+            if (StaticConst.USER_TYPE_ADMIN == userType) {
+                //重定向管理页
+                userResult.setRedirectUrl("http://www.baidu.com/");
+            } else {
+                //重定向考试页
+                userResult.setRedirectUrl("http://www.baidu.com/");
+            }
+        }
+        else {
+            userResult.setMessage("{\"id\": \"u\", \"umessage\":\"用户名或密码错误\"}");
         }
         return userResult;
     }

@@ -1,6 +1,5 @@
 package com.les.controller;
 
-import com.les.common.StaticConst;
 import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
 import com.les.po.User;
@@ -70,24 +69,11 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public void login(HttpServletRequest request, HttpServletResponse response) {
+    public UserResult login(HttpServletRequest request, HttpServletResponse response) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         UserResult userResult = userService.login(userName, password);
-        if(userResult != null){
-            int userType = userResult.getUserType();
-            try {
-                if (StaticConst.USER_TYPE_ADMIN == userType) {
-                    //重定向管理页
-                    response.sendRedirect("http://192.168.30.245/project3/member-list.html");
-                } else {
-                    //重定向考试页
-                    response.sendRedirect("https://www.baidu.com/");
-                }
-            }catch (Exception e){
-
-            }
-        }
+        return userResult;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

@@ -22,6 +22,7 @@ public class UserResult implements Serializable{
     private String message;
     private Date startTime;
     private Date endTime;
+    private String redirectUrl;
 
     public String getToken() {
         return token;
@@ -85,5 +86,13 @@ public class UserResult implements Serializable{
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
     }
 }
