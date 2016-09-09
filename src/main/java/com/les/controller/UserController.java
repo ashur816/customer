@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -70,7 +69,7 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public UserResult login(HttpServletRequest request, HttpServletResponse response) {
+    public UserResult login(HttpServletRequest request) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         UserResult userResult = userService.login(userName, password);

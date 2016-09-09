@@ -29,7 +29,6 @@ public class User implements Serializable{
     public int getUserType() {
         return userType;
     }
-
     public void setUserType(int userType) {
         this.userType = userType;
     }
