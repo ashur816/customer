@@ -2,7 +2,6 @@ package com.les.controller;
 
 import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
-import com.les.po.User;
 import com.les.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,41 +31,13 @@ public class UserController {
 
     @RequestMapping(value = "/getUserList/{userId}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public List<User> getUserList(@PathVariable int userId) {
+    public List getUserList(@PathVariable int userId) {
         logger.info("从数据库读取User集合");
-        List<User> userList = userService.getUserList(userId);
+        List userList = userService.getUserList(userId);
         return userList;
     }
 
     //把下面method改成get请求，可以直接访问http://localhost:8080/login.jsp?userName=lsm&password=1212
-//    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-//    @ResponseBody
-//    public List<User> login(HttpServletRequest request) {
-//        String userName = request.getParameter("userName");
-//        String password = request.getParameter("password");
-//        User user = userService.login(userName, password);
-//        List<User> userList = new ArrayList<>();
-//        userList.add(user);
-//        return userList;
-
-//        String result = "{\"id\": \"f\", \"fmessage\":\"登陆成功\"}";
-//        if (StringUtils.isBlank(userName)) {
-//            result = "{\"id\": \"n\", \"nmessage\":\"用户名不能为空\"}";
-//        } else if (StringUtils.isBlank(password)) {
-//            result = "{\"id\": \"p\", \"pmessage\":\"密码不能为空\"}";
-//        } else {
-//            try {
-//                User user = userService.Login(userName, password);
-//                List<User> userList = new ArrayList<User>();
-//                userList.add(user);
-//                return userList;
-//            } catch (Exception e) {
-//                result = "{\"id\": \"p\", \"pmessage\":" + e.getMessage() + "\"}";
-//            }
-//        }
-//        return result;
-//    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public UserResult login(HttpServletRequest request) {

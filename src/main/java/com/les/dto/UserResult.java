@@ -24,6 +24,8 @@ public class UserResult implements Serializable{
     private Date endTime;
     private String redirectUrl;
 
+    public  UserResult(){}
+
     public String getToken() {
         return token;
     }

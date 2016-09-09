@@ -1,6 +1,7 @@
 package com.les.dao.mapper;
 
 import com.les.dto.UserRegister;
+import com.les.dto.UserResult;
 import com.les.po.User;
 import com.les.po.UserGoal;
 import org.apache.ibatis.annotations.Param;
@@ -20,7 +21,7 @@ public interface UserMapper {
 
     User getUser(@Param("userName")String userName, @Param("password")String password);
 
-    List<User> getUserList(int userId);
+    List<UserResult> getUserList(int userId);
 
     void register(UserRegister userRegister);
 

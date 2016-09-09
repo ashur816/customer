@@ -39,7 +39,7 @@ public class UserServiceImpl implements IUserService {
             int userType = user.getUserType();
             if (StaticConst.USER_TYPE_ADMIN == userType) {
                 //重定向管理页
-                userResult.setRedirectUrl("http://192.168.30.245/project3/member-list.html");
+                userResult.setRedirectUrl("http://192.168.30.214/project3/member-list.html");
             } else {
                 //根据userId查询用户最近一次考试结果
                 UserGoal userGoal = userMapper.getLatestUserGoal(userId);
@@ -77,7 +77,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<User> getUserList(int userId) {
+    public List<UserResult> getUserList(int userId) {
         return userMapper.getUserList(userId);
     }
 

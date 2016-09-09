@@ -2,16 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.les.dao.mapper.UserMapper">
 
-    <select id="getUserList" resultType="com.les.po.User">
+    <select id="getUserList" resultType="com.les.dto.UserResult">
         SELECT u.user_id,u.user_name,u.user_type,u.password,
         u.fullname,u.age,u.sex,u.graduate_institution,u.major,u.working_life,
         g.start_time,g.end_time
         FROM USER_INFO u
           LEFT JOIN USER_GOAL g
-            ON u.user_id = g.user_id WHERE u.USER_TYPE=1
-            <if test="userId != null">
-                AND user_id = #{userId}
-            </if>;
+            ON u.user_id = g.user_id WHERE u.USER_TYPE=2
+            AND user_id = #{userId}
     </select>
 
     <select id="getUser" resultType="com.les.po.User">
