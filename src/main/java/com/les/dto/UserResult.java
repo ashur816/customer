@@ -27,7 +27,6 @@ public class UserResult implements Serializable{
     public String getToken() {
         return token;
     }
-
     public void setToken(String token) {
         this.token = token;
     }
@@ -38,7 +37,6 @@ public class UserResult implements Serializable{
     public int getUserType() {
         return userType;
     }
-
     public void setUserType(int userType) {
         this.userType = userType;
     }
