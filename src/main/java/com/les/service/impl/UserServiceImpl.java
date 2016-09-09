@@ -47,7 +47,7 @@ public class UserServiceImpl implements IUserService {
                 Date needEndDate = DateUtils.addMinutes(startDate, StaticConst.examTime);
                 //needEndDate小于now 返回-1，大于返回1，相等返回0
                 if (needEndDate.compareTo(now) < 0) {//理论结束时间<当前时间 报错
-                    userResult.setMessage("{\"id\": \"u\", \"umessage\":\"已经超出考试时间，不能登陆\"}");
+                    userResult.setMessage("{\"id\": \"u\", \"umessage\":\"考试时间结束，不能重复登陆\"}");
                 }
             } else {//插入新记录
                 userMapper.insertUserGoal(userId, now);
