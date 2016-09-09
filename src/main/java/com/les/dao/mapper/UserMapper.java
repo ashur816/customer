@@ -21,7 +21,7 @@ public interface UserMapper {
 
     User getUser(@Param("userName")String userName, @Param("password")String password);
 
-    List<UserResult> getUserList(int userId);
+    List<UserResult> getUserList(@Param("userId") int userId);
 
     void register(UserRegister userRegister);
 
