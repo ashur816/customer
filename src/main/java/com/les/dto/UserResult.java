@@ -9,7 +9,6 @@ import java.util.Date;
 public class UserResult implements Serializable{
     private static final long serialVersionUID = -503720886795820883L;
 
-    private int userId;
     private String token;
     private String userName;
     private int userType;
@@ -26,14 +25,6 @@ public class UserResult implements Serializable{
     private String redirectUrl;
 
     public  UserResult(){}
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public String getToken() {
         return token;

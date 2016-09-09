@@ -126,8 +126,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void commit(Date endDate) {
-        userMapper.commit(endDate);
+    public void commit(int userId,Date endDate) {
+        userMapper.commit(userId,endDate);
     }
 
 }

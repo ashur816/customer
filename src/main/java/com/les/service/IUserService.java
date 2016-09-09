@@ -22,5 +22,5 @@ public interface IUserService {
     public void deleteUser(int userId);
     public User singleUser(String username);
     public void insertGoal(int userId,String totalGoal);
-    public void commit(Date endDate);
+    public void commit(int userId,Date endDate);
 }

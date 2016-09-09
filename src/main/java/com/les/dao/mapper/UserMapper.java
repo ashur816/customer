@@ -39,5 +39,5 @@ public interface UserMapper {
 
     UserGoal getLatestUserGoal(int userId);
 
-    void commit(Date endDate);
+    void commit(int userId,Date endDate);
 }
