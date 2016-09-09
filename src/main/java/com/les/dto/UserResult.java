@@ -23,6 +23,7 @@ public class UserResult implements Serializable{
     private Date startTime;
     private Date endTime;
     private String redirectUrl;
+    private String examMarker;
 
     public  UserResult(){}
 
@@ -67,7 +68,6 @@ public class UserResult implements Serializable{
     public String getMessage() {
         return message;
     }
-
     public void setMessage(String message) {
         this.message = message;
     }
@@ -75,15 +75,11 @@ public class UserResult implements Serializable{
     public Date getStartTime() {
         return startTime;
     }
-
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
-        return endTime;
-    }
-
+    public Date getEndTime() { return endTime; }
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
@@ -91,8 +87,11 @@ public class UserResult implements Serializable{
     public String getRedirectUrl() {
         return redirectUrl;
     }
-
     public void setRedirectUrl(String redirectUrl) {
         this.redirectUrl = redirectUrl;
     }
+
+    public String getExamMarker() { return examMarker; }
+    public void setExamMarker(String examMarker) { this.examMarker = examMarker; }
+
 }
