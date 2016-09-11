@@ -21,6 +21,5 @@ public interface IUserService {
     public void updateUser(int userId,String userName,int userType,String password, String fullname,int age, String sex,  String graduateInstitution, String major,String workingLife);
     public void deleteUser(int userId);
     public User singleUser(String username);
-    public void insertGoal(int userId,String totalGoal);
     public void commit(int userId,Date endDate);
 }

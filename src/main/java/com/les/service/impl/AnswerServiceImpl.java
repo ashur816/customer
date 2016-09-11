@@ -1,13 +1,16 @@
 package com.les.service.impl;
 
 import com.les.dao.mapper.AnswerMapper;
+import com.les.dao.mapper.UserMapper;
+import com.les.dto.GoalInfo;
 import com.les.dto.UserAnswer;
+import com.les.dto.UserGoal;
+import com.les.dto.UserResult;
 import com.les.po.Answer;
 import com.les.service.IAnswerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -21,6 +24,9 @@ public class AnswerServiceImpl implements IAnswerService {
 
     @Resource
     private AnswerMapper answerMapper;
+
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public void insertAnswer(String answerContent, int examId, int userId) {
@@ -39,13 +45,20 @@ public class AnswerServiceImpl implements IAnswerService {
     }
 
     @Override
-    public String updateAnswerBatch(List<LinkedHashMap> goalList) {
+    public String updateAnswerBatch(int loginUserId, GoalInfo goalInfo) {
         double totalGoal = 0.0;
-        for (LinkedHashMap map : goalList) {
-            answerMapper.updateAnswerGoal(Integer.parseInt(map.get("answer_id").toString()),
-                    (map.get("goal").toString()));
-            totalGoal += Double.parseDouble(map.get("goal").toString());
+        List<UserGoal> goalList = goalInfo.getGoalList();
+        for (UserGoal userGoal : goalList) {
+            answerMapper.updateAnswerGoal(userGoal.getAnswerId(), userGoal.getGoal());
+            totalGoal += userGoal.getGoal();
         }
-        return  String.valueOf(totalGoal);
+
+        String tGoal = String.valueOf(totalGoal);
+        UserResult userResults = userMapper.getUserById(loginUserId);
+        if(userResults != null){
+            String examMaker = userResults.getFullname();
+            userMapper.updateUserGoal(examMaker, goalInfo.getUserId(), tGoal);
+        }
+        return tGoal;
     }
 }

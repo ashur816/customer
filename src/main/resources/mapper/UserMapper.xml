@@ -2,16 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.les.dao.mapper.UserMapper">
 
+    <select id="getUserById" resultType="com.les.dto.UserResult">
+        SELECT USER_ID,USER_NAME,USER_TYPE,FULLNAME FROM USER_INFO WHERE USER_ID=#{userId}
+    </select>
+
     <select id="getUserList" resultType="com.les.dto.UserResult">
         SELECT u.user_name,u.user_type,u.password,
         u.fullname,u.age,u.sex,u.graduate_institution,u.major,u.working_life,
         g.start_time,g.end_time,g.exam_marker
         FROM USER_INFO u
-          LEFT JOIN USER_GOAL g
-            ON u.user_id = g.user_id WHERE u.USER_TYPE=2
-            <if test="userId != 0">
-                AND u.user_id = #{userId}
-            </if>;
+        LEFT JOIN USER_GOAL g
+        ON u.user_id = g.user_id WHERE u.USER_TYPE=2
+        <if test="userId != 0">
+            AND u.user_id = #{userId}
+        </if>;
     </select>
 
     <select id="getUser" resultType="com.les.po.User">
@@ -40,8 +44,8 @@
         SELECT GOAL_ID,TOTAL_GOAL,USER_ID,START_TIME,END_TIME,EXAM_FLAG,REEXAM_FLAG FROM user_goal WHERE user_id=#{userId} order by GOAL_ID desc limit 1;
     </select>
 
-    <insert id="insertGoal">
-        INSERT INTO user_goal(total_goal)VALUES(#{totalGoal})WHERE user_id=#{userId}
+    <insert id="updateUserGoal">
+        UPDATE user_goal SET total_goal=#{totalGoal},exam_marker=#{examMaker} WHERE user_id=#{userId}
     </insert>
 
     <insert id="insertUserGoal">

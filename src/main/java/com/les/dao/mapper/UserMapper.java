@@ -19,6 +19,8 @@ import java.util.List;
 @Component
 public interface UserMapper {
 
+    UserResult getUserById(int userId);
+
     User getUser(@Param("userName")String userName, @Param("password")String password);
 
     List<UserResult> getUserList(@Param("userId") int userId);
@@ -33,7 +35,7 @@ public interface UserMapper {
 
     User singleUser(String name);
 
-    void insertGoal(@Param("userId") int userId, @Param("totalGoal") String totalGoal);
+    void updateUserGoal(@Param("examMaker") String examMaker, @Param("userId") int userId, @Param("totalGoal") String totalGoal);
 
     void insertUserGoal(@Param("userId") int userId, @Param("startDate") Date startDate);
 

@@ -19,8 +19,9 @@ import java.util.Map;
 
 @Component
 public class SimpleCORSFilter implements Filter {
-	
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE, PATCH");
@@ -30,7 +31,7 @@ public class SimpleCORSFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) req;
         String uri = request.getRequestURI();
-        if(!uri.contains("/login")) {//排除登陆请求
+        if (!uri.contains("/login")) {//排除登陆请求
             String token = request.getParameter("token");
             boolean noLogin = true;
             if (StringUtils.isNotBlank(token)) {
@@ -38,7 +39,7 @@ public class SimpleCORSFilter implements Filter {
                 Map<String, String> cashMap = cacheManager.getMapCache();
                 String userId = cashMap.get(token);
                 if (StringUtils.isNotBlank(userId)) {
-                    request.setAttribute("userId", userId);
+                    request.setAttribute("loginUserId", userId);
                     noLogin = false;
                 }
             }
@@ -51,10 +52,11 @@ public class SimpleCORSFilter implements Filter {
         chain.doFilter(req, res);
     }
 
-    public void init(FilterConfig filterConfig) {}
+    public void init(FilterConfig filterConfig) {
+    }
 
-    public void destroy() {}
-
+    public void destroy() {
+    }
 
 
 }

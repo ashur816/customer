@@ -1,8 +1,8 @@
 package com.les.service;
 
+import com.les.dto.GoalInfo;
 import com.les.dto.UserAnswer;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -14,6 +14,6 @@ import java.util.List;
 public interface IAnswerService {
     public void insertAnswer(String answerContent,int examinationId,int userId);
     List<UserAnswer> getAnswerList(int userId);
-    String updateAnswerBatch(List<LinkedHashMap> gradeList);
+    String updateAnswerBatch(int loginUserId, GoalInfo goalInfo);
 
 }

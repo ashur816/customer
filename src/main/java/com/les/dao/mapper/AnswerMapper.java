@@ -24,6 +24,6 @@ public interface AnswerMapper {
 
     List<UserAnswer> getAnswerList(int userId);
 
-    void updateAnswerGoal(@Param("answerId") int answerId, @Param("goal") String goal);
+    void updateAnswerGoal(@Param("answerId") int answerId, @Param("goal") double goal);
 
 }

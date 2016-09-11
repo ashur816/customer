@@ -121,11 +121,6 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void insertGoal(int userId, String totalGoal) {
-        userMapper.insertGoal(userId, totalGoal);
-    }
-
-    @Override
     public void commit(int userId,Date endDate) {
         userMapper.commit(userId,endDate);
     }
