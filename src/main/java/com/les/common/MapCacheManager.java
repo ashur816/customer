@@ -1,6 +1,7 @@
 package com.les.common;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -52,6 +53,12 @@ public class MapCacheManager {
      * 更新缓存
      */
     public void updateCache(String key, String value) {
+        Set<Map.Entry<String, String>> entrySet = cacheMap.entrySet();
+        for (Map.Entry<String, String> entry : entrySet){
+            if(entry.getValue().equals(value)){
+                cacheMap.remove(entry.getKey());
+            }
+        }
         cacheMap.put(key, value);
     }
 
