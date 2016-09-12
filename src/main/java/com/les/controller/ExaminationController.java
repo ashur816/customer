@@ -1,6 +1,8 @@
 package com.les.controller;
 
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.les.dto.UserAnswer;
 import com.les.po.Examination;
 import com.les.service.IAnswerService;
@@ -41,6 +43,8 @@ public class ExaminationController {
     @RequestMapping(value = "/getExamAndAnswer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     UserAnswer getExamAndAnswer(@RequestBody String body) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         String examId = JsonUtils.readValueByName(body, "examId");
         String userId = JsonUtils.readValueByName(body, "userId");
         return examinationService.getExamAndAnswer(Integer.parseInt(userId), Integer.parseInt(examId));
