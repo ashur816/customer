@@ -44,7 +44,6 @@ public class ExaminationController {
     @RequestMapping(value = "/getExamAndAnswer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     UserAnswer getExamAndAnswer(HttpServletRequest request,@RequestBody String body) throws IOException {
-    UserAnswer getExamAndAnswer(@RequestBody String body) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         String examId = JsonUtils.readValueByName(body, "examId");
