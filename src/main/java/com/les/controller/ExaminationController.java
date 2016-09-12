@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -42,11 +43,12 @@ public class ExaminationController {
      */
     @RequestMapping(value = "/getExamAndAnswer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
+    UserAnswer getExamAndAnswer(HttpServletRequest request,@RequestBody String body) throws IOException {
     UserAnswer getExamAndAnswer(@RequestBody String body) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         String examId = JsonUtils.readValueByName(body, "examId");
-        String userId = JsonUtils.readValueByName(body, "userId");
+        String userId = request.getAttribute("loginUserId").toString();
         return examinationService.getExamAndAnswer(Integer.parseInt(userId), Integer.parseInt(examId));
 
     }
