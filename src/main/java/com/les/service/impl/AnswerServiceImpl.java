@@ -45,7 +45,7 @@ public class AnswerServiceImpl implements IAnswerService {
     }
 
     @Override
-    public String updateAnswerBatch(int loginUserId, GoalInfo goalInfo) {
+    public GoalInfo updateAnswerBatch(int loginUserId, GoalInfo goalInfo) {
         double totalGoal = 0.0;
         List<UserGoal> goalList = goalInfo.getGoalList();
         for (UserGoal userGoal : goalList) {
@@ -55,10 +55,15 @@ public class AnswerServiceImpl implements IAnswerService {
 
         String tGoal = String.valueOf(totalGoal);
         UserResult userResults = userMapper.getUserById(loginUserId);
+        String examMaker = null;
         if(userResults != null){
-            String examMaker = userResults.getFullname();
+            examMaker = userResults.getFullname();
             userMapper.updateUserGoal(examMaker, goalInfo.getUserId(), tGoal);
         }
-        return tGoal;
+        goalInfo.setGoalList(null);
+        goalInfo.setUserId(0);
+        goalInfo.setExamMarker(examMaker);
+        goalInfo.setTotalGoal(tGoal);
+        return goalInfo;
     }
 }

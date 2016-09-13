@@ -14,6 +14,6 @@ import java.util.List;
 public interface IAnswerService {
     public void insertAnswer(String answerContent,int examinationId,int userId);
     List<UserAnswer> getAnswerList(int userId);
-    String updateAnswerBatch(int loginUserId, GoalInfo goalInfo);
+    GoalInfo updateAnswerBatch(int loginUserId, GoalInfo goalInfo);
 
 }

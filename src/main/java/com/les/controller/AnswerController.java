@@ -76,10 +76,10 @@ public class AnswerController {
      */
     @RequestMapping(value = "/grade", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String grade(HttpServletRequest request, @RequestBody String body) throws Exception {
+    public GoalInfo grade(HttpServletRequest request, @RequestBody String body) throws Exception {
         Object loginUserId = request.getAttribute("loginUserId");
         GoalInfo goalInfo = JsonUtils.readValue(body, GoalInfo.class);
-        String totalGoal = answerService.updateAnswerBatch(Integer.parseInt(loginUserId.toString()), goalInfo);
-        return totalGoal;
+        goalInfo = answerService.updateAnswerBatch(Integer.parseInt(loginUserId.toString()), goalInfo);
+        return goalInfo;
     }
 }

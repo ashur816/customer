@@ -9,13 +9,9 @@ public class UserGoal implements Serializable {
     private static final long serialVersionUID = 497054671098662010L;
 
     private int answerId;
-
     private double goal;
 
-    public int getAnswerId() {
-        return answerId;
-    }
-
+    public int getAnswerId() { return answerId; }
     public void setAnswerId(int answerId) {
         this.answerId = answerId;
     }
@@ -23,8 +19,5 @@ public class UserGoal implements Serializable {
     public double getGoal() {
         return goal;
     }
-
-    public void setGoal(double goal) {
-        this.goal = goal;
-    }
+    public void setGoal(double goal) { this.goal = goal; }
 }
