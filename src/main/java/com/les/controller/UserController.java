@@ -95,10 +95,13 @@ public class UserController {
 
     @RequestMapping(value = "/commit", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public void commit(HttpServletRequest request){
-        int userId = Integer.parseInt(request.getParameter("userId"));
+    public String commit(HttpServletRequest request){
+        String result = "提交成功";
+
+        int userId = Integer.parseInt(request.getAttribute("loginUserId").toString());
         Date now = new Date();
         userService.commit(userId,now);
+        return result;
     }
 }
 
