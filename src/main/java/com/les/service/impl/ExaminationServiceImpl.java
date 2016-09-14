@@ -8,6 +8,7 @@ import com.les.utils.RandomUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Set;
 
 /**
  * @author Lydia
@@ -24,7 +25,8 @@ public class ExaminationServiceImpl implements IExaminationService {
     @Override
     public void insertExam(String examQuestion, String examScore, String referenceAnswer, String examLevel) {
         int examId = Integer.parseInt(RandomUtils.generateNumString(8));
-        if(examinationMapper.allExamId().contains(examId)){
+        Set set = examinationMapper.allExamId();
+        if(set.contains(examId)){
             examId = Integer.parseInt(RandomUtils.generateNumString(8));
         }
         examinationMapper.insertExam(examId,examQuestion,examScore,referenceAnswer,examLevel);

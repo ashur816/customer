@@ -5,7 +5,7 @@ import com.les.po.Examination;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Lydia
@@ -23,5 +23,5 @@ public interface ExaminationMapper {
 
     void deleteExam(int examId);
 
-    Set allExamId();
+    Set<Integer> allExamId();
 }

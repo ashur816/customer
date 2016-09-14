@@ -29,7 +29,7 @@
           ON e.examination_id = a.examination_id
         WHERE e.examination_id = #{examId};
     </select>
-    <select id="allExamId" resultType="java.util.Set">
+    <select id="allExamId" resultType="java.lang.Integer">
         SELECT examination_id FROM examination;
     </select>
 
