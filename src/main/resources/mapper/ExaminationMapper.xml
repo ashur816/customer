@@ -10,8 +10,8 @@
         reference_answer=#{referenceAnswer},examination_level=#{examLevel} WHERE examination_id=#{examId};
     </update>
     <insert id="insertExam">
-        INSERT INTO examination(examination_question,examination_score,reference_answer, examination_level)
-        VALUES (#{examQuestion},#{examScore},#{referenceAnswer},#{examLevel});
+        INSERT INTO examination(examination_id,examination_question,examination_score,reference_answer, examination_level)
+        VALUES (#{examId},#{examQuestion},#{examScore},#{referenceAnswer},#{examLevel});
     </insert>
     <select id="getExamAndAnswer" resultType="com.les.dto.UserAnswer">
        SELECT
@@ -28,6 +28,9 @@
           WHERE user_id = #{userId}) a
           ON e.examination_id = a.examination_id
         WHERE e.examination_id = #{examId};
+    </select>
+    <select id="allExamId" resultType="java.util.Set">
+        SELECT examination_id FROM examination;
     </select>
 
 </mapper>

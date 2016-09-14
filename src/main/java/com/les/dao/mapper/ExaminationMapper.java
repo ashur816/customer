@@ -5,6 +5,8 @@ import com.les.po.Examination;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+
 /**
  * @author Lydia
  * @ClassName: ExaminationMapper
@@ -13,11 +15,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface ExaminationMapper {
-    void insertExam(@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") String examLevel);
+    void insertExam(@Param("examId") int examId,@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") String examLevel);
 
     UserAnswer getExamAndAnswer(@Param("userId") int userId, @Param("examId") int examId);
 
     Examination updateExam(@Param("examId") int examId,@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") String examLevel);
 
     void deleteExam(int examId);
+
+    Set allExamId();
 }
