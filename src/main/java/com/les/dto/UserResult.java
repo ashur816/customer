@@ -19,6 +19,7 @@ public class UserResult implements Serializable{
     private String sex;
     private String major;
     private String workingLife;
+    private String userLevel;
     private String message;
     private Date startTime;
     private Date endTime;
@@ -94,4 +95,7 @@ public class UserResult implements Serializable{
     public String getExamMarker() { return examMarker; }
     public void setExamMarker(String examMarker) { this.examMarker = examMarker; }
 
+    public String getUserLevel() { return userLevel; }
+
+    public void setUserLevel(String userLevel) { this.userLevel = userLevel; }
 }

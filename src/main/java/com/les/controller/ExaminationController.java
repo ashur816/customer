@@ -8,7 +8,6 @@ import com.les.po.Examination;
 import com.les.service.IAnswerService;
 import com.les.service.IExaminationService;
 import com.les.utils.JsonUtils;
-import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -53,15 +52,46 @@ public class ExaminationController {
     }
 
     /**
-     * @param body json体
+     * @param request
      * @return void
      * @Description: 新增题目
      */
     @RequestMapping(value = "/insertExam", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public void insertExam(@RequestBody String body) {
-        Examination examination = (Examination) JSONObject.toBean(JSONObject.fromObject(body), Examination.class);
-        String examinationQusetion = examination.getExaminationQuestion();
-        examinationService.insertExam(examinationQusetion);
+    public void insertExam(HttpServletRequest request) {
+        String examQusetion = request.getParameter("examQusetion");
+        String examScore = request.getParameter("examScore");
+        String referenceAnswer = request.getParameter("referenceAnswer");
+        String examLevel = request.getParameter("examLevel");
+
+        examinationService.insertExam(examQusetion,examScore,referenceAnswer,examLevel);
+    }
+
+    /**
+     * @param request
+     * @return void
+     * @Description: 修改题目
+     */
+    @RequestMapping(value = "/updateExam", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public Examination updateExam(HttpServletRequest request){
+        int examId =Integer.parseInt(request.getParameter("examId"));
+        String examQusetion = request.getParameter("examQusetion");
+        String examScore = request.getParameter("examScore");
+        String referenceAnswer = request.getParameter("referenceAnswer");
+        String examLevel = request.getParameter("examLevel");
+        return examinationService.updateExam(examId,examQusetion,examScore,referenceAnswer,examLevel);
+    }
+
+    /**
+     * @param request
+     * @return void
+     * @Description: 删除题目
+     */
+    @RequestMapping(value = "/deleteExam", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void deleteExam(HttpServletRequest request){
+        int examId =Integer.parseInt(request.getParameter("examId"));
+        examinationService.deleteExam(examId);
     }
 }

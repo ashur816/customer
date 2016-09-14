@@ -15,26 +15,37 @@ public class Examination implements Serializable {
     private String examinationQuestion;
     private String examinationScore;
     private String referenceAnswer;
+    private String examinationLevel;
 
     public void setExaminationId(int examinationId) {
         this.examinationId = examinationId;
     }
-    public void setExaminationQuestion(String examinationQuestion) {
-        this.examinationQuestion = examinationQuestion;
-    }
-    public void setExaminationScore(String examinationScore) {
-        this.examinationScore = examinationScore;
-    }
-    public void setReferenceAnswer(String referenceAnswer) {
-        this.referenceAnswer = referenceAnswer;
-    }
-
     public int getExaminationId() {
         return examinationId;
+    }
+
+    public void setExaminationQuestion(String examinationQuestion) {
+        this.examinationQuestion = examinationQuestion;
     }
     public String getExaminationQuestion() {
         return examinationQuestion;
     }
+
+    public void setExaminationScore(String examinationScore) {
+        this.examinationScore = examinationScore;
+    }
     public String getExaminationScore() { return examinationScore; }
+
+    public void setReferenceAnswer(String referenceAnswer) {
+        this.referenceAnswer = referenceAnswer;
+    }
     public String getReferenceAnswer() { return referenceAnswer; }
+
+    public String getExaminationLevel() {
+        return examinationLevel;
+    }
+
+    public void setExaminationLevel(String examinationLevel) {
+        this.examinationLevel = examinationLevel;
+    }
 }

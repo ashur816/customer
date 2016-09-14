@@ -12,6 +12,7 @@ public class UserAnswer implements Serializable{
     private int examinationId;
     private String examinationQuestion;
     private String examinationScore;
+    private String examinationLevel;
     private int answerId;
     private int userId;
     private String answerContent;
@@ -43,6 +44,10 @@ public class UserAnswer implements Serializable{
     public void setExaminationScore(String examinationScore) {
         this.examinationScore = examinationScore;
     }
+
+    public String getExaminationLevel() { return examinationLevel; }
+
+    public void setExaminationLevel(String examinationLevel) { this.examinationLevel = examinationLevel; }
 
     public int getAnswerId() {
         return answerId;

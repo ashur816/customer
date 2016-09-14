@@ -1,6 +1,7 @@
 package com.les.dao.mapper;
 
 import com.les.dto.UserAnswer;
+import com.les.po.Examination;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface ExaminationMapper {
-    void insertExam(String examinationQuestion);
+    void insertExam(@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") String examLevel);
 
     UserAnswer getExamAndAnswer(@Param("userId") int userId, @Param("examId") int examId);
+
+    Examination updateExam(@Param("examId") int examId,@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") String examLevel);
+
+    void deleteExam(int examId);
 }

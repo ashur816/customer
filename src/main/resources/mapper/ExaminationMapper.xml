@@ -2,14 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.les.dao.mapper.ExaminationMapper">
 
+    <delete id="deleteExam">
+        DELETE FROM examination WHERE examination_id=#{examId};
+    </delete>
+    <update id="updateExam">
+        UPDATE examination SET examination_question=#{examQuestion},examination_score=#{examScore},
+        reference_answer=#{referenceAnswer},examination_level=#{examLevel} WHERE examination_id=#{examId};
+    </update>
     <insert id="insertExam">
-        INSERT INTO examination(examination_question)VALUES (#{examinationQuestion});
+        INSERT INTO examination(examination_question,examination_score,reference_answer, examination_level)
+        VALUES (#{examQuestion},#{examScore},#{referenceAnswer},#{examLevel});
     </insert>
     <select id="getExamAndAnswer" resultType="com.les.dto.UserAnswer">
        SELECT
           e.examination_id,
           e.examination_question,
           e.examination_score,
+          e.examination_level,
           a.answer_id,
           a.answer_content,
           a.goal

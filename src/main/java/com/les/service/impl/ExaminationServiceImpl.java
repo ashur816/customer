@@ -2,6 +2,7 @@ package com.les.service.impl;
 
 import com.les.dao.mapper.ExaminationMapper;
 import com.les.dto.UserAnswer;
+import com.les.po.Examination;
 import com.les.service.IExaminationService;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +20,24 @@ public class ExaminationServiceImpl implements IExaminationService {
     @Resource
     private ExaminationMapper examinationMapper;
 
-    public void insertExam(String examinationQuestion) {
-        examinationMapper.insertExam(examinationQuestion);
+    @Override
+    public void insertExam(String examQuestion, String examScore, String referenceAnswer, String examLevel) {
+        examinationMapper.insertExam(examQuestion,examScore,referenceAnswer,examLevel);
     }
 
     @Override
     public UserAnswer getExamAndAnswer(int userId, int examId) {
         return examinationMapper.getExamAndAnswer(userId, examId);
+    }
+
+    @Override
+    public Examination updateExam(int examId, String examQuestion, String examScore, String referenceAnswer, String examLevel) {
+        return examinationMapper.updateExam(examId,examQuestion,examScore,referenceAnswer,examLevel);
+    }
+
+    @Override
+    public void deleteExam(int examId) {
+        examinationMapper.deleteExam(examId);
     }
 
 //    @Override

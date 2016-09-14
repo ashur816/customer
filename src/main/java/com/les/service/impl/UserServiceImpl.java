@@ -55,6 +55,11 @@ public class UserServiceImpl implements IUserService {
                         userResult.setToken("n");
                         return userResult;
                     }
+                    if(startDate != null){
+                        userResult.setMessage("您已登录，不能再次登录");
+                        userResult.setToken("n");
+                        return userResult;
+                    }
                 } else {//插入新记录
                     userMapper.insertUserGoal(userId, now);
                 }
@@ -96,6 +101,7 @@ public class UserServiceImpl implements IUserService {
             userResult.setSex(userRegister.getSex());
             userResult.setMajor(userRegister.getMajor());
             userResult.setWorkingLife(userRegister.getWorkingLife());
+            userResult.setUserLevel(userRegister.getUserLevel());
             userResult.setMessage("{\"id\": \"u\", \"umessage\":\"注册成功\"}");
         } else {
             userResult.setMessage("{\"id\": \"n\", \"nmessage\":\"用户名已存在\"}");

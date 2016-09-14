@@ -61,8 +61,9 @@ public class UserController {
         String graduateInstitution = request.getParameter("school");
         String major = request.getParameter("major");
         String workingLife = request.getParameter("year");
+        String userLevel = request.getParameter("userLevel");
 
-        UserRegister userRegister = new UserRegister(userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife);
+        UserRegister userRegister = new UserRegister(userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife,userLevel);
         UserResult userResult = userService.register(userRegister);
         return userResult;
     }

@@ -23,12 +23,12 @@
     </select>
 
     <insert id="register" parameterType="com.les.dto.UserRegister">
-        INSERT INTO user_info(user_name,user_type,password,fullname,age,sex,graduate_institution,major,working_life)
-        VALUES (#{userName},#{userType},#{password},#{fullname},#{age},#{sex},#{graduateInstitution},#{major},#{workingLife});
+        INSERT INTO user_info(user_name,user_type,password,fullname,age,sex,graduate_institution,major,working_life,user_level)
+        VALUES (#{userName},#{userType},#{password},#{fullname},#{age},#{sex},#{graduateInstitution},#{major},#{workingLife},#{userLevel});
     </insert>
 
     <update id="updateUser">
-        UPDATE user_info SET user_name=#{userName},user_type=#{userType},password=#{password},fullname=#{fullname},age=#{age},sex=#{sex},graduate_institution=#{graduateInstitution},major=#{major},working_life=#{workingLife}
+        UPDATE user_info SET user_name=#{userName},user_type=#{userType},password=#{password},fullname=#{fullname},age=#{age},sex=#{sex},graduate_institution=#{graduateInstitution},major=#{major},working_life=#{workingLife,user_level=#{userLevel}
         WHERE user_id=#{userId}
     </update>
 
