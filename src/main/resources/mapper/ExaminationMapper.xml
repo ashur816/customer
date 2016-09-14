@@ -39,5 +39,11 @@
         ON e.examination_level=u.user_level
         WHERE u.user_id=#{userId};
     </select>
+    <select id="getExamList" resultType="com.les.po.Examination">
+        SELECT examination_id,examination_question,examination_score,reference_answer,examination_level FROM examination
+        <if test="examLevel != null">
+            WHERE examination_level = #{examLevel}
+        </if>
+    </select>
 
 </mapper>

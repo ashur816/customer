@@ -3,18 +3,18 @@
 <mapper namespace="com.les.dao.mapper.UserMapper">
 
     <select id="getUserById" resultType="com.les.dto.UserResult">
-        SELECT USER_ID,USER_NAME,USER_TYPE,FULLNAME FROM USER_INFO WHERE USER_ID=#{userId}
+        SELECT USER_ID,USER_NAME,USER_TYPE,FULLNAME FROM USER_INFO WHERE USER_ID=#{userId};
     </select>
 
     <select id="getUserList" resultType="com.les.dto.UserResult">
-        SELECT u.user_name,u.user_type,u.password,
-        u.fullname,u.age,u.sex,u.graduate_institution,u.major,u.working_life,u.user_level
+        SELECT u.user_id,u.user_name,u.user_type,u.password,
+        u.fullname,u.age,u.sex,u.graduate_institution,u.major,u.working_life,u.user_level,
         g.start_time,g.end_time,g.exam_marker
         FROM USER_INFO u
         LEFT JOIN USER_GOAL g
         ON u.user_id = g.user_id WHERE u.USER_TYPE=2
         <if test="userId != 0">
-            AND u.user_id = #{userId}
+            AND u.user_id = #{userId};
         </if>;
     </select>
 
@@ -29,15 +29,15 @@
 
     <update id="updateUser">
         UPDATE user_info SET user_name=#{userName},user_type=#{userType},password=#{password},fullname=#{fullname},age=#{age},sex=#{sex},graduate_institution=#{graduateInstitution},major=#{major},working_life=#{workingLife},user_level=#{userLevel}
-        WHERE user_id=#{userId}
+        WHERE user_id=#{userId};
     </update>
 
     <delete id="deleteUser">
-        DELETE FROM user_info WHERE user_id=#{userId}
+        DELETE FROM user_info WHERE user_id=#{userId};
     </delete>
 
     <select id="singleUser" resultType="com.les.po.User">
-        SELECT USER_ID,USER_NAME,PASSWORD FROM USER_INFO WHERE USER_NAME=#{userName}
+        SELECT USER_ID,USER_NAME,PASSWORD FROM USER_INFO WHERE USER_NAME=#{userName};
     </select>
 
     <select id="getLatestUserGoal" resultType="com.les.po.UserGoal">
@@ -45,15 +45,15 @@
     </select>
 
     <insert id="updateUserGoal">
-        UPDATE user_goal SET total_goal=#{totalGoal},exam_marker=#{examMaker} WHERE user_id=#{userId}
+        UPDATE user_goal SET total_goal=#{totalGoal},exam_marker=#{examMaker} WHERE user_id=#{userId};
     </insert>
 
     <insert id="insertUserGoal">
-        INSERT INTO user_goal(user_id,start_time,exam_flag,reexam_flag)VALUES(#{userId},#{startDate},0,0)
+        INSERT INTO user_goal(user_id,start_time,exam_flag,reexam_flag)VALUES(#{userId},#{startDate},0,0);
     </insert>
 
     <update id="commit">
-        UPDATE user_goal SET end_time=#{endDate} WHERE user_id=#{userId}
+        UPDATE user_goal SET end_time=#{endDate} WHERE user_id=#{userId};
     </update>
 
 </mapper>

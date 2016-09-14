@@ -11,10 +11,7 @@ import com.les.utils.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -44,12 +41,12 @@ public class ExaminationController {
     @RequestMapping(value = "/getExamIdList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     List<Integer> getExamIdList(HttpServletRequest request){
-        String userId = request.getParameter("userId");
-//        String userId = request.getAttribute("loginUserId").toString();
+        String userId = request.getAttribute("loginUserId").toString();
         return examinationService.getExamIdList(Integer.parseInt(userId));
     }
 
     /**
+     * @param request
      * @param body json体
      * @return UserAnswer
      * @Description: 根据题目id + 用户id 查询题目及已填答案
@@ -62,7 +59,6 @@ public class ExaminationController {
         String examId = JsonUtils.readValueByName(body, "examId");
         String userId = request.getAttribute("loginUserId").toString();
         return examinationService.getExamAndAnswer(Integer.parseInt(userId), Integer.parseInt(examId));
-
     }
 
     /**
@@ -72,13 +68,15 @@ public class ExaminationController {
      */
     @RequestMapping(value = "/insertExam", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public void insertExam(HttpServletRequest request) {
+    public String insertExam(HttpServletRequest request) {
+        String result = "新增成功";
         String examQusetion = request.getParameter("examQusetion");
         String examScore = request.getParameter("examScore");
         String referenceAnswer = request.getParameter("referenceAnswer");
         String examLevel = request.getParameter("examLevel");
 
         examinationService.insertExam(examQusetion,examScore,referenceAnswer,examLevel);
+        return result;
     }
 
     /**
@@ -96,7 +94,6 @@ public class ExaminationController {
         String examLevel = request.getParameter("examLevel");
         return examinationService.updateExam(examId,examQusetion,examScore,referenceAnswer,examLevel);
     }
-
     /**
      * @param request
      * @return void
@@ -104,8 +101,21 @@ public class ExaminationController {
      */
     @RequestMapping(value = "/deleteExam", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public void deleteExam(HttpServletRequest request){
+    public String deleteExam(HttpServletRequest request){
+        String result = "删除成功";
         int examId =Integer.parseInt(request.getParameter("examId"));
         examinationService.deleteExam(examId);
+        return result;
+    }
+    /**
+     * @param examLevel
+     * @return List<Examination>
+     * @Description: 根据条件查看题目
+     */
+    @RequestMapping(value = "/getExamList/{examLevel}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public List<Examination> getExamList(@PathVariable String examLevel){
+        List examList = examinationService.getExamList(examLevel);
+        return examList;
     }
 }

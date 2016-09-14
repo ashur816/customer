@@ -22,5 +22,7 @@ public interface IExaminationService {
     void deleteExam(int examId);
 
     List<Integer> getExamIdList(int userId);
+
+    List<Examination> getExamList(String examLevel);
 //    void grade(int answer);
 }

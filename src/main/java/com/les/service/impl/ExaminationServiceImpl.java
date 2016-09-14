@@ -50,8 +50,12 @@ public class ExaminationServiceImpl implements IExaminationService {
 
     @Override
     public List<Integer> getExamIdList(int userId) {
-        examinationMapper.getExamIdList(userId);
-        return null;
+        return examinationMapper.getExamIdList(userId);
+    }
+
+    @Override
+    public List<Examination> getExamList(String examLevel) {
+        return examinationMapper.getExamList(examLevel);
     }
 
 //    @Override
