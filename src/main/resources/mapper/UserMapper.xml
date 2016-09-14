@@ -8,7 +8,7 @@
 
     <select id="getUserList" resultType="com.les.dto.UserResult">
         SELECT u.user_id,u.user_name,u.user_type,u.password,
-        u.fullname,u.age,u.sex,u.graduate_institution,u.major,u.working_life,
+        u.fullname,u.age,u.sex,u.graduate_institution,u.major,u.working_life,u.user_level
         g.start_time,g.end_time,g.exam_marker
         FROM USER_INFO u
         LEFT JOIN USER_GOAL g
@@ -28,7 +28,7 @@
     </insert>
 
     <update id="updateUser">
-        UPDATE user_info SET user_name=#{userName},user_type=#{userType},password=#{password},fullname=#{fullname},age=#{age},sex=#{sex},graduate_institution=#{graduateInstitution},major=#{major},working_life=#{workingLife,user_level=#{userLevel}
+        UPDATE user_info SET user_name=#{userName},user_type=#{userType},password=#{password},fullname=#{fullname},age=#{age},sex=#{sex},graduate_institution=#{graduateInstitution},major=#{major},working_life=#{workingLife},user_level=#{userLevel}
         WHERE user_id=#{userId}
     </update>
 

@@ -70,7 +70,8 @@ public class UserController {
 
     @RequestMapping(value = "/updateUser", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public void updateUser(HttpServletRequest request){
+    public String updateUser(HttpServletRequest request){
+        String result = "修改成功";
         int userId = Integer.parseInt(request.getParameter("userId"));
         String userName = request.getParameter("userName");
         int userType = Integer.parseInt(request.getParameter("userType"));
@@ -81,15 +82,20 @@ public class UserController {
         String graduateInstitution = request.getParameter("school");
         String major = request.getParameter("major");
         String workingLife = request.getParameter("year");
+        String userLevel = request.getParameter("userLevel");
 
-        userService.updateUser(userId,userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife);
+        userService.updateUser(userId,userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife,userLevel);
+        return result;
+
     }
 
     @RequestMapping(value = "/deleteUser", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public void deleteUser(HttpServletRequest request){
+    public String deleteUser(HttpServletRequest request){
+        String result = "删除成功";
         int userId = Integer.parseInt(request.getParameter("userId"));
         userService.deleteUser(userId);
+        return result;
 
     }
 
