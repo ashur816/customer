@@ -8,6 +8,7 @@ import com.les.utils.RandomUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -45,6 +46,12 @@ public class ExaminationServiceImpl implements IExaminationService {
     @Override
     public void deleteExam(int examId) {
         examinationMapper.deleteExam(examId);
+    }
+
+    @Override
+    public List<Integer> getExamIdList(int userId) {
+        examinationMapper.getExamIdList(userId);
+        return null;
     }
 
 //    @Override

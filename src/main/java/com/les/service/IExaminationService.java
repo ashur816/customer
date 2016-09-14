@@ -3,6 +3,8 @@ package com.les.service;
 import com.les.dto.UserAnswer;
 import com.les.po.Examination;
 
+import java.util.List;
+
 /**
  * @author Lydia
  * @ClassName: IExaminationService
@@ -18,5 +20,7 @@ public interface IExaminationService {
     Examination updateExam(int examId,String examQuestion,String examScore,String referenceAnswer,String examLevel);
 
     void deleteExam(int examId);
+
+    List<Integer> getExamIdList(int userId);
 //    void grade(int answer);
 }

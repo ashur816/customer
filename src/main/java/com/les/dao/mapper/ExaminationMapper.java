@@ -24,4 +24,6 @@ public interface ExaminationMapper {
     void deleteExam(int examId);
 
     Set<Integer> allExamId();
+
+    List<Integer> getExamIdList(int userId);
 }

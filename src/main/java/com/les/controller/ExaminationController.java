@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Lydia
@@ -34,6 +35,19 @@ public class ExaminationController {
     private IExaminationService examinationService;
     @Resource
     private IAnswerService answerService;
+
+    /**
+     * @param request
+     * @return List<Integer>
+     * @Description: 获取题目id List
+     */
+    @RequestMapping(value = "/getExamIdList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    List<Integer> getExamIdList(HttpServletRequest request){
+        String userId = request.getParameter("userId");
+//        String userId = request.getAttribute("loginUserId").toString();
+        return examinationService.getExamIdList(Integer.parseInt(userId));
+    }
 
     /**
      * @param body json体
