@@ -17,7 +17,7 @@ public interface IExaminationService {
 
     UserAnswer getExamAndAnswer(int userId, int examId);
 
-    Examination updateExam(int examId,String examQuestion,String examScore,String referenceAnswer,String examLevel);
+    void updateExam(int examId,String examQuestion,String examScore,String referenceAnswer,String examLevel);
 
     void deleteExam(int examId);
 

@@ -86,13 +86,15 @@ public class ExaminationController {
      */
     @RequestMapping(value = "/updateExam", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public Examination updateExam(HttpServletRequest request){
+    public String updateExam(HttpServletRequest request){
+        String result = "修改成功";
         int examId =Integer.parseInt(request.getParameter("examId"));
         String examQusetion = request.getParameter("examQusetion");
         String examScore = request.getParameter("examScore");
         String referenceAnswer = request.getParameter("referenceAnswer");
         String examLevel = request.getParameter("examLevel");
-        return examinationService.updateExam(examId,examQusetion,examScore,referenceAnswer,examLevel);
+        examinationService.updateExam(examId,examQusetion,examScore,referenceAnswer,examLevel);
+        return result;
     }
     /**
      * @param request

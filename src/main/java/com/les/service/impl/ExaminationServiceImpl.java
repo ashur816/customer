@@ -39,8 +39,8 @@ public class ExaminationServiceImpl implements IExaminationService {
     }
 
     @Override
-    public Examination updateExam(int examId, String examQuestion, String examScore, String referenceAnswer, String examLevel) {
-        return examinationMapper.updateExam(examId,examQuestion,examScore,referenceAnswer,examLevel);
+    public void updateExam(int examId, String examQuestion, String examScore, String referenceAnswer, String examLevel) {
+        examinationMapper.updateExam(examId,examQuestion,examScore,referenceAnswer,examLevel);
     }
 
     @Override

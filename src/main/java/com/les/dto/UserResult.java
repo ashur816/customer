@@ -26,6 +26,7 @@ public class UserResult implements Serializable{
     private Date endTime;
     private String redirectUrl;
     private String examMarker;
+    private String totalGoal;
 
     public  UserResult(){}
 
@@ -100,6 +101,8 @@ public class UserResult implements Serializable{
     public void setExamMarker(String examMarker) { this.examMarker = examMarker; }
 
     public String getUserLevel() { return userLevel; }
-
     public void setUserLevel(String userLevel) { this.userLevel = userLevel; }
+
+    public String getTotalGoal() { return totalGoal; }
+    public void setTotalGoal(String totalGoal) { this.totalGoal = totalGoal; }
 }

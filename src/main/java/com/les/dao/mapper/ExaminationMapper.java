@@ -19,7 +19,7 @@ public interface ExaminationMapper {
 
     UserAnswer getExamAndAnswer(@Param("userId") int userId, @Param("examId") int examId);
 
-    Examination updateExam(@Param("examId") int examId,@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") String examLevel);
+    void updateExam(@Param("examId") int examId,@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") String examLevel);
 
     void deleteExam(int examId);
 
