@@ -1,5 +1,8 @@
 package com.les.common;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,13 +14,19 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2016/9/7 15:27
  */
 public class MapCacheManager {
+    private final static Log log = LogFactory.getLog(MapCacheManager.class);
 
     private volatile static MapCacheManager mapCacheObject;// 缓存实例对象
+
+    private volatile long updateTime = 0L;// 更新缓存时记录的时间
+
+    private volatile boolean updateFlag = true;// 正在更新时的阀门，为false时表示当前没有更新缓存，为true时表示当前正在更新缓存
 
     private static Map<String, String> cacheMap = new ConcurrentHashMap<>();// 缓存容器
 
     private MapCacheManager() {
         this.loadCache();// 加载缓存
+        updateTime = System.currentTimeMillis();// 缓存更新时间
     }
 
     /**
@@ -68,6 +77,31 @@ public class MapCacheManager {
      * @return
      */
     public Map<String, String> getMapCache() {
+        long currentTime = System.currentTimeMillis();
+
+        if (this.updateFlag) {// 前缓存正在更新
+            log.info("cache is Instance .....");
+            return null;
+
+        }
+
+        if (this.isTimeOut(currentTime)) {// 如果当前缓存正在更新或者缓存超出时限，需重新加载
+            synchronized (this) {
+                this.ReLoadCache();
+                this.updateTime = currentTime;
+            }
+        }
         return this.cacheMap;
+    }
+    private boolean isTimeOut(long currentTime) {
+
+        return ((currentTime - this.updateTime) > 3000000);// 超过时限，超时
+    }
+    /**
+     * 重新装载
+     */
+    private void ReLoadCache() {
+        this.cacheMap.clear();
+        this.loadCache();
     }
 }
