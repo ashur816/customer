@@ -24,13 +24,26 @@
           e.examination_question,
           e.examination_score,
           e.reference_answer,
+          e.examination_level,
           a.answer_id,
           a.answer_content,
           a.goal
         FROM examination e
-          LEFT JOIN answer a
+         LEFT JOIN (SELECT
+              user_id,
+              answer_id,
+              examination_id,
+              answer_content,
+              goal
+            FROM answer
+            WHERE user_id = #{userId}) a
             ON e.examination_id = a.examination_id
-          WHERE a.user_id=#{userId};
+          LEFT JOIN user_info u
+            ON u.user_id = a.user_id
+        WHERE e.examination_level IN (SELECT
+            user_level
+          FROM user_info
+          WHERE user_id = #{userId});
     </select>
 
 </mapper>

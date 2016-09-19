@@ -49,6 +49,7 @@ public class MapCacheManager {
      * 初始化缓存
      */
     private void loadCache() {
+        this.updateFlag = true;// 正在更新
         /********** 数据处理，将数据放入cacheMap缓存中 **begin ******/
 //        cacheMap.put("key1", "value1");
 //        cacheMap.put("key2", "value2");
@@ -56,6 +57,7 @@ public class MapCacheManager {
 //        cacheMap.put("key4", "value4");
 //        cacheMap.put("key5", "value5");
         /********** 数据处理，将数据放入cacheMap缓存中 ***end *******/
+        this.updateFlag = false;// 更新已完成
     }
 
     /**
