@@ -1,6 +1,8 @@
 package com.les.common;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -19,6 +21,7 @@ import java.util.Map;
 
 @Component
 public class SimpleCORSFilter implements Filter {
+    private static final Logger logger = LoggerFactory.getLogger(SimpleCORSFilter.class);
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
@@ -46,7 +49,9 @@ public class SimpleCORSFilter implements Filter {
             if (noLogin) {
                 //重定向登陆页面
 //                response.sendRedirect("http://192.168.30.218/Exam/index.html");
+                logger.error("未登录");
                 return;
+
             }
         }
         chain.doFilter(req, res);

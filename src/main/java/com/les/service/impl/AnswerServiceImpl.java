@@ -49,7 +49,7 @@ public class AnswerServiceImpl implements IAnswerService {
         double totalGoal = 0.0;
         List<UserGoal> goalList = goalInfo.getGoalList();
         for (UserGoal userGoal : goalList) {
-            answerMapper.updateAnswerGoal(userGoal.getAnswerId(), userGoal.getGoal());
+            answerMapper.updateAnswerGoal(userGoal.getAnswerId(),userGoal.getGoal());
             totalGoal += userGoal.getGoal();
         }
 
