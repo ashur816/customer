@@ -94,7 +94,7 @@ public class MapCacheManager {
         return this.cacheMap;
     }
     private boolean isTimeOut(long currentTime) {
-
+        log.error("已超时，需重新登陆");
         return ((currentTime - this.updateTime) > 3000000);// 超过时限，超时
     }
     /**
