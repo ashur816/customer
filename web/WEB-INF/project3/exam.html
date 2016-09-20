@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <center>
+        <h1>简单考试示例</h1>
+    </center>
+</head>
+<style>
+    button {
+        BORDER-RIGHT: #ffffff 1px solid;
+        BORDER-TOP: #ffffff 1px solid;
+        FONT-SIZE: 20px;
+        BORDER-LEFT: #ffffff 1px solid;
+        COLOR: #ffffff;
+        BORDER-BOTTOM: #ffffff 1px solid;
+        FONT-FAMILY: "宋体", "Verdana";
+        BACKGROUND-COLOR: #2D618D
+    }
+    
+    TEXTAREA {
+        FONT-SIZE: 14px;
+        FONT-FAMILY: "宋体", "Tahoma" BORDER-BOTTOM: #999999 1px ridge;
+        BORDER-LEFT: #999999 1px ridge;
+        BORDER-RIGHT: #999999 1px ridge;
+        BORDER-TOP: #999999 1px ridge;
+        size="40"
+    }
+</style>
+
+<body background="http://sc.zolsky.com/img688877808965/tupian/beijingtupian/beijingtupiandanya_gq/zolsky_bjtpdy_65b.jpg">
+    <div class="content" id="content">
+        
+    </div>
+    <div class="context">
+        <center>
+            总分：<input type="text" id="text1" style="width:40px"><br/><br/>
+            <button type="button" id="btn" class="btn btn-primary btn-1g">返回</button>
+        </center>
+    </div>
+    <!--modal-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" style="display:none">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="p1"></p>
+                    <h3>面试人员答案:</h3>
+                    <textarea type="text" id="p2" name="answer" cols=40 rows=8></textarea>
+                    <h3>参考答案:</h3>
+                    <textarea type="text" id="p3" name="model" cols="40" rows="8"></textarea>
+                </div>
+                <div class="modal-footer">
+                    打分：<input id="score" type="number" min="0" max="10" class="score" />
+                    <button type="button" id="btn1">打分</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-modal/2.2.4/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-modal/2.2.4/bootstrap-modalmanager.js"></script>
+    <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/getExamAndAnswer.js"></script>
+    <script type="text/javascript" src="js/geturlrequest.js"></script>
+    <script type="text/javascript" src="js/getInformation.js"></script>
+    <script type="text/javascript" src="js/submitGoal.js"></script>
+    
+</body>
+
+</html>
