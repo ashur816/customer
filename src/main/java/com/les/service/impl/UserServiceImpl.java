@@ -42,7 +42,7 @@ public class UserServiceImpl implements IUserService {
                 userResult.setFullname(user.getFullname());
                 userResult.setGraduateInstitution(user.getGraduateInstitution());
                 userResult.setMajor(user.getMajor());
-                userResult.setRedirectUrl("http://192.168.30.214/project3/member-list.html");
+                userResult.setRedirectUrl(StaticConst.PAGE_ADMIN_MANAGE);
             } else {
                 //根据userId查询用户最近一次考试结果
                 UserGoal userGoal = userMapper.getLatestUserGoal(userId);
@@ -70,7 +70,7 @@ public class UserServiceImpl implements IUserService {
                 userResult.setFullname(user.getFullname());
                 userResult.setGraduateInstitution(user.getGraduateInstitution());
                 userResult.setMajor(user.getMajor());
-                userResult.setRedirectUrl("http://192.168.30.218/Exam/exam.html");
+                userResult.setRedirectUrl(StaticConst.PAGE_EXAM);
             }
 
             //生成uuid，记录到map缓存
