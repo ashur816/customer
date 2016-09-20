@@ -70,8 +70,8 @@ public class AnswerController {
     /**
      * 更新评分
      *
-     * @param body json体 list样式：["user_id":1,{"answer_id":1,"goal":2.0},{"answer_id":2,"goal":3.0}]
-     * @return void
+     * @param body json体 list样式：{"userId":4,"goalList":[{"answerId":22,"goal":3.0},{"answerId":25,"goal":3.0}]}
+     * @return GoalInfo
      * @Description: 打分
      */
     @RequestMapping(value = "/grade", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
