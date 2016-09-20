@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>面试考试</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=2.2.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <h3 id="message">欢迎登录鼐威欣在线考试系统</h3>
+            <form id="showDataForm" class="m-t" role="form" action="http://192.168.30.224:8791/login" method="POST" onsubmit="return saveReport();">
+                <div class="form-group">
+                    <input name="userName" style="width:200px" class="form-control" placeholder="用户名" required="">
+                    <p type="text" id="nmessage"></p>
+                </div>
+                <div class="form-group">
+                    <input name="password" style="width:200px" type="password" class="form-control" placeholder="密码" required="">
+                    <p type="text" id="pmessage"></p>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+                <p type="text" id="fmessage"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
+    <script type="text/javascript">
+        function saveReport() {
+            $("#nmessage").text('');
+            $("#pmessage").text('');
+            $("#fmessage").text('');
+            // jquery 表单提交
+            $("#showDataForm").ajaxSubmit(
+                function(Message) {
+                    // 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容
+                    if (Message.token == "n") {
+                        $("#fmessage").attr("style","color:red").text('您已提交试卷，不能重复登陆');
+                    } else if (Message.token == "p") {
+                        $("#pmessage").attr("style","color:red").text('用户名或密码错误！');
+                    } else {
+                        window.location.href=Message.redirectUrl + "?user_id=" + Message.token;
+                        $("#fmessage").attr("style","color；red").text('登陆成功正在跳转...')
+                    }
+                }
+            );
+            return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+        };
+
+    </script>
+
+</body>
+
+</html>

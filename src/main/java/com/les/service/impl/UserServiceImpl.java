@@ -39,6 +39,9 @@ public class UserServiceImpl implements IUserService {
             int userType = user.getUserType();
             if (StaticConst.USER_TYPE_ADMIN == userType) {
                 //重定向管理页
+                userResult.setFullname(user.getFullname());
+                userResult.setGraduateInstitution(user.getGraduateInstitution());
+                userResult.setMajor(user.getMajor());
                 userResult.setRedirectUrl("http://192.168.30.214/project3/member-list.html");
             } else {
                 //根据userId查询用户最近一次考试结果
@@ -64,6 +67,9 @@ public class UserServiceImpl implements IUserService {
                     userMapper.insertUserGoal(userId, now);
                 }
                 //重定向考试页
+                userResult.setFullname(user.getFullname());
+                userResult.setGraduateInstitution(user.getGraduateInstitution());
+                userResult.setMajor(user.getMajor());
                 userResult.setRedirectUrl("http://192.168.30.218/Exam/exam.html");
             }
 

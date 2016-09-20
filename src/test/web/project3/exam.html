@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)file:///D:/workspace/project3/exam.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,member-scalable=no" />
+    -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <script type="text/javascript" src="lib/PIE_IE678.js"></script>
+    <![endif]-->
+    <link href="./exam_files/H-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="./exam_files/H-ui.admin.css" rel="stylesheet" type="text/css">
+    <link href="./exam_files/iconfont.css" rel="stylesheet" type="text/css">
+    <!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>试题</title><link rel="stylesheet" href="file:///D:/workspace/project3/lib/layer/1.9.3/skin/layer.css" id="layui_layer_skinlayercss"><link href="./exam_files/WdatePicker.css" rel="stylesheet" type="text/css"><link rel="stylesheet" href="file:///D:/workspace/project3/lib/layer/1.9.3/skin/layer.ext.css" id="layui_layer_skinlayerextcss"><link href="file:///D:/workspace/project3/ExamManage_files/skin/WdatePicker.css" rel="stylesheet" type="text/css"><script src="file:///D:/workspace/project3/ExamManage_files/extend/layer.ext.js" id="layui_layer_extendlayerextjs"></script><link href="file:///D:/workspace/project3/ExamManage_files/skin/WdatePicker.css" rel="stylesheet" type="text/css"><link href="file:///D:/workspace/project3/exam_files/skin/WdatePicker.css" rel="stylesheet" type="text/css"></head>
+
+
+<body onload="add_form();">
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont"></i> <big>试题维护 </big>
+    </nav>
+    <div class="pd-20">
+        <div class="panel-body">
+            <button id="btn1" class="btn btn-default" data-toggle="modal" data-target="#myModal-1">
+                    新增题目
+            </button>
+            <!-- Modal-1 -->
+            <div class="modal fade" id="myModal-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">新增题目</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            
+                                <form id="form-member-add-1">
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>题目：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="examQusetion" name="examQusetion" datatype="*2-16" nullmsg="题目不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>分数：</label>
+                                        <div class="formControls col-5">     
+                                            <input type="text" class="input-text" value="" placeholder="" id="examScore" name="examScore" datatype="*2-16" nullmsg="分数不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>参考答案：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="referenceAnswer" name="referenceAnswer" datatype="*2-16" nullmsg="参考答案不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>级别：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="examLevel" name="examLevel" datatype="*2-16" nullmsg="级别不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </form>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btn2" type="button" class="btn btn-primary">增加</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- Modal-2 -->
+            <div class="modal fade" id="myModal-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">修改题目信息</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            
+                                <form id="form-member-add-2">
+                                     <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>题目：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="examQusetion" name="examQusetion" datatype="*2-16" nullmsg="题目不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>分数：</label>
+                                        <div class="formControls col-5">     
+                                            <input type="text" class="input-text" value="" placeholder="" id="examScore" name="examScore" datatype="*2-16" nullmsg="分数不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>参考答案：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="referenceAnswer" name="referenceAnswer" datatype="*2-16" nullmsg="参考答案不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>级别：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="examLevel" name="examLevel" datatype="*2-16" nullmsg="级别不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </form>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btn3" type="button" class="btn btn-primary">保存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- Modal-3 -->
+            <div class="modal fade" id="myModal-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">查看题目信息</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            
+                                <form id="form-member-add-3">
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>题目：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="examQusetion" name="examQusetion" datatype="*2-16" nullmsg="题目不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>分数：</label>
+                                        <div class="formControls col-5">     
+                                            <input type="text" class="input-text" value="" placeholder="" id="examScore" name="examScore" datatype="*2-16" nullmsg="分数不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>参考答案：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="referenceAnswer" name="referenceAnswer" datatype="*2-16" nullmsg="参考答案不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>级别：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="examLevel" name="examLevel" datatype="*2-16" nullmsg="级别不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </form>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </div>
+        <div class="mt-20">
+            <div id="table_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="table_length"><label>级别 <select name="table_length" aria-controls="table" class=""><option value=""></option><option value="初级">初级</option><option value="中级">中级</option><option value="高级">高级</option></select> 筛选</label></div><div id="table_wrapper" class="dataTables_wrapper no-footer"><div id="table_wrapper" class="dataTables_wrapper no-footer"><div id="table_filter" class="dataTables_filter"><label>搜索:<input type="search" class="" placeholder="" aria-controls="table"></label></div><table id="table" class="table table-striped table-bordered table-hover dataTable myTable no-footer" role="grid" aria-describedby="table_info">
+                <thead>
+                    <tr class="text-c" role="row"><th width="30" class="sorting_disabled" tabindex="0" aria-controls="table" rowspan="1" colspan="1">题目</th><th width="30" class="sorting_disabled" tabindex="0" aria-controls="table" rowspan="1" colspan="1">分数</th><th width="200" class="sorting_disabled" rowspan="1" colspan="1">参考答案</th><th width="30" class="sorting_disabled" tabindex="0" aria-controls="table" rowspan="1" colspan="1">级别</th></tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table><div class="dataTables_info" id="table_info" role="status" aria-live="polite"></div><div class="dataTables_paginate paging_simple_numbers" id="table_paginate"></div></div><div class="dataTables_info" id="table_info" role="status" aria-live="polite"></div><div class="dataTables_paginate paging_simple_numbers" id="table_paginate"></div></div><div class="dataTables_info" id="table_info" role="status" aria-live="polite"></div><div class="dataTables_paginate paging_simple_numbers" id="table_paginate"></div></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./exam_files/jquery.js"></script>
+    <script type="text/javascript" src="./exam_files/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./exam_files/jquery.icheck.min.js"></script>
+    <script type="text/javascript" src="./exam_files/Validform.min.js"></script>
+    <script type="text/javascript" src="./exam_files/layer.js"></script>
+    <script type="text/javascript" src="./exam_files/laypage.js"></script>
+    <script type="text/javascript" src="./exam_files/WdatePicker.js"></script>
+    <script type="text/javascript" src="./exam_files/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="./exam_files/H-ui.js"></script><a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none">󰀣</a><a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none">󰀣</a><a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none">󰀣</a><a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none">󰀣</a>
+    <script type="text/javascript" src="./exam_files/H-ui.admin.js"></script>
+    <script type="text/javascript" src="./exam_files/tip.js"></script>
+    <script type="text/javascript" src="./exam_files/geturlrequest.js"></script>
+    <script type="text/javascript" src="./exam_files/datatables.js"></script>
+    <script type="text/javascript" src="./exam_files/form.js"></script>
+    <script type="text/javascript" src="./exam_files/jquery.mockjax.js"></script>
+    <script type="text/javascript" src="./exam_files/jquery.mockjson.js"></script>
+<!--    <script type="text/javascript" src="js/mockTest.js"></script>-->
+
+
+
+</body></html>

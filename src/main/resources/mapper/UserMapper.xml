@@ -19,7 +19,7 @@
     </select>
 
     <select id="getUser" resultType="com.les.po.User">
-        SELECT USER_ID,USER_NAME,USER_TYPE,PASSWORD FROM USER_INFO WHERE USER_NAME=#{userName} AND PASSWORD=#{password};
+        SELECT USER_ID,USER_NAME,USER_TYPE,PASSWORD,FULLNAME,GRADUATE_INSTITUTION,MAJOR FROM USER_INFO WHERE USER_NAME=#{userName} AND PASSWORD=#{password};
     </select>
 
     <insert id="register" parameterType="com.les.dto.UserRegister">
