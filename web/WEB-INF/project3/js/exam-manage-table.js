@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var t = $("#table").dataTable({
+    var t = $("#table-list").dataTable({
         "showRowNumber": true,
         "aoColumnDefs": [
             /*操作列定义*/
@@ -91,11 +91,11 @@ $(document).ready(function () {
                     console.log("ERROR!");
                 }
             });
-            $("#myModal-2").modal("show");
+            $("#exam-update-modal").modal("show");
         });
     /*保存修改*/
         $("#btn3").click(function () {
-            var object = $("#form-member-add-2").serializeArray();
+            var object = $("#form-exam-update").serializeArray();
             $.ajax({
                 type: "POST",
                 url: "http://192.168.30.224:8791/updateExam/" + data_id.userId,
@@ -134,13 +134,13 @@ $(document).ready(function () {
             }
             refreshTable();
         });
-    /*新增人员*/
+    /*新增*/
     $("#btn2").click(function () {
         var obj = [];
         $.ajax({
             type: "POST",
             url: "http://192.168.30.224:8791/insertExam",
-            data: $("#form-member-add-1").serialize(),
+            data: $("#form-exam-add").serialize(),
             async: false,
             success: function (response) {
                 if (response.token != "") {
@@ -151,7 +151,7 @@ $(document).ready(function () {
                         "referenceAnswer": response.referenceAnswer,
                         "examLevel": response.examLevel
                     });
-                    $("#myModal-1").modal("hide");
+                    $("#exam-add-modal").modal("hide");
                     t.fnAddData(obj); //插入新的json对象或者数组
                     location.reload();
                 } else {
@@ -162,6 +162,6 @@ $(document).ready(function () {
                 console.log("Connection error");
             }
         });
-        console.dir($("#form-member-add-1").serialize());
+        console.dir($("#form-exam-add").serialize());
     });
 });
