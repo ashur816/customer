@@ -28,15 +28,15 @@
 <nav class="breadcrumb">
     <i class="Hui-iconfont"></i>试题管理
 </nav>
-<div class="pd-20">
-    <span class="select-box" style="width:200px">
-        <select id="selectLevel" class="select" size="1">
-            <option value="0" selected>全部</option>
-            <option value="1">初级</option>
-            <option value="2">中级</option>
-            <option value="3">高级</option>
-        </select>
-    </span>
+<div class="panel-body">
+        <span class="select-box" style="width:200px">
+            <select id="selectLevel" class="select" size="1">
+                <option value="0" selected>全部</option>
+                <option value="1">初级</option>
+                <option value="2">中级</option>
+                <option value="3">高级</option>
+            </select>
+        </span>
     <span id="btnQry" class="btn btn-primary radius">搜索</span>
     <span id="btn1" class="btn btn-primary radius" data-toggle="modal" data-target="#exam-add-modal">添加试题</span>
 
@@ -135,7 +135,7 @@
                         <div class="row cl">
                             <label class="form-label col-3">级别：</label>
                             <div class="formControls col-5">
-                                <span class="select-box" style="width:200px">
+                                <span class="select-box">
                                     <select class="select" size="1" name="examinationLevel">
                                         <option value="1">初级</option>
                                         <option value="2">中级</option>
@@ -155,11 +155,10 @@
             </div>
         </div>
     </div>
-</div>
-<div class="mt-20">
-    <table id="table-list" class="table table-striped table-bordered table-hover dataTable myTable">
-    </table>
-</div>
+    <div class="mt-20">
+        <table id="table-list" class="table table-striped table-bordered table-hover dataTable myTable">
+        </table>
+    </div>
 </div>
 
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.js"></script>
