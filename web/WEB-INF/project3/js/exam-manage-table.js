@@ -50,11 +50,25 @@ $(document).ready(function () {
             {
                 "sTitle": "级别",
                 "sClass": "center",
-                "sWidth": 25,
+                "sWidth": 40,
                 "targets": [5],
                 "bSearchable": true,
                 "data": "examinationLevel",
-                "bSortable": false
+                "bSortable": false,
+                "mRender": function (data, display, row) {
+                    if (data == 1) {
+                        return "初级";
+                    }
+                    else if (data == 2) {
+                        return "中级";
+                    }
+                    else if (data == 3) {
+                        return "高级";
+                    }
+                    else {
+                        return "";
+                    }
+                }
             },
             {
                 "sTitle": "操作",
