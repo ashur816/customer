@@ -27,7 +27,7 @@ $(document).ready(function () {
                 "targets": [4], //删除；修改
                 "data": null,
                 "bSortable": false,
-                "defaultContent": "<button id='delrow' class='btn btn-primary' type='button'><i class='fa fa-trash-o'>删除</i></button>&nbsp;&nbsp;<button id='editrow' class='btn btn-primary' type='button'><i class='fa fa-edit'>修改</i></button>&nbsp;&nbsp;<button id='showrow' class='btn btn-primary' type='button'><i class='fa fa-trash-o'>查看</i></button>&nbsp;&nbsp;<button id='mark' class='btn btn-primary' type='button'><i class='fa fa-trash-o'>打分</i></button>"
+                "defaultContent": "<button id='delrow' class='btn btn-primary' type='button'><i class='fa fa-trash-o'>删除</i></button>&nbsp;&nbsp;<button id='editrow' class='btn btn-primary' type='button'><i class='fa fa-edit'>修改</i></button>&nbsp;&nbsp;<button id='showrow' class='btn btn-primary' type='button'><i class='fa fa-trash-o'>查看</i></button>"
             }
         ],
         /*添加索引列*/
@@ -43,7 +43,7 @@ $(document).ready(function () {
     refreshTable();
 
     function refreshTable() {
-        $.get("http://192.168.30.224:8791/getExamList/中级?token=" + token, function (data, status) {
+        $.get("http://192.168.30.224:8791/getExamList/0?token=" + token, function (data, status) {
             if (data != "") {
                 t.fnClearTable();
                 t.fnAddData(newData(data), true);
@@ -79,9 +79,9 @@ $(document).ready(function () {
             /*显示信息*/
             $.ajax({
                 type: "get",
-                url: "http://192.168.30.224:8791/getExamList/" + data_id.userId,
+                url: "http://192.168.30.224:8791/getExamList/" + data_id.examId,
                 success: function (response) {
-                    console.log(response[0]["major"]);
+//                    console.log(response[0]["major"]);
                     $("#examQusetion2").val(response[0]["examQusetion"] || "");
                     $("#examScore2").val(response[0]["examScore"] || "");
                     $("#referenceAnswer2").val(response[0]["referenceAnswer"] || "");
@@ -98,7 +98,7 @@ $(document).ready(function () {
             var object = $("#form-exam-update").serializeArray();
             $.ajax({
                 type: "POST",
-                url: "http://192.168.30.224:8791/updateExam/" + data_id.userId,
+                url: "http://192.168.30.224:8791/updateExam/" + data_id.examId,
                 data: object,
                 success: function (response) {
                     

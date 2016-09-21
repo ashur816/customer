@@ -89,7 +89,7 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String deleteUser(HttpServletRequest request){
         String result = "删除成功";
