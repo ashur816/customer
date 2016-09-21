@@ -3,30 +3,37 @@ $(document).ready(function () {
     var token = getUrlParam("token");
 
     var t = $("#table-list").dataTable({
-        "bFilter": false, //过滤功能
+        "bFilter": true, //过滤功能
         "aoColumnDefs": [
             {
                 "sTitle": "题目id",
                 "targets": [0],
                 "data": "examinationId",
                 "bVisible": false,
+                "bSearchable": false,
                 "bSortable": false
             },
             {
                 "sTitle": "序号",
                 "targets": [1],
                 "sWidth": 25,
+                "sClass": "center",
+                "bSearchable": false,
                 "data": null,
                 "bSortable": false
             },
             {
                 "sTitle": "题目",
+                "sClass": "center",
+                "bSearchable": false,
                 "targets": [2],
                 "data": "examinationQuestion",
                 "bSortable": false
             },
             {
                 "sTitle": "分数",
+                "sClass": "center",
+                "bSearchable": false,
                 "sWidth": 30,
                 "targets": [3],
                 "data": "examinationScore",
@@ -34,19 +41,25 @@ $(document).ready(function () {
             },
             {
                 "sTitle": "参考答案",
+                "sClass": "center",
+                "bSearchable": false,
                 "targets": [4],
                 "data": "referenceAnswer",
                 "bSortable": false
             },
             {
                 "sTitle": "级别",
+                "sClass": "center",
                 "sWidth": 25,
                 "targets": [5],
+                "bSearchable": true,
                 "data": "examinationLevel",
                 "bSortable": false
             },
             {
                 "sTitle": "操作",
+                "sClass": "center",
+                "bSearchable": false,
                 "targets": [6], //删除；修改
                 "data": null,
                 "bSortable": false,
