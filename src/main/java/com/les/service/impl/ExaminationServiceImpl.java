@@ -55,9 +55,6 @@ public class ExaminationServiceImpl implements IExaminationService {
 
     @Override
     public List<Examination> getExamList(String examLevel) {
-        if("0".equals(examLevel)){
-            examLevel = null;
-        }
         return examinationMapper.getExamList(examLevel);
     }
 
