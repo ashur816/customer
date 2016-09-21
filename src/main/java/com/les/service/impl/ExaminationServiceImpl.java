@@ -61,6 +61,11 @@ public class ExaminationServiceImpl implements IExaminationService {
         return examinationMapper.getExamList(examLevel);
     }
 
+    @Override
+    public Examination getExamInfo(int examId) {
+        return examinationMapper.getExamInfo(examId);
+    }
+
 //    @Override
 //    public void grade(int answer) {
 //

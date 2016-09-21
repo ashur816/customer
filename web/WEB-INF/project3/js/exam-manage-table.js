@@ -1,33 +1,56 @@
 $(document).ready(function () {
+
+    var token = getUrlParam("token");
+
     var t = $("#table-list").dataTable({
-        "showRowNumber": true,
+        "bFilter": false, //过滤功能
         "aoColumnDefs": [
-            /*操作列定义*/
             {
+                "sTitle": "题目id",
                 "targets": [0],
-                "data": "examQusetion",
+                "data": "examinationId",
+                "bVisible": false,
                 "bSortable": false
             },
             {
+                "sTitle": "序号",
                 "targets": [1],
-                "data": "examScore",
+                "sWidth": 25,
+                "data": null,
                 "bSortable": false
             },
             {
+                "sTitle": "题目",
                 "targets": [2],
+                "data": "examinationQuestion",
+                "bSortable": false
+            },
+            {
+                "sTitle": "分数",
+                "sWidth": 30,
+                "targets": [3],
+                "data": "examinationScore",
+                "bSortable": false
+            },
+            {
+                "sTitle": "参考答案",
+                "targets": [4],
                 "data": "referenceAnswer",
                 "bSortable": false
             },
             {
-                "targets": [3],
-                "data": "examLevel",
+                "sTitle": "级别",
+                "sWidth": 25,
+                "targets": [5],
+                "data": "examinationLevel",
                 "bSortable": false
             },
             {
-                "targets": [4], //删除；修改
+                "sTitle": "操作",
+                "targets": [6], //删除；修改
                 "data": null,
                 "bSortable": false,
-                "defaultContent": "<button id='delrow' class='btn btn-primary' type='button'><i class='fa fa-trash-o'>删除</i></button>&nbsp;&nbsp;<button id='editrow' class='btn btn-primary' type='button'><i class='fa fa-edit'>修改</i></button>&nbsp;&nbsp;<button id='showrow' class='btn btn-primary' type='button'><i class='fa fa-trash-o'>查看</i></button>"
+                "defaultContent": "<button id='delrow' class='btn btn-primary' type='button'><i class='fa fa-trash-o'>删除</i></button>&nbsp;&nbsp;<button id='editrow' class='btn btn-primary' type='button'><i class='fa fa-edit'>修改</i></button>"
             }
         ],
         /*添加索引列*/
@@ -40,128 +63,128 @@ $(document).ready(function () {
         }
     });
 
+    var url = "http://localhost:8791";
+
     refreshTable();
 
     function refreshTable() {
-        $.get("http://192.168.30.224:8791/getExamList/0?token=" + token, function (data, status) {
+        $.get(url + "/getExamList/0?token=" + token, function (data, status) {
             if (data != "") {
                 t.fnClearTable();
-                t.fnAddData(newData(data), true);
+                t.fnAddData(data, true);
             } else {
-                alert("暂时没有数据");
+                Huimodal_alert("暂时没有数据", 1000);
             }
         });
     }
 
-    function newData(data) {
-        var a = []; //定义一个空数组存放显示的数据
-        $.each(data, function (n, value) {
-            var tempObject = {};
-            tempObject.examQusetion = value.examQusetion || "";
-            tempObject.examScore = value.examScore || "";
-            tempObject.referenceAnswer = value.referenceAnswer || "";
-            tempObject.examLevel = value.examLevel || "";
-            a.push(tempObject);
-        });
-        return a;
-    }
-
-    /*设置第一列隐藏*/
-    t.fnSetColumnVis(0, false);
-    /*修改*/
-        $('#table tbody').on('click', 'button#editrow', function () {
-            var data = t.api().row($(this).parents('tr')).data(); //获取点击行的数据
-            //console.log(data["number"]); //取出记录id的值
-            var data_id = {
-                "examId": data["examId"]
-            };
-            console.log(data_id.userId);
-            /*显示信息*/
-            $.ajax({
-                type: "get",
-                url: "http://192.168.30.224:8791/getExamList/" + data_id.examId,
-                success: function (response) {
-//                    console.log(response[0]["major"]);
-                    $("#examQusetion2").val(response[0]["examQusetion"] || "");
-                    $("#examScore2").val(response[0]["examScore"] || "");
-                    $("#referenceAnswer2").val(response[0]["referenceAnswer"] || "");
-                    $("#examLevel2").val(response[0]["examLevel"] || "");
-                },
-                error: function () {
-                    console.log("ERROR!");
-                }
-            });
-            $("#exam-update-modal").modal("show");
-        });
-    /*保存修改*/
-        $("#btn3").click(function () {
-            var object = $("#form-exam-update").serializeArray();
-            $.ajax({
-                type: "POST",
-                url: "http://192.168.30.224:8791/updateExam/" + data_id.examId,
-                data: object,
-                success: function (response) {
-                    
-                },
-                error: function () {
-                    console.log("error!");
-                }
-            });
-        });
-    /*删除*/
-        $('#table tbody').on('click', 'button#delrow', function () {
-            if (show() == true) {
-                var data = t.api().row($(this).parents('tr')).data();
-                var id = {
-                    "examId": data["examId"]
-                };
-                $.ajax({
-                        url: 'http://192.168.30.224:8791/deleteExam',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: id
-                    })
-                    .done(function (message) {
-                        if (message == "删除成功") {
-                            console.log(message);
-                        };
-                    })
-                    .fail(function () {
-                        alert("error");
-                    });
-            } else {
-                return false;
-            }
-            refreshTable();
-        });
-    /*新增*/
+    /*************************************新增*******************************/
     $("#btn2").click(function () {
-        var obj = [];
         $.ajax({
             type: "POST",
-            url: "http://192.168.30.224:8791/insertExam",
+            url: url + "/insertExam?token=" + token,
             data: $("#form-exam-add").serialize(),
             async: false,
             success: function (response) {
-                if (response.token != "") {
-                    console.log(response);
-                    obj.push({
-                        "examQusetion": response.examQusetion,
-                        "examScore": response.examScore,
-                        "referenceAnswer": response.referenceAnswer,
-                        "examLevel": response.examLevel
-                    });
-                    $("#exam-add-modal").modal("hide");
-                    t.fnAddData(obj); //插入新的json对象或者数组
-                    location.reload();
-                } else {
-                    console.log(response.message);
+                Huimodal_alert(response.message, 1000);
+                $("#exam-add-modal").modal("hide");
+                refreshTable();
+            },
+            error: function () {
+                Huimodal_alert("error", 1000);
+            }
+        });
+    });
+
+    /*************************************修改*******************************/
+    $('#table-list').on('click', 'button#editrow', function () {
+        var data = t.api().row($(this).parents('tr')).data(); //获取点击行的数据
+        var examinationId = data["examinationId"];
+        /*显示信息*/
+        $.ajax({
+            type: "get",
+            url: url + "/getExamInfo/" + examinationId + "?token=" + token,
+            success: function (response) {
+                if (response == "" || response == null) {
+                    Huimodal_alert("未查询到题目信息", 1000);
+                }
+                else {
+                    setDataToForm("form-exam-update", response);
+                    $("#exam-update-modal").modal("show");
                 }
             },
             error: function () {
-                console.log("Connection error");
+                Huimodal_alert("error", 1000);
             }
         });
-        console.dir($("#form-exam-add").serialize());
     });
+
+    /*保存修改*/
+    $("#btn3").click(function () {
+        var data = $('#form-exam-update').serialize();
+        $.ajax({
+            type: "POST",
+            url: url + "/updateExam?token=" + token,
+            data: data,
+            success: function (response) {
+                //1s自动关闭
+                Huimodal_alert(response.message, 1000);
+                $("#exam-update-modal").modal("hide");
+                refreshTable();
+            },
+            error: function (a, b, c) {
+                Huimodal_alert("error", 1000);
+            }
+        });
+    });
+
+    /*************************************删除*******************************/
+    $('#table-list').on('click', 'button#delrow', function () {
+        if (show() == true) {
+            var data = t.api().row($(this).parents('tr')).data(); //获取点击行的数据
+            var examinationId = data["examinationId"];
+            $.ajax({
+                url: url + "/deleteExam?token=" + token + "&examinationId=" + examinationId,
+                type: 'POST',
+                dataType: 'json',
+                data: null
+            }).done(function (response) {
+                Huimodal_alert(response.message, 1000);
+                refreshTable();
+            }).fail(function () {
+                Huimodal_alert("error", 1000);
+            });
+        } else {
+            return false;
+        }
+    });
+
+    //将列数据写入form
+    function setDataToForm(formId, formData) {
+        if (formData) {
+            var form = $("#" + formId);
+            $.each(form.serializeArray(), function (index) {
+                $("#" + formId + " [name='" + this.name + "']").val(formData[this.name]);
+            });
+        }
+        return formData;
+    }
+
+    //form 取值
+    function getFormData(formId) {
+        var form = $("#" + formId);
+        var json = {};
+        $.each(form.serializeArray(), function (index) {
+            json[this.name] = this.value;
+        });
+        return JSON.stringify(json);
+    }
+
+    //获取url参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
 });

@@ -28,4 +28,6 @@ public interface ExaminationMapper {
     List<Integer> getExamIdList(int userId);
 
     List<Examination> getExamList(@Param("examLevel") String examLevel);
+
+    Examination getExamInfo(int examId);
 }

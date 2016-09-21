@@ -24,5 +24,8 @@ public interface IExaminationService {
     List<Integer> getExamIdList(int userId);
 
     List<Examination> getExamList(String examLevel);
+
+    Examination getExamInfo(int examId);
+
 //    void grade(int answer);
 }

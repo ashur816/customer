@@ -8,17 +8,17 @@
     <!--
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,member-scalable=no" />
     -->
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <!--[if lt IE 9]>
     <script type="text/javascript" src="lib/html5.js"></script>
     <script type="text/javascript" src="lib/respond.min.js"></script>
     <script type="text/javascript" src="lib/PIE_IE678.js"></script>
     <![endif]-->
-    <link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/H-ui.admin.css" rel="stylesheet" type="text/css" />
-    <link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="css/H-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
+    <link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css"/>
     <!--[if IE 6]>
-    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
 </head>
@@ -49,34 +49,33 @@
                             <div class="row cl">
                                 <label class="form-label col-3"><span class="c-red">*</span>题目：</label>
                                 <div class="formControls col-5">
-                                    <input id="examId" name="examId" type="text" class="input-text" value="" style="display:none">
-                                    <input type="text" class="input-text" value="" placeholder="" id="examQusetion" name="examQusetion" datatype="*2-16" nullmsg="题目不能为空">
+                                    <input type="text" class="input-text" value="" placeholder="" name="examinationQuestion" digits="true" datatype="*2-200" nullmsg="题目不能为空">
                                 </div>
-                                <div class="col-4"> </div>
+                                <div class="col-4"></div>
                             </div>
 
                             <div class="row cl">
                                 <label class="form-label col-3"><span class="c-red">*</span>分数：</label>
                                 <div class="formControls col-5">
-                                    <input type="text" class="input-text" value="" placeholder="" id="examScore" name="examScore" datatype="*2-16" nullmsg="分数不能为空">
+                                    <input type="text" class="input-text" value="" placeholder="" name="examinationScore" datatype="*1-16" nullmsg="分数不能为空">
                                 </div>
-                                <div class="col-4"> </div>
+                                <div class="col-4"></div>
                             </div>
 
                             <div class="row cl">
                                 <label class="form-label col-3"><span class="c-red">*</span>参考答案：</label>
                                 <div class="formControls col-5">
-                                    <input type="text" class="input-text" value="" placeholder="" id="referenceAnswer" name="referenceAnswer" datatype="*2-16" nullmsg="参考答案不能为空">
+                                    <input type="text" class="input-text" value="" placeholder="" id="referenceAnswer" name="referenceAnswer" datatype="*2-200" nullmsg="参考答案不能为空">
                                 </div>
-                                <div class="col-4"> </div>
+                                <div class="col-4"></div>
                             </div>
 
                             <div class="row cl">
                                 <label class="form-label col-3"><span class="c-red">*</span>级别：</label>
                                 <div class="formControls col-5">
-                                    <input type="text" class="input-text" value="" placeholder="" id="examLevel" name="examLevel" datatype="*2-16" nullmsg="级别不能为空">
+                                    <input type="text" class="input-text" value="" placeholder="" name="examinationLevel" datatype="*1-16" nullmsg="级别不能为空">
                                 </div>
-                                <div class="col-4"> </div>
+                                <div class="col-4"></div>
                             </div>
                         </form>
                         </body>
@@ -86,9 +85,7 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     </div>
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
         <!-- Modal-2 -->
         <div class="modal fade" id="exam-update-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -102,32 +99,33 @@
 
                         <body onload="add_form();">
                         <form id="form-exam-update">
+                            <input type="hidden" name="examinationId"/>
                             <div class="row cl">
                                 <label class="form-label col-3">题目：</label>
                                 <div class="formControls col-5">
-                                    <input id="examQusetion2" name="examQusetion" type="text" class="input-text" value="" placeholder="">
+                                    <input name="examinationQuestion" type="text" class="input-text" value="" placeholder="">
                                 </div>
-                                <div class="col-4"> </div>
+                                <div class="col-4"></div>
                             </div>
                             <div class="row cl">
                                 <label class="form-label col-3">分数：</label>
                                 <div class="formControls col-5">
-                                    <input id="examScore2" name="examScore" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
+                                    <input name="examinationScore" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
                                 </div>
-                                <div class="col-4"> </div>
+                                <div class="col-4"></div>
                             </div>
                             <div class="row cl">
                                 <label class="form-label col-3">参考答案：</label>
                                 <div class="formControls col-5">
-                                    <input id="referenceAnswer2" name="referenceAnswer" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
+                                    <input name="referenceAnswer" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
                                 </div>
                             </div>
                             <div class="row cl">
                                 <label class="form-label col-3">级别：</label>
                                 <div class="formControls col-5">
-                                    <input id="examLevel2" name="examLevel" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
+                                    <input name="examinationLevel" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
                                 </div>
-                                <div class="col-4"> </div>
+                                <div class="col-4"></div>
                             </div>
                         </form>
                         </body>
@@ -137,28 +135,15 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     </div>
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
     </div>
     <div class="mt-20">
         <table id="table-list" class="table table-striped table-bordered table-hover dataTable myTable">
-            <thead>
-            <tr class="text-c">
-                <th width="80">题目</th>
-                <th width="40">分数</th>
-                <th width="100">参考答案</th>
-                <th width="40">级别</th>
-                <th width="80">操作</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
         </table>
     </div>
 </div>
+
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.js"></script>
 <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="lib/icheck/jquery.icheck.min.js"></script>
@@ -169,13 +154,10 @@
 <script type="text/javascript" src="js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="js/H-ui.js"></script>
 <script type="text/javascript" src="js/H-ui.admin.js"></script>
-<script type="text/javascript" src="js/tip.js"></script>
-<script type="text/javascript" src="js/geturlrequest.js"></script>
 <script type="text/javascript" src="js/exam-manage-table.js"></script>
 <script type="text/javascript" src="js/exam-manage-form.js"></script>
 <script type="text/javascript" src="js/jquery.mockjax.js"></script>
 <script type="text/javascript" src="js/jquery.mockjson.js"></script>
-<!--    <script type="text/javascript" src="js/mockTest.js"></script>-->
 </body>
 
 </html>

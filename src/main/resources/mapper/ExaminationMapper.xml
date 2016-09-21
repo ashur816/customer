@@ -45,5 +45,8 @@
             WHERE examination_level = #{examLevel}
         </if>
     </select>
+    <select id="getExamInfo" resultType="com.les.po.Examination">
+        SELECT examination_id,examination_question,examination_score,reference_answer,examination_level FROM examination WHERE examination_id = #{examId}
+    </select>
 
 </mapper>
