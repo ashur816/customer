@@ -13,17 +13,17 @@ import java.util.List;
  */
 public interface IExaminationService {
 
-    void insertExam(String examQuestion,String examScore,String referenceAnswer,String examLevel);
+    void insertExam(String examQuestion,String examScore,String referenceAnswer,int examLevel);
 
     UserAnswer getExamAndAnswer(int userId, int examId);
 
-    void updateExam(int examId,String examQuestion,String examScore,String referenceAnswer,String examLevel);
+    void updateExam(int examId,String examQuestion,String examScore,String referenceAnswer,int examLevel);
 
     void deleteExam(int examId);
 
     List<Integer> getExamIdList(int userId);
 
-    List<Examination> getExamList(String examLevel);
+    List<Examination> getExamList(int examLevel);
 
     Examination getExamInfo(int examId);
 

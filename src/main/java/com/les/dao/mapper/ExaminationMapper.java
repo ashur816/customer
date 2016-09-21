@@ -15,11 +15,11 @@ import java.util.*;
  */
 @Component
 public interface ExaminationMapper {
-    void insertExam(@Param("examId") int examId,@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") String examLevel);
+    void insertExam(@Param("examId") int examId,@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") int examLevel);
 
     UserAnswer getExamAndAnswer(@Param("userId") int userId, @Param("examId") int examId);
 
-    void updateExam(@Param("examId") int examId,@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") String examLevel);
+    void updateExam(@Param("examId") int examId,@Param("examQuestion") String examQuestion,@Param("examScore") String examScore, @Param("referenceAnswer") String referenceAnswer, @Param("examLevel") int examLevel);
 
     void deleteExam(int examId);
 
@@ -27,7 +27,7 @@ public interface ExaminationMapper {
 
     List<Integer> getExamIdList(int userId);
 
-    List<Examination> getExamList(@Param("examLevel") String examLevel);
+    List<Examination> getExamList(@Param("examLevel") int examLevel);
 
     Examination getExamInfo(int examId);
 }

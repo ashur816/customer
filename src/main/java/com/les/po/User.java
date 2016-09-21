@@ -21,7 +21,7 @@ public class User implements Serializable{
     private String graduateInstitution;
     private String major;
     private String workingLife;
-    private String userLevel;
+    private int userLevel;
 
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
@@ -58,11 +58,11 @@ public class User implements Serializable{
     public String getWorkingLife() { return workingLife; }
     public void setWorkingLife(String workingLife) { this.workingLife = workingLife; }
 
-    public String getUserLevel() {
+    public int getUserLevel() {
         return userLevel;
     }
 
-    public void setUserLevel(String userLevel) {
+    public void setUserLevel(int userLevel) {
         this.userLevel = userLevel;
     }
 }

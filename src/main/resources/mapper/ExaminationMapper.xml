@@ -41,7 +41,7 @@
     </select>
     <select id="getExamList" resultType="com.les.po.Examination">
         SELECT examination_id,examination_question,examination_score,reference_answer,examination_level FROM examination
-        <if test="examLevel != null">
+        <if test="examLevel != 0">
             WHERE examination_level = #{examLevel}
         </if>
     </select>
