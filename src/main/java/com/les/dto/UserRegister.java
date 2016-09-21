@@ -14,13 +14,13 @@ public class UserRegister {
     private String sex;
     private String major;
     private String workingLife;
-    private String userLevel;
+    private int userLevel;
 
 
     public UserRegister() {
     }
 
-    public UserRegister(String userName, int userType,String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife,String userLevel) {
+    public UserRegister(String userName, int userType,String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife,int userLevel) {
         this.userName = userName;
         this.userType = userType;
         this.password = password;
@@ -101,7 +101,7 @@ public class UserRegister {
         this.workingLife = workingLife;
     }
 
-    public String getUserLevel() { return userLevel; }
+    public int getUserLevel() { return userLevel; }
 
-    public void setUserLevel(String userLevel) { this.userLevel = userLevel; }
+    public void setUserLevel(int userLevel) { this.userLevel = userLevel; }
 }

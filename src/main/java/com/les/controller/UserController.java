@@ -61,7 +61,7 @@ public class UserController {
         String graduateInstitution = request.getParameter("school");
         String major = request.getParameter("major");
         String workingLife = request.getParameter("year");
-        String userLevel = request.getParameter("userLevel");
+        int userLevel = Integer.parseInt(request.getParameter("userLevel"));
 
         UserRegister userRegister = new UserRegister(userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife,userLevel);
         UserResult userResult = userService.register(userRegister);
@@ -82,7 +82,7 @@ public class UserController {
         String graduateInstitution = request.getParameter("school");
         String major = request.getParameter("major");
         String workingLife = request.getParameter("year");
-        String userLevel = request.getParameter("userLevel");
+        int userLevel = Integer.parseInt(request.getParameter("userLevel"));
 
         userService.updateUser(userId,userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife,userLevel);
         return result;
@@ -99,6 +99,12 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/getUserById", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public UserResult getUserById(HttpServletRequest request){
+        int userId = Integer.parseInt(request.getAttribute("loginUserId").toString());
+        return userService.getUserById(userId);
+    }
 
     @RequestMapping(value = "/commit", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody

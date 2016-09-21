@@ -29,7 +29,7 @@ public interface UserMapper {
 
     void updateUser(@Param("userId")int userId,@Param("userName")String userName,@Param("userType")int userType, @Param("password")String password,
                     @Param("fullname")String fullname,@Param("age") int age, @Param("sex") String sex,
-                    @Param("graduateInstitution")String graduateInstitution,@Param("major")String major,@Param("workingLife")String workingLife,@Param("userLevel")String userLevel);
+                    @Param("graduateInstitution")String graduateInstitution,@Param("major")String major,@Param("workingLife")String workingLife,@Param("userLevel")int userLevel);
 
     void deleteUser(int userId);
 

@@ -3,7 +3,7 @@
 <mapper namespace="com.les.dao.mapper.UserMapper">
 
     <select id="getUserById" resultType="com.les.dto.UserResult">
-        SELECT USER_ID,USER_NAME,USER_TYPE,FULLNAME FROM USER_INFO WHERE USER_ID=#{userId};
+        SELECT USER_NAME,USER_TYPE,FULLNAME,GRADUATE_INSTITUTION,MAJOR FROM USER_INFO WHERE USER_ID=#{userId};
     </select>
 
     <select id="getUserList" resultType="com.les.dto.UserResult">

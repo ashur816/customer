@@ -43,7 +43,13 @@ public class UserServiceImpl implements IUserService {
                 userResult.setGraduateInstitution(user.getGraduateInstitution());
                 userResult.setMajor(user.getMajor());
                 userResult.setRedirectUrl(StaticConst.PAGE_ADMIN_MANAGE);
-            } else {
+            }else if(userId==3){
+                //重定向考试页
+                userResult.setFullname(user.getFullname());
+                userResult.setGraduateInstitution(user.getGraduateInstitution());
+                userResult.setMajor(user.getMajor());
+                userResult.setRedirectUrl(StaticConst.PAGE_EXAM);
+            }else {
                 //根据userId查询用户最近一次考试结果
                 UserGoal userGoal = userMapper.getLatestUserGoal(userId);
                 Date now = new Date();
@@ -117,7 +123,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void updateUser(int userId, String userName, int userType, String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife,String userLevel) {
+    public void updateUser(int userId, String userName, int userType, String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife,int userLevel) {
         userMapper.updateUser(userId,userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife,userLevel);
     }
 
@@ -135,6 +141,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void commit(int userId,Date endDate) {
         userMapper.commit(userId,endDate);
+    }
+
+    @Override
+    public UserResult getUserById(int userId) {
+        return userMapper.getUserById(userId);
     }
 
 }

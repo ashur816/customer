@@ -73,7 +73,7 @@ public class ExaminationController {
         String examQuestion = request.getParameter("examinationQuestion");
         String examScore = request.getParameter("examinationScore");
         String referenceAnswer = request.getParameter("referenceAnswer");
-        String examLevel = request.getParameter("examinationLevel");
+        int examLevel = Integer.parseInt(request.getParameter("examinationLevel"));
 
         examinationService.insertExam(examQuestion, examScore, referenceAnswer, examLevel);
         return result;
@@ -92,7 +92,7 @@ public class ExaminationController {
         String examQuestion = request.getParameter("examinationQuestion");
         String examScore = request.getParameter("examinationScore");
         String referenceAnswer = request.getParameter("referenceAnswer");
-        String examLevel = request.getParameter("examinationLevel");
+        int examLevel = Integer.parseInt(request.getParameter("examinationLevel"));
         examinationService.updateExam(examId, examQuestion, examScore, referenceAnswer, examLevel);
         return result;
     }
@@ -118,7 +118,7 @@ public class ExaminationController {
      */
     @RequestMapping(value = "/getExamList/{examLevel}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public List<Examination> getExamList(@PathVariable String examLevel) {
+    public List<Examination> getExamList(@PathVariable int examLevel) {
         List examList = examinationService.getExamList(examLevel);
         return examList;
     }

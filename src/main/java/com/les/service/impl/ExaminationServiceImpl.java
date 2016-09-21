@@ -24,7 +24,7 @@ public class ExaminationServiceImpl implements IExaminationService {
     private ExaminationMapper examinationMapper;
 
     @Override
-    public void insertExam(String examQuestion, String examScore, String referenceAnswer, String examLevel) {
+    public void insertExam(String examQuestion, String examScore, String referenceAnswer, int examLevel) {
         int examId = Integer.parseInt(RandomUtils.generateNumString(8));
         Set set = examinationMapper.allExamId();
         if(set.contains(examId)){
@@ -39,7 +39,7 @@ public class ExaminationServiceImpl implements IExaminationService {
     }
 
     @Override
-    public void updateExam(int examId, String examQuestion, String examScore, String referenceAnswer, String examLevel) {
+    public void updateExam(int examId, String examQuestion, String examScore, String referenceAnswer, int examLevel) {
         examinationMapper.updateExam(examId,examQuestion,examScore,referenceAnswer,examLevel);
     }
 
@@ -54,7 +54,7 @@ public class ExaminationServiceImpl implements IExaminationService {
     }
 
     @Override
-    public List<Examination> getExamList(String examLevel) {
+    public List<Examination> getExamList(int examLevel) {
         return examinationMapper.getExamList(examLevel);
     }
 
@@ -63,8 +63,4 @@ public class ExaminationServiceImpl implements IExaminationService {
         return examinationMapper.getExamInfo(examId);
     }
 
-//    @Override
-//    public void grade(int answer) {
-//
-//    }
 }
