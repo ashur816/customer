@@ -39,8 +39,8 @@ public class SimpleCORSFilter implements Filter {
             boolean noLogin = true;
             if (StringUtils.isNotBlank(token)) {
                 MapCacheManager cacheManager = MapCacheManager.getInstance();
-                Map<String, String> cashMap = cacheManager.getMapCache();
-                String userId = cashMap.get(token);
+                Map<String, String> cashMap = cacheManager.getMapCache(token);
+                String userId = cashMap.get("userId");
                 if (StringUtils.isNotBlank(userId)) {
                     request.setAttribute("loginUserId", userId);
                     noLogin = false;
@@ -48,10 +48,9 @@ public class SimpleCORSFilter implements Filter {
             }
             if (noLogin) {
                 //重定向登陆页面
-//                response.sendRedirect("http://192.168.30.218/Exam/index.html");
+                response.sendRedirect("http://localhost:63342/customer/web/WEB-INF/project3/login.html");
                 logger.error("未登录");
-                return;
-
+                return ;
             }
         }
         chain.doFilter(req, res);

@@ -3,6 +3,7 @@ package com.les.common;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,15 +19,9 @@ public class MapCacheManager {
 
     private volatile static MapCacheManager mapCacheObject;// 缓存实例对象
 
-    private volatile long updateTime = 0L;// 更新缓存时记录的时间
-
-    private volatile boolean updateFlag = true;// 正在更新时的阀门，为false时表示当前没有更新缓存，为true时表示当前正在更新缓存
-
-    private static Map<String, String> cacheMap = new ConcurrentHashMap<>();// 缓存容器
+    private static Map<String, String> cacheMap = new ConcurrentHashMap<>();// 缓存容器 key=token value=userId_loginTime
 
     private MapCacheManager() {
-        this.loadCache();// 加载缓存
-        updateTime = System.currentTimeMillis();// 缓存更新时间
     }
 
     /**
@@ -46,31 +41,25 @@ public class MapCacheManager {
     }
 
     /**
-     * 初始化缓存
-     */
-    private void loadCache() {
-        this.updateFlag = true;// 正在更新
-        /********** 数据处理，将数据放入cacheMap缓存中 **begin ******/
-//        cacheMap.put("key1", "value1");
-//        cacheMap.put("key2", "value2");
-//        cacheMap.put("key3", "value3");
-//        cacheMap.put("key4", "value4");
-//        cacheMap.put("key5", "value5");
-        /********** 数据处理，将数据放入cacheMap缓存中 ***end *******/
-        this.updateFlag = false;// 更新已完成
-    }
-
-    /**
      * 更新缓存
      */
     public void updateCache(String key, String value) {
         Set<Map.Entry<String, String>> entrySet = cacheMap.entrySet();
-        for (Map.Entry<String, String> entry : entrySet){
-            if(entry.getValue().equals(value)){
+        for (Map.Entry<String, String> entry : entrySet) {
+            if (entry.getValue().equals(value)) {
                 cacheMap.remove(entry.getKey());
             }
         }
-        cacheMap.put(key, value);
+        String tmpValue = value + "_" + System.currentTimeMillis();
+        cacheMap.put(key, tmpValue);
+        log.info("用户[" + value + "]已登录");
+    }
+
+    /**
+     * 删除某个用户登陆缓存
+     */
+    public void removeCache(String key) {
+        cacheMap.remove(key);
     }
 
     /**
@@ -78,32 +67,29 @@ public class MapCacheManager {
      *
      * @return
      */
-    public Map<String, String> getMapCache() {
+    public Map<String, String> getMapCache(String token) {
         long currentTime = System.currentTimeMillis();
-
-        if (this.updateFlag) {// 前缓存正在更新
-            log.info("cache is Instance .....");
-            return null;
-
-        }
-
-        if (this.isTimeOut(currentTime)) {// 如果当前缓存正在更新或者缓存超出时限，需重新加载
-            synchronized (this) {
-                this.ReLoadCache();
-                this.updateTime = currentTime;
+        Map<String, String> retMap = new HashMap<>();
+        if (!cacheMap.containsKey(token)) {
+            retMap.put("userId", null);
+        } else {
+            String tmpValue = cacheMap.get(token);
+            String userId = tmpValue.split("_")[0];
+            Long loginTime = Long.parseLong(tmpValue.split("_")[1]);
+            if (this.isTimeOut(loginTime, currentTime)) {// 如果当前缓存正在更新或者缓存超出时限，需重新加载
+                log.error("已超时，需重新登陆");
+                synchronized (this) {
+                    this.removeCache(token);
+                }
+                retMap.put("userId", null);
+            } else {
+                retMap.put("userId", userId);
             }
         }
-        return this.cacheMap;
+        return retMap;
     }
-    private boolean isTimeOut(long currentTime) {
-        log.error("已超时，需重新登陆");
-        return ((currentTime - this.updateTime) > 3000000);// 超过时限，超时
-    }
-    /**
-     * 重新装载
-     */
-    private void ReLoadCache() {
-        this.cacheMap.clear();
-        this.loadCache();
+
+    private boolean isTimeOut(long loginTime, long currentTime) {
+        return ((currentTime - loginTime) > 2 * 60 * 60 * 1000);// 超过时限 2 小时，超时单位毫秒ms
     }
 }
