@@ -26,122 +26,140 @@
 
 <body>
 <nav class="breadcrumb">
-    <i class="Hui-iconfont"></i> <big>试题管理表 </big>
-
+    <i class="Hui-iconfont"></i>试题管理
 </nav>
 <div class="pd-20">
-    <div class="panel-body">
-        <button id="btn1" class="btn btn-default" data-toggle="modal" data-target="#exam-add-modal">
-            添加试题
-        </button>
-        <!-- Modal-1 -->
-        <div class="modal fade" id="exam-add-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">添加试题</h4>
-                    </div>
-                    <div class="modal-body">
+    <span class="select-box" style="width:200px">
+        <select id="selectLevel" class="select" size="1">
+            <option value="0" selected>全部</option>
+            <option value="1">初级</option>
+            <option value="2">中级</option>
+            <option value="3">高级</option>
+        </select>
+    </span>
+    <span id="btnQry" class="btn btn-primary radius">搜索</span>
+    <span id="btn1" class="btn btn-primary radius" data-toggle="modal" data-target="#exam-add-modal">添加试题</span>
 
-                        <body onload="add_form();">
-                        <form id="form-exam-add">
-                            <div class="row cl">
-                                <label class="form-label col-3"><span class="c-red">*</span>题目：</label>
-                                <div class="formControls col-5">
-                                    <input type="text" class="input-text" value="" placeholder="" name="examinationQuestion" digits="true" datatype="*2-200" nullmsg="题目不能为空">
-                                </div>
-                                <div class="col-4"></div>
-                            </div>
-
-                            <div class="row cl">
-                                <label class="form-label col-3"><span class="c-red">*</span>分数：</label>
-                                <div class="formControls col-5">
-                                    <input type="text" class="input-text" value="" placeholder="" name="examinationScore" datatype="*1-16" nullmsg="分数不能为空">
-                                </div>
-                                <div class="col-4"></div>
-                            </div>
-
-                            <div class="row cl">
-                                <label class="form-label col-3"><span class="c-red">*</span>参考答案：</label>
-                                <div class="formControls col-5">
-                                    <input type="text" class="input-text" value="" placeholder="" id="referenceAnswer" name="referenceAnswer" datatype="*2-200" nullmsg="参考答案不能为空">
-                                </div>
-                                <div class="col-4"></div>
-                            </div>
-
-                            <div class="row cl">
-                                <label class="form-label col-3"><span class="c-red">*</span>级别：</label>
-                                <div class="formControls col-5">
-                                    <input type="text" class="input-text" value="" placeholder="" name="examinationLevel" datatype="*1-16" nullmsg="级别不能为空">
-                                </div>
-                                <div class="col-4"></div>
-                            </div>
-                        </form>
-                        </body>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="btn2" type="button" class="btn btn-primary">增加</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    </div>
+    <!-- Modal-1 -->
+    <div class="modal fade" id="exam-add-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">添加试题</h4>
                 </div>
-            </div>
-        </div>
-        <!-- Modal-2 -->
-        <div class="modal fade" id="exam-update-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">修改题目信息</h4>
-                    </div>
-                    <div class="modal-body">
+                <div class="modal-body">
 
-                        <body onload="add_form();">
-                        <form id="form-exam-update">
-                            <input type="hidden" name="examinationId"/>
-                            <div class="row cl">
-                                <label class="form-label col-3">题目：</label>
-                                <div class="formControls col-5">
-                                    <input name="examinationQuestion" type="text" class="input-text" value="" placeholder="">
-                                </div>
-                                <div class="col-4"></div>
+                    <body onload="add_form();">
+                    <form id="form-exam-add">
+                        <div class="row cl">
+                            <label class="form-label col-3"><span class="c-red">*</span>题目：</label>
+                            <div class="formControls col-5">
+                                <input type="text" class="input-text" value="" placeholder="" name="examinationQuestion" digits="true" datatype="*2-200" nullmsg="题目不能为空">
                             </div>
-                            <div class="row cl">
-                                <label class="form-label col-3">分数：</label>
-                                <div class="formControls col-5">
-                                    <input name="examinationScore" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
-                                </div>
-                                <div class="col-4"></div>
+                            <div class="col-4"></div>
+                        </div>
+
+                        <div class="row cl">
+                            <label class="form-label col-3"><span class="c-red">*</span>分数：</label>
+                            <div class="formControls col-5">
+                                <input type="text" class="input-text" value="" placeholder="" name="examinationScore" datatype="*1-16" nullmsg="分数不能为空">
                             </div>
-                            <div class="row cl">
-                                <label class="form-label col-3">参考答案：</label>
-                                <div class="formControls col-5">
-                                    <input name="referenceAnswer" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
-                                </div>
+                            <div class="col-4"></div>
+                        </div>
+
+                        <div class="row cl">
+                            <label class="form-label col-3"><span class="c-red">*</span>参考答案：</label>
+                            <div class="formControls col-5">
+                                <input type="text" class="input-text" value="" placeholder="" id="referenceAnswer" name="referenceAnswer" datatype="*2-200" nullmsg="参考答案不能为空">
                             </div>
-                            <div class="row cl">
-                                <label class="form-label col-3">级别：</label>
-                                <div class="formControls col-5">
-                                    <input name="examinationLevel" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
-                                </div>
-                                <div class="col-4"></div>
+                            <div class="col-4"></div>
+                        </div>
+
+                        <div class="row cl">
+                            <label class="form-label col-3"><span class="c-red">*</span>级别：</label>
+                            <div class="formControls col-5">
+                                <span class="select-box">
+                                    <select class="select" size="1" name="examinationLevel">
+                                        <option value="1" selected>初级</option>
+                                        <option value="2">中级</option>
+                                        <option value="3">高级</option>
+                                    </select>
+                                </span>
                             </div>
-                        </form>
-                        </body>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="btn3" type="button" class="btn btn-primary">保存</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    </div>
+                            <div class="col-4"></div>
+                        </div>
+                    </form>
+                    </body>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn2" type="button" class="btn btn-primary">增加</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mt-20">
-        <table id="table-list" class="table table-striped table-bordered table-hover dataTable myTable">
-        </table>
+    <!-- Modal-2 -->
+    <div class="modal fade" id="exam-update-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">修改题目信息</h4>
+                </div>
+                <div class="modal-body">
+
+                    <body onload="add_form();">
+                    <form id="form-exam-update">
+                        <input type="hidden" name="examinationId"/>
+                        <div class="row cl">
+                            <label class="form-label col-3">题目：</label>
+                            <div class="formControls col-5">
+                                <input name="examinationQuestion" type="text" class="input-text" value="" placeholder="">
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+                        <div class="row cl">
+                            <label class="form-label col-3">分数：</label>
+                            <div class="formControls col-5">
+                                <input name="examinationScore" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+                        <div class="row cl">
+                            <label class="form-label col-3">参考答案：</label>
+                            <div class="formControls col-5">
+                                <input name="referenceAnswer" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
+                            </div>
+                        </div>
+                        <div class="row cl">
+                            <label class="form-label col-3">级别：</label>
+                            <div class="formControls col-5">
+                                <span class="select-box" style="width:200px">
+                                    <select class="select" size="1" name="examinationLevel">
+                                        <option value="1">初级</option>
+                                        <option value="2">中级</option>
+                                        <option value="3">高级</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+                    </form>
+                    </body>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn3" type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+<div class="mt-20">
+    <table id="table-list" class="table table-striped table-bordered table-hover dataTable myTable">
+    </table>
+</div>
 </div>
 
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.js"></script>
@@ -158,6 +176,7 @@
 <script type="text/javascript" src="js/exam-manage-form.js"></script>
 <script type="text/javascript" src="js/jquery.mockjax.js"></script>
 <script type="text/javascript" src="js/jquery.mockjson.js"></script>
+<script type="text/javascript" src="js/tip.js"></script>
 </body>
 
 </html>

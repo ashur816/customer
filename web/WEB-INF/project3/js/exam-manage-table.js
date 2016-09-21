@@ -3,7 +3,7 @@ $(document).ready(function () {
     var token = getUrlParam("token");
 
     var t = $("#table-list").dataTable({
-        "bFilter": true, //过滤功能
+        "bFilter": false, //过滤功能
         "aoColumnDefs": [
             {
                 "sTitle": "题目id",
@@ -81,7 +81,8 @@ $(document).ready(function () {
     refreshTable();
 
     function refreshTable() {
-        $.get(url + "/getExamList/0?token=" + token, function (data, status) {
+        var examLevel = $("#selectLevel").val();
+        $.get(url + "/getExamList/" + examLevel + "?token=" + token, function (data, status) {
             if (data != "") {
                 t.fnClearTable();
                 t.fnAddData(data, true);
@@ -91,12 +92,17 @@ $(document).ready(function () {
         });
     }
 
+    $("#btnQry").click(function () {
+        refreshTable();
+    });
+
     /*************************************新增*******************************/
     $("#btn2").click(function () {
+        var data = $("#form-exam-add").serialize();
         $.ajax({
             type: "POST",
             url: url + "/insertExam?token=" + token,
-            data: $("#form-exam-add").serialize(),
+            data: data,
             async: false,
             success: function (response) {
                 Huimodal_alert(response.message, 1000);
@@ -177,7 +183,16 @@ $(document).ready(function () {
         if (formData) {
             var form = $("#" + formId);
             $.each(form.serializeArray(), function (index) {
-                $("#" + formId + " [name='" + this.name + "']").val(formData[this.name]);
+                var tmpObj = $("#" + formId + " [name='" + this.name + "']");
+                if (tmpObj[0].tagName == "SELECT") {
+                    tmpObj.val(formData[this.name]);
+                }
+                else if (tmpObj[0].tagName == "INPUT") {
+                    tmpObj.val(formData[this.name]);
+                }
+                else {
+
+                }
             });
         }
         return formData;
