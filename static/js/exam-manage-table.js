@@ -106,27 +106,15 @@ $(document).ready(function () {
         refreshTable();
     });
 
-    /*************************************新增*******************************/
-    $("#btn2").click(function () {
-        var data = $("#form-exam-add").serialize();
-        $.ajax({
-            type: "POST",
-            url: baseUrl + "/insertExam?token=" + token,
-            data: data,
-            async: false,
-            success: function (response) {
-                Huimodal_alert(response.message, 1000);
-                $("#exam-add-modal").modal("hide");
-                refreshTable();
-            },
-            error: function () {
-                Huimodal_alert("error", 1000);
-            }
-        });
+    /*************************************显示新增页面*******************************/
+    $("#btnAdd").click(function () {
+        restForm();
+        $("#exam-form-modal").modal("show");
     });
 
-    /*************************************修改*******************************/
+    /*************************************显示修改页面*******************************/
     $('#table-list').on('click', 'button#editrow', function () {
+        restForm();
         var data = t.api().row($(this).parents('tr')).data(); //获取点击行的数据
         var examinationId = data["examinationId"];
         /*显示信息*/
@@ -138,8 +126,8 @@ $(document).ready(function () {
                     Huimodal_alert("未查询到题目信息", 1000);
                 }
                 else {
-                    setDataToForm("form-exam-update", response);
-                    $("#exam-update-modal").modal("show");
+                    setDataToForm("form-exam", response);
+                    $("#exam-form-modal").modal("show");
                 }
             },
             error: function () {
@@ -148,23 +136,15 @@ $(document).ready(function () {
         });
     });
 
-    /*保存修改*/
-    $("#btn3").click(function () {
-        var data = $('#form-exam-update').serialize();
-        $.ajax({
-            type: "POST",
-            url: baseUrl + "/updateExam?token=" + token,
-            data: data,
-            success: function (response) {
-                //1s自动关闭
-                Huimodal_alert(response.message, 1000);
-                $("#exam-update-modal").modal("hide");
-                refreshTable();
-            },
-            error: function (a, b, c) {
-                Huimodal_alert("error", 1000);
-            }
-        });
+    /*************************************新增 & 修改 提交数据*******************************/
+    $("#btnSave").click(function () {
+        var data = $("#form-exam").serialize();
+        var examinationId = $("#form-exam [name=examinationId]").val();
+        var postUrl = baseUrl + "/insertExam?token=" + token;
+        if (examinationId != null && examinationId != "") {
+            postUrl = baseUrl + "/updateExam?token=" + token;
+        }
+        validator.submitForm(false, postUrl);
     });
 
     /*************************************删除*******************************/
@@ -208,13 +188,23 @@ $(document).ready(function () {
         return formData;
     }
 
-    //form 取值
-    function getFormData(formId) {
-        var form = $("#" + formId);
-        var json = {};
-        $.each(form.serializeArray(), function (index) {
-            json[this.name] = this.value;
-        });
-        return JSON.stringify(json);
+    //表单验证
+    var validator = $("#form-exam").Validform({
+        tiptype: 2,
+        ajaxPost: true,
+        callback: function (response) {
+            $("#Validform_msg").hide();
+            $("#exam-form-modal").modal("hide");
+            Huimodal_alert(response.message, 1000);
+            refreshTable();
+        }
+    });
+
+    //初始化表单
+    function restForm() {
+        $("#form-exam")[0].reset();
+        validator.resetForm();
+        $("#form-exam [name='examinationId']").val("");
+        $("#form-exam span.Validform_checktip").empty();
     }
 });

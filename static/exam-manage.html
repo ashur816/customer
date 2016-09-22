@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <!--
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,member-scalable=no" />
-    -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <!--[if lt IE 9]>
     <script type="text/javascript" src="lib/html5.js"></script>
@@ -38,10 +36,10 @@
             </select>
         </span>
     <span id="btnQry" class="btn btn-primary radius">搜索</span>
-    <span id="btn1" class="btn btn-primary radius" data-toggle="modal" data-target="#exam-add-modal">添加试题</span>
+    <span id="btnAdd" class="btn btn-primary radius" data-toggle="modal">添加试题</span>
 
     <!-- Modal-1 -->
-    <div class="modal fade" id="exam-add-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exam-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -49,13 +47,12 @@
                     <h4 class="modal-title" id="myModalLabel">添加试题</h4>
                 </div>
                 <div class="modal-body">
-
-                    <body onload="add_form();">
-                    <form id="form-exam-add">
+                    <form id="form-exam">
+                        <input type="hidden" name="examinationId"/>
                         <div class="row cl">
                             <label class="form-label col-3"><span class="c-red">*</span>题目：</label>
                             <div class="formControls col-5">
-                                <input type="text" class="input-text" value="" placeholder="" name="examinationQuestion" digits="true" datatype="*2-200" nullmsg="题目不能为空">
+                                <input type="text" class="input-text" value="" placeholder="" name="examinationQuestion" datatype="*2-200" nullmsg="题目不能为空">
                             </div>
                             <div class="col-4"></div>
                         </div>
@@ -71,7 +68,7 @@
                         <div class="row cl">
                             <label class="form-label col-3"><span class="c-red">*</span>参考答案：</label>
                             <div class="formControls col-5">
-                                <input type="text" class="input-text" value="" placeholder="" id="referenceAnswer" name="referenceAnswer" datatype="*2-200" nullmsg="参考答案不能为空">
+                                <input type="text" class="input-text" value="" placeholder="" name="referenceAnswer" datatype="*2-200" nullmsg="参考答案不能为空">
                             </div>
                             <div class="col-4"></div>
                         </div>
@@ -90,66 +87,9 @@
                             <div class="col-4"></div>
                         </div>
                     </form>
-                    </body>
                 </div>
                 <div class="modal-footer">
-                    <button id="btn2" type="button" class="btn btn-primary">增加</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal-2 -->
-    <div class="modal fade" id="exam-update-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">修改题目信息</h4>
-                </div>
-                <div class="modal-body">
-
-                    <body onload="add_form();">
-                    <form id="form-exam-update">
-                        <input type="hidden" name="examinationId"/>
-                        <div class="row cl">
-                            <label class="form-label col-3">题目：</label>
-                            <div class="formControls col-5">
-                                <input name="examinationQuestion" type="text" class="input-text" value="" placeholder="">
-                            </div>
-                            <div class="col-4"></div>
-                        </div>
-                        <div class="row cl">
-                            <label class="form-label col-3">分数：</label>
-                            <div class="formControls col-5">
-                                <input name="examinationScore" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
-                            </div>
-                            <div class="col-4"></div>
-                        </div>
-                        <div class="row cl">
-                            <label class="form-label col-3">参考答案：</label>
-                            <div class="formControls col-5">
-                                <input name="referenceAnswer" type="text" class="input-text" value="" placeholder="" datatype="*2-16">
-                            </div>
-                        </div>
-                        <div class="row cl">
-                            <label class="form-label col-3">级别：</label>
-                            <div class="formControls col-5">
-                                <span class="select-box">
-                                    <select class="select" size="1" name="examinationLevel">
-                                        <option value="1">初级</option>
-                                        <option value="2">中级</option>
-                                        <option value="3">高级</option>
-                                    </select>
-                                </span>
-                            </div>
-                            <div class="col-4"></div>
-                        </div>
-                    </form>
-                    </body>
-                </div>
-                <div class="modal-footer">
-                    <button id="btn3" type="button" class="btn btn-primary">保存</button>
+                    <button id="btnSave" type="submit" class="btn btn-primary">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
             </div>
@@ -160,22 +100,17 @@
         </table>
     </div>
 </div>
+</body>
+</html>
 <script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.js"></script>
 <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="lib/icheck/jquery.icheck.min.js"></script>
 <script type="text/javascript" src="lib/Validform/5.3.2/Validform.min.js"></script>
 <script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="js/H-ui.js"></script>
 <script type="text/javascript" src="js/H-ui.admin.js"></script>
 <script type="text/javascript" src="js/exam-manage-table.js"></script>
-<script type="text/javascript" src="js/exam-manage-form.js"></script>
-<script type="text/javascript" src="js/jquery.mockjax.js"></script>
-<script type="text/javascript" src="js/jquery.mockjson.js"></script>
 <script type="text/javascript" src="js/tip.js"></script>
-</body>
 
-</html>
