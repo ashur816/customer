@@ -114,9 +114,9 @@ public class UserServiceImpl implements IUserService {
             userResult.setMajor(userRegister.getMajor());
             userResult.setWorkingLife(userRegister.getWorkingLife());
             userResult.setUserLevel(userRegister.getUserLevel());
-            userResult.setMessage("{\"id\": \"u\", \"umessage\":\"注册成功\"}");
+            userResult.setMessage("{\"message\":\"注册成功\"}");
         } else {
-            userResult.setMessage("{\"id\": \"n\", \"nmessage\":\"用户名已存在\"}");
+            userResult.setMessage("{\"message\":\"用户名已存在\"}");
         }
         return userResult;
 

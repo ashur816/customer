@@ -68,7 +68,7 @@ public class UserController {
         return userResult;
     }
 
-    @RequestMapping(value = "/updateUser", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String updateUser(HttpServletRequest request){
         String result = "修改成功";
