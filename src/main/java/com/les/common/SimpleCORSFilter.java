@@ -48,9 +48,9 @@ public class SimpleCORSFilter implements Filter {
             }
             if (noLogin) {
                 //重定向登陆页面
-                response.sendRedirect("http://localhost:63342/customer/web/WEB-INF/project3/login.html");
+//                response.sendRedirect("http://localhost:8791/loginIn.html");
                 logger.error("未登录");
-                return ;
+//                return ;
             }
         }
         chain.doFilter(req, res);

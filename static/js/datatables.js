@@ -51,7 +51,7 @@ $(document).ready(function () {
     refreshTable();
 
     function refreshTable() {
-        $.get("http://192.168.30.224:8791/getUserList/0?token=" + token, function (data, status) {
+        $.get(baseUrl + "/getUserList/0?token=" + token, function (data, status) {
             if (data != "") {
                 t.fnClearTable();
                 t.fnAddData(newData(data), true);
@@ -78,100 +78,101 @@ $(document).ready(function () {
     /*设置第一列隐藏*/
     t.fnSetColumnVis(0, false);
     /*修改*/
-        $('#table tbody').on('click', 'button#editrow', function () {
-            var data = t.api().row($(this).parents('tr')).data(); //获取点击行的数据
-            //console.log(data["number"]); //取出记录id的值
-            var data_id = {
+    $('#table tbody').on('click', 'button#editrow', function () {
+        var data = t.api().row($(this).parents('tr')).data(); //获取点击行的数据
+        //console.log(data["number"]); //取出记录id的值
+        var data_id = {
+            "userId": data["userId"]
+        };
+        console.log(data_id.userId);
+        /*显示信息*/
+        $.ajax({
+            type: "get",
+            url: baseUrl + "/getUserList/" + data_id.userId,
+            success: function (response) {
+                console.log(response[0]["major"]);
+                $("#userName2").val(response[0]["userName"] || "");
+                $("#password2").val(response[0]["password"] || "");
+                $("#fullname2").val(response[0]["fullname"] || "");
+                $("#age2").val(response[0]["age"] || "");
+                $("#sex2").val(response[0]["sex"] || "");
+                $("#graduateInstitution2").val(response[0]["graduateInstitution"] || "");
+                $("#major2").val(response[0]["major"] || "");
+                $("#workingLife2").val(response[0]["workingLife"] || "");
+            },
+            error: function () {
+                console.log("ERROR!");
+            }
+        });
+        $("#myModal-2").modal("show");
+    });
+    /*保存修改*/
+    $("#btn3").click(function () {
+        var object = $("#form-member-add-2").serializeArray();
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "/updateUser/" + data_id.userId,
+            data: object,
+            success: function (response) {
+
+            },
+            error: function () {
+                console.log("error!");
+            }
+        });
+    });
+    /*删除*/
+    $('#table tbody').on('click', 'button#delrow', function () {
+        if (show() == true) {
+            var data = t.api().row($(this).parents('tr')).data();
+            var id = {
                 "userId": data["userId"]
             };
-            console.log(data_id.userId);
-            /*显示信息*/
             $.ajax({
-                type: "get",
-                url: "http://192.168.30.224:8791/getUserList/" + data_id.userId,
-                success: function (response) {
-                    console.log(response[0]["major"]);
-                    $("#userName2").val(response[0]["userName"] || "");
-                    $("#password2").val(response[0]["password"] || "");
-                    $("#fullname2").val(response[0]["fullname"] || "");
-                    $("#age2").val(response[0]["age"] || "");
-                    $("#sex2").val(response[0]["sex"] || "");
-                    $("#graduateInstitution2").val(response[0]["graduateInstitution"] || "");
-                    $("#major2").val(response[0]["major"] || "");
-                    $("#workingLife2").val(response[0]["workingLife"] || "");
-                },
-                error: function () {
-                    console.log("ERROR!");
-                }
-            });
-            $("#myModal-2").modal("show");
-        });
-    /*保存修改*/
-        $("#btn3").click(function () {
-            var object = $("#form-member-add-2").serializeArray();
-            $.ajax({
-                type: "POST",
-                url: "http://192.168.30.224:8791/updateUser/" + data_id.userId,
-                data: object,
-                success: function (response) {
-                    
-                },
-                error: function () {
-                    console.log("error!");
-                }
-            });
-        });
-    /*删除*/
-        $('#table tbody').on('click', 'button#delrow', function () {
-            if (show() == true) {
-                var data = t.api().row($(this).parents('tr')).data();
-                var id = {
-                    "userId": data["userId"]
-                };
-                $.ajax({
-                        url: 'http://192.168.30.224:8791/deleteUser',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: id
-                    })
-                    .done(function (message) {
-                        if (message == "删除成功") {
-                            console.log(message);
-                        };
-                    })
-                    .fail(function () {
-                        alert("error");
-                    });
-            } else {
-                return false;
-            }
-            refreshTable();
-        });
+                url: baseUrl + '/deleteUser',
+                type: 'POST',
+                dataType: 'json',
+                data: id
+            })
+                .done(function (message) {
+                    if (message == "删除成功") {
+                        console.log(message);
+                    }
+                    ;
+                })
+                .fail(function () {
+                    alert("error");
+                });
+        } else {
+            return false;
+        }
+        refreshTable();
+    });
     /*查看*/
-        $('#table tbody').on('click', 'button#showrow', function () {
-            var data2 = t.api().row($(this).parents('tr')).data();
-            var data2_id = {
-                "userId": data2["userId"]
-            };
-            $.ajax({
-                type: "get",
-                url: "http://192.168.30.224:8791/getUserList/" + data2_id.userId,
-                success: function (response) {
-                    $("#userName3").val(response[0]["userName"] || "");
-                    $("#password3").val(response[0]["password"] || "");
-                    $("#fullname3").val(response[0]["fullname"] || "");
-                    $("#age3").val(response[0]["age"] || "");
-                    $("#sex3").val(response[0]["sex"] || "");
-                    $("#graduateInstitution3").val(response[0]["graduateInstitution"] || "");
-                    $("#major3").val(response[0]["major"] || "");
-                    $("#workingLife3").val(response[0]["workingLife"] || "");
-                },
-                error: function () {
-                    console.log("error!");
-                }
-            });
-            $("#myModal-3").modal("show");
+    $('#table tbody').on('click', 'button#showrow', function () {
+        var data2 = t.api().row($(this).parents('tr')).data();
+        var data2_id = {
+            "userId": data2["userId"]
+        };
+        $.ajax({
+            type: "get",
+            url: baseUrl + "/getUserList/" + data2_id.userId,
+            success: function (response) {
+                $("#userName3").val(response[0]["userName"] || "");
+                $("#password3").val(response[0]["password"] || "");
+                $("#fullname3").val(response[0]["fullname"] || "");
+                $("#age3").val(response[0]["age"] || "");
+                $("#sex3").val(response[0]["sex"] || "");
+                $("#graduateInstitution3").val(response[0]["graduateInstitution"] || "");
+                $("#major3").val(response[0]["major"] || "");
+                $("#workingLife3").val(response[0]["workingLife"] || "");
+            },
+            error: function () {
+                console.log("error!");
+            }
         });
+        $("#myModal-3").modal("show");
+    });
     /*打分*/
     $('#table tbody').on('click', 'button#mark', function () {
         var data = t.api().row($(this).parents('tr')).data();
@@ -182,7 +183,7 @@ $(document).ready(function () {
         };
         console.log(data_end.grade);
         if (data_end.endTime != "" && data_end.grade == "") {
-            window.location.href = "http://192.168.30.214/project3/exam.html?id=" + data_end.userId + "&token=" + token;
+            window.location.href = baseUrl + "/exam.html?id=" + data_end.userId + "&token=" + token;
         } else if (data_end.endTime == "") {
             alert("该人员还在答题中...");
         } else if (data_end.grade != "") {
@@ -194,7 +195,7 @@ $(document).ready(function () {
         var obj = [];
         $.ajax({
             type: "POST",
-            url: "http://192.168.30.224:8791/register",
+            url: baseUrl + "/register",
             data: $("#form-member-add-1").serialize(),
             async: false,
             success: function (response) {

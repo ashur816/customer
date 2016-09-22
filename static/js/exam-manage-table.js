@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    var token = getUrlParam("token");
-
     var t = $("#table-list").dataTable({
         "bFilter": false, //过滤功能
         "aoColumnDefs": [
@@ -90,13 +88,11 @@ $(document).ready(function () {
         }
     });
 
-    var url = "http://localhost:8080";
-
     refreshTable();
 
     function refreshTable() {
         var examLevel = $("#selectLevel").val();
-        $.get(url + "/getExamList/" + examLevel + "?token=" + token, function (data, status) {
+        $.get(baseUrl + "/getExamList/" + examLevel + "?token=" + token, function (data, status) {
             if (data != "") {
                 t.fnClearTable();
                 t.fnAddData(data, true);
@@ -115,7 +111,7 @@ $(document).ready(function () {
         var data = $("#form-exam-add").serialize();
         $.ajax({
             type: "POST",
-            url: url + "/insertExam?token=" + token,
+            url: baseUrl + "/insertExam?token=" + token,
             data: data,
             async: false,
             success: function (response) {
@@ -136,7 +132,7 @@ $(document).ready(function () {
         /*显示信息*/
         $.ajax({
             type: "get",
-            url: url + "/getExamInfo/" + examinationId + "?token=" + token,
+            url: baseUrl + "/getExamInfo/" + examinationId + "?token=" + token,
             success: function (response) {
                 if (response == "" || response == null) {
                     Huimodal_alert("未查询到题目信息", 1000);
@@ -157,7 +153,7 @@ $(document).ready(function () {
         var data = $('#form-exam-update').serialize();
         $.ajax({
             type: "POST",
-            url: url + "/updateExam?token=" + token,
+            url: baseUrl + "/updateExam?token=" + token,
             data: data,
             success: function (response) {
                 //1s自动关闭
@@ -177,7 +173,7 @@ $(document).ready(function () {
             var data = t.api().row($(this).parents('tr')).data(); //获取点击行的数据
             var examinationId = data["examinationId"];
             $.ajax({
-                url: url + "/deleteExam?token=" + token + "&examinationId=" + examinationId,
+                url: baseUrl + "/deleteExam?token=" + token + "&examinationId=" + examinationId,
                 type: 'POST',
                 dataType: 'json',
                 data: null
@@ -220,13 +216,5 @@ $(document).ready(function () {
             json[this.name] = this.value;
         });
         return JSON.stringify(json);
-    }
-
-    //获取url参数
-    function getUrlParam(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var r = window.location.search.substr(1).match(reg);
-        if (r != null) return unescape(r[2]);
-        return null;
     }
 });
