@@ -20,8 +20,8 @@ import org.springframework.transaction.PlatformTransactionManager;
  * @Description:
  * @date 2016/8/24 9:24
  */
-@SpringBootApplication
 @EnableAutoConfiguration
+@SpringBootApplication
 @ComponentScan
 @MapperScan("com.les.dao.mapper")
 public class WebConfig {

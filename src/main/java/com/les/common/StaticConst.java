@@ -17,9 +17,12 @@ public class StaticConst {
 
     //页面地址
     //阅卷页面
-    public static String PAGE_ADMIN_MANAGE = "http://localhost:8791/member-list.html";
+    public static String PAGE_ADMIN_MANAGE = "http://192.168.30.214/project3/member-list.html";
 
 
     //考试页面
-    public static String PAGE_EXAM = "http://localhost:8791/Exam/exam.html";
+    public static String PAGE_EXAM = "http://192.168.30.218/Exam/exam.html";
+
+    //试题维护界面
+    public static String PAGE_EXAM_MANAGE = "http://192.168.30.224/workspace/customer/web/WEB-INF/project3/exam-manage.html";
 }

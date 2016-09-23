@@ -39,10 +39,17 @@ public class UserServiceImpl implements IUserService {
             int userType = user.getUserType();
             if (StaticConst.USER_TYPE_ADMIN == userType) {
                 //重定向管理页
-                userResult.setFullname(user.getFullname());
-                userResult.setGraduateInstitution(user.getGraduateInstitution());
-                userResult.setMajor(user.getMajor());
-                userResult.setRedirectUrl(StaticConst.PAGE_ADMIN_MANAGE);
+                if(userId==2){
+                    userResult.setFullname(user.getFullname());
+                    userResult.setGraduateInstitution(user.getGraduateInstitution());
+                    userResult.setMajor(user.getMajor());
+                    userResult.setRedirectUrl(StaticConst.PAGE_EXAM_MANAGE);
+                }else {
+                    userResult.setFullname(user.getFullname());
+                    userResult.setGraduateInstitution(user.getGraduateInstitution());
+                    userResult.setMajor(user.getMajor());
+                    userResult.setRedirectUrl(StaticConst.PAGE_ADMIN_MANAGE);
+                }
             }else if(userId==3){
                 //重定向考试页
                 userResult.setFullname(user.getFullname());
