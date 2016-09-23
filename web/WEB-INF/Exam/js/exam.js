@@ -102,7 +102,7 @@
 
     
     <!--    计时器设定,初始化题目信息和题的数目-->
-    var qid=new Array("第一题","第二题","第三题","第四题","第五题","第六题","第七题","第八题","第九题","第十题");
+    var qid=new Array("第一题","第二题","第三题","第四题","第五题","第六题","第七题","第八题","第九题","第十题","第十一题","第十二题");
 console.dir(qid);
         var x = 40,
             interval;
@@ -167,3 +167,32 @@ console.dir(qid);
             });
         });
 
+window.onload=function(){
+    console.log(window.location.href);
+    var user=new RegExp("user_id");
+    if(user.test(window.location.href) == false)
+
+{
+        alert("你的地址非法，请登录后进入");
+    window.location.href="index.html";
+}
+else{
+    //alert("你好");
+$.ajax({
+                type: "get",
+                url: "http://192.168.30.224:8791/getUserById" + token + "=" + user_id,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function(Message) {
+                    console.dir(Message);
+                    $("#user").attr("style","color:blue").text(Message.fullname);
+                    $("#school").attr("style","color:blue").text(Message.graduateInstitution);
+                    $("#major").attr("style","color:blue").text(Message.major);
+                },
+                error: function() {
+                    alert("您是非法用户请重新登录进入");
+                    window.location.href="index.html";
+                }
+            });
+}
+}

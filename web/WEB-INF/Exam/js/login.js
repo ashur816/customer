@@ -28,7 +28,7 @@ function saveReport() {
                     } else 
                     {
                        
-                        window.location.href=Message.redirectUrl + "?user_id=" + Message.token;
+                        window.location.href=Message.redirectUrl + "?token=" + Message.token;
                         $("#message").attr("style", "color:red").text('登录成功正在跳转...');
                         
 
