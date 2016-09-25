@@ -5,8 +5,6 @@ import com.baidu.ueditor.define.BaseState;
 import com.baidu.ueditor.define.State;
 import org.apache.commons.io.FileUtils;
 
-import java.io.*;
-
 public class StorageManager {
 	public static final int BUFFER_SIZE = 8192;
 
