@@ -34,24 +34,23 @@ public class SimpleCORSFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) req;
         String uri = request.getRequestURI();
-        if (!uri.contains("/login")) {//排除登陆请求
+        if (!uri.contains("/login") && uri.contains(".html")) {//排除登陆请求
             String token = request.getParameter("token");
-            boolean noLogin = true;
+            boolean isLogin = false;
             if (StringUtils.isNotBlank(token)) {
                 MapCacheManager cacheManager = MapCacheManager.getInstance();
                 Map<String, String> cashMap = cacheManager.getMapCache();
                 String userId = cashMap.get(token);
                 if (StringUtils.isNotBlank(userId)) {
                     request.setAttribute("loginUserId", userId);
-                    noLogin = false;
+                    isLogin = true;
                 }
             }
-            if (noLogin) {
+            if (!isLogin) {
                 //重定向登陆页面
-//                response.sendRedirect("http://192.168.30.218/Exam/index.html");
+//                response.set
                 logger.error("未登录");
                 return;
-
             }
         }
         chain.doFilter(req, res);

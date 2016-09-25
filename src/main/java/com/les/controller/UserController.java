@@ -38,7 +38,7 @@ public class UserController {
     }
 
     //把下面method改成get请求，可以直接访问http://localhost:8080/login.jsp?userName=lsm&password=1212
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/loginIn", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public UserResult login(HttpServletRequest request) {
         logger.info("登录");
@@ -58,41 +58,40 @@ public class UserController {
         String fullname = request.getParameter("fullname");
         int age = Integer.parseInt(request.getParameter("age"));
         String sex = request.getParameter("sex");
-        String graduateInstitution = request.getParameter("school");
+        String graduateInstitution = request.getParameter("graduateInstitution");
         String major = request.getParameter("major");
-        String workingLife = request.getParameter("year");
+        String workingLife = request.getParameter("workingLife");
         int userLevel = Integer.parseInt(request.getParameter("userLevel"));
 
-        UserRegister userRegister = new UserRegister(userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife,userLevel);
+        UserRegister userRegister = new UserRegister(userName, userType, password, fullname, age, sex, graduateInstitution, major, workingLife, userLevel);
         UserResult userResult = userService.register(userRegister);
         return userResult;
     }
 
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String updateUser(HttpServletRequest request){
-        String result = "修改成功";
+    public String updateUser(HttpServletRequest request) {
+        String result = "{\"message\":\"修改成功\"}";
         int userId = Integer.parseInt(request.getParameter("userId"));
         String userName = request.getParameter("userName");
-        int userType = Integer.parseInt(request.getParameter("userType"));
         String password = request.getParameter("password");
         String fullname = request.getParameter("fullname");
         int age = Integer.parseInt(request.getParameter("age"));
         String sex = request.getParameter("sex");
-        String graduateInstitution = request.getParameter("school");
+        String graduateInstitution = request.getParameter("graduateInstitution");
         String major = request.getParameter("major");
-        String workingLife = request.getParameter("year");
+        String workingLife = request.getParameter("workingLife");
         int userLevel = Integer.parseInt(request.getParameter("userLevel"));
 
-        userService.updateUser(userId,userName,userType,password,fullname,age,sex,graduateInstitution,major,workingLife,userLevel);
+        userService.updateUser(userId, userName, password, fullname, age, sex, graduateInstitution, major, workingLife, userLevel);
         return result;
 
     }
 
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String deleteUser(HttpServletRequest request){
-        String result = "删除成功";
+    public String deleteUser(HttpServletRequest request) {
+        String result = "{\"message\":\"删除成功\"}";
         int userId = Integer.parseInt(request.getParameter("userId"));
         userService.deleteUser(userId);
         return result;
@@ -101,19 +100,19 @@ public class UserController {
 
     @RequestMapping(value = "/getUserById", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public UserResult getUserById(HttpServletRequest request){
+    public UserResult getUserById(HttpServletRequest request) {
         int userId = Integer.parseInt(request.getAttribute("loginUserId").toString());
         return userService.getUserById(userId);
     }
 
     @RequestMapping(value = "/commit", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String commit(HttpServletRequest request){
+    public String commit(HttpServletRequest request) {
         String result = "提交成功";
 
         int userId = Integer.parseInt(request.getAttribute("loginUserId").toString());
         Date now = new Date();
-        userService.commit(userId,now);
+        userService.commit(userId, now);
         return result;
     }
 }

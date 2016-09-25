@@ -28,7 +28,7 @@
     </insert>
 
     <update id="updateUser">
-        UPDATE user_info SET user_name=#{userName},user_type=#{userType},password=#{password},fullname=#{fullname},age=#{age},sex=#{sex},graduate_institution=#{graduateInstitution},major=#{major},working_life=#{workingLife},user_level=#{userLevel}
+        UPDATE user_info SET user_name=#{userName},password=#{password},fullname=#{fullname},age=#{age},sex=#{sex},graduate_institution=#{graduateInstitution},major=#{major},working_life=#{workingLife},user_level=#{userLevel}
         WHERE user_id=#{userId};
     </update>
 

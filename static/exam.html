@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <!-- Bootstrap -->
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/H-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
+    <link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="login-body">
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-2 column"></div>
+        <div class="col-md-8 column">
+            <h1 class="text-center">欢迎进入鼐威欣考试系统</h1>
+            <center>
+                <div><span>考试时间:</span><span id="clock">40:00</span></div>
+                <div>
+                    <button type="button" id="btnBegin" class="btn btn-primary btn-default">开始考试</button>
+                    <button type="button" id="btnSubmit" class="btn btn-primary btn-default">交卷</button>
+                </div>
+            </center>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-md-2 column" id="num">
+        </div>
+        <div class="col-md-8 column">
+            <div id="p4"><br/><br/><br/>
+                <p id="title" style='font-size:20px'>
+                </p>
+                <p id="yourAnswer" style='font-size:20px' style="text-align:left;">
+                </p><br/><br/><br/>
+            </div>
+            <center><textarea class="form-control ckeditor" name="editor1"></textarea>
+                <br/><br/>
+                <p>
+                    <button type="button" id="btnSave" class="btn btn-primary btn-default">保存</button>
+                </p>
+            </center>
+        </div>
+        <div class="col-md-2 column">
+                <pre style='background:yellow'>
+                    <p>亲爱的考生，请点击开始考试进行答题！</p>
+                    <p>获取题目后点击题目得到试题再进行作答并保存！</p>
+                    <p>交卷或退出将影响您的考试，请慎重！</p>
+                    <p>祝您考试愉快！</p></pre>
+        </div>
+    </div>
+    <i>
+        <div class="col-md-12 column">
+            <h3 class="text-center">欢迎您进入鼐威欣在线考试系统</h3>
+        </div>
+    </i>
+</div>
+
+<center>
+    <footer>
+        2016 &copy; 鼐威欣
+    </footer>
+</center>
+</body>
+
+</html>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="js/H-ui.js"></script>
+<script type="text/javascript" src="js/H-ui.admin.js"></script>
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+
+<script type="text/javascript" src="js/exam.js"></script>

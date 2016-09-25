@@ -57,13 +57,13 @@ public class AnswerController {
     /**
      * 查询
      *
-     * @param body
+     * @param request
      * @return List<UserAnswer>
      */
     @RequestMapping(value = "/getAnswerList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public List<UserAnswer> getAnswerList(@RequestBody String body) throws Exception {
-        String userId = JsonUtils.readValueByName(body, "userId");
+    public List<UserAnswer> getAnswerList(HttpServletRequest request) throws Exception {
+        String userId = request.getParameter("userId");
         return answerService.getAnswerList(Integer.parseInt(userId));
     }
 
