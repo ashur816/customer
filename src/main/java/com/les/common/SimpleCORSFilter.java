@@ -34,7 +34,7 @@ public class SimpleCORSFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) req;
         String uri = request.getRequestURI();
-        if (!uri.contains("/login") && uri.contains(".html")) {//排除登陆请求
+        if (!uri.contains("/login") && !uri.matches("(.*/css/.*|.*/js/.*|.*/images/.*|.*/lib/.*)")) {//排除登陆请求 + 静态资源
             String token = request.getParameter("token");
             boolean isLogin = false;
             if (StringUtils.isNotBlank(token)) {
