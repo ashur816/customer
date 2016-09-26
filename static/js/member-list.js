@@ -105,7 +105,7 @@ $(document).ready(function () {
         var data = $("#form-member-add-2").serialize();
         $.ajax({
             type: "POST",
-            url: baseUrl + "/updateUser",
+            url: baseUrl + "/updateUser?token=" + token,
             data: data,
             success: function (response) {
                 alert(response.message);
@@ -125,7 +125,7 @@ $(document).ready(function () {
                 "userId": data["userId"]
             };
             $.ajax({
-                url: baseUrl + '/deleteUser',
+                url: baseUrl + "/deleteUser?token=" + token,
                 type: 'POST',
                 dataType: 'json',
                 data: id
@@ -184,21 +184,15 @@ $(document).ready(function () {
         var obj = [];
         $.ajax({
             type: "POST",
-            url: baseUrl + "/register",
+            url: baseUrl + "/register?token=" + token,
             data: $("#form-member-add-1").serialize(),
             async: false,
             success: function (response) {
                 if (response.token != "") {
-                    console.log(response);
-                    obj.push({
-                        "userId": response.token,
-                        "fullname": response.fullname,
-                        "startTime": response.startTime,
-                        "endTime": response.endTime
-                    });
-                    $("#myModal-1").modal("hide");
-                    t.fnAddData(obj); //插入新的json对象或者数组
-                    location.reload();
+                   $("#myModal-1").modal("hide");
+                   refreshTable();
+                   location.reload();
+                   alert(response.message);
                 } else {
                     console.log(response.message);
                 }
