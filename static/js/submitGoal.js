@@ -15,6 +15,6 @@ $(function () {
         console.log(obj.userId);
     });
     $("#btn").click(function () {
-        window.location.href = "http://192.168.30.214/project3/member-list.html";
+        window.location.href = baseUrl + "/member-list.html";
     });
 });

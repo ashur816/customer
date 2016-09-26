@@ -3,7 +3,7 @@ function getInfo() {
     
     $.ajax({
         type: "post",
-        url: "http://192.168.30.224:8791/getAnswerList?token=" + token,
+        url: baseUrl + "/getAnswerList?token=" + token,
         contentType: "application/json; cahrset=utf-8",
         dataType: "text",
         success: function (response) {

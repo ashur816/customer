@@ -4,7 +4,7 @@ function getvalue(value) {
     };
     $.ajax({
         type: "post",
-        url: "http://192.168.30.224:8791/getAnswerList?token=" + token,
+        url: baseUrl + "/getAnswerList?token=" + token,
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(obj),
