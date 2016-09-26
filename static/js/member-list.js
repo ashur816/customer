@@ -82,7 +82,7 @@ $(document).ready(function () {
         /*显示信息*/
         $.ajax({
             type: "get",
-            url: baseUrl + "/getUserList/" + data["userId"],
+            url: baseUrl + "/getUserList/" + data["userId"] + "?token=" + token,
             success: function (response) {
                 $("#userId2").val(response[0]["userId"] || "");
                 $("#userName2").val(response[0]["userName"] || "");
@@ -110,6 +110,7 @@ $(document).ready(function () {
             success: function (response) {
                 alert(response.message);
                 $("#myModal-2").modal("hide");
+                refreshTable();
             },
             error: function () {
                 console.log("error!");
@@ -145,7 +146,7 @@ $(document).ready(function () {
         var data = t.api().row($(this).parents('tr')).data();
         $.ajax({
             type: "get",
-            url: baseUrl + "/getUserList/" + data["userId"],
+            url: baseUrl + "/getUserList/" + data["userId"] + "?token=" + token,
             success: function (response) {
                 $("#userName3").val(response[0]["userName"] || "");
                 $("#password3").val(response[0]["password"] || "");
@@ -170,7 +171,6 @@ $(document).ready(function () {
             "userId": data["userId"],
             "grade": data["grade"]
         };
-        console.log(data_end.grade);
         if (data_end.endTime != "" && data_end.grade == "") {
             window.location.href = baseUrl + "/exam-detail.html?userId=" + data_end.userId + "&token=" + token;
         } else if (data_end.endTime == "") {

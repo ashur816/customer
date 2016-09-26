@@ -1,7 +1,6 @@
 package com.les.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Administrator on 2016/9/6.
@@ -22,8 +21,8 @@ public class UserResult implements Serializable{
     private String workingLife;
     private int userLevel;
     private String message;
-    private Date startTime;
-    private Date endTime;
+    private String startTime;
+    private String endTime;
     private String redirectUrl;
     private String examMarker;
     private String totalGoal;
@@ -78,15 +77,19 @@ public class UserResult implements Serializable{
         this.message = message;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
-    public void setStartTime(Date startTime) {
+
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() { return endTime; }
-    public void setEndTime(Date endTime) {
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
