@@ -113,28 +113,28 @@ function getvalue(value) {
     });
 };
 
-//window.onload=function(){
-//    console.log(window.location.href);
-//    var user=new RegExp("token");
-//    if(user.test(window.location.href) == false) {
-//        alert("你的地址非法，请登录后进入");
-//        window.location.href="login.html";
-//    } else{
-//        $.ajax({
-//            type: "get",
-//            url: baseUrl + "/getUserById?token=" + token,
-//            dataType: "json",
-//            contentType: "application/json; charset=utf-8",
-//            success: function(Message) {
-//                console.dir(Message);
-//                $("#user").attr("style","color:blue").text(Message.fullname);
-//                $("#school").attr("style","color:blue").text(Message.graduateInstitution);
-//                $("#major").attr("style","color:blue").text(Message.major);
-//            },
-//            error: function() {
-//                alert("您是非法用户请重新登录进入");
-//                window.location.href = baseUrl + "/login.html";
-//            }
-//        });
-//    }
-//}
+window.onload=function(){
+    console.log(window.location.href);
+    var user=new RegExp("token");
+    if(user.test(window.location.href) == false) {
+        alert("你的地址非法，请登录后进入");
+        window.location.href="login.html";
+    } else{
+        $.ajax({
+            type: "get",
+            url: baseUrl + "/getUserById?token=" + token,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(Message) {
+                console.dir(Message);
+                $("#user").attr("style","color:blue").text(Message.fullname);
+                $("#school").attr("style","color:blue").text(Message.graduateInstitution);
+                $("#major").attr("style","color:blue").text(Message.major);
+            },
+            error: function() {
+                alert("您是非法用户请重新登录进入");
+                window.location.href = baseUrl + "/login.html";
+            }
+        });
+    }
+}
