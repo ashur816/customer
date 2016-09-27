@@ -100,7 +100,7 @@ function getvalue(value) {
         data: JSON.stringify(obj),
         success: function(Message) {
             if (Message.answerContent == null) {
-                $("#yourAnswer").html("$(this).text()" + Message.examinationQuestion);
+                $("#yourAnswer").html("问题： " + Message.examinationQuestion);
                 $("#btnSave").val(value);
                 CKEDITOR.instances.editor1.setData("");
             } else {
