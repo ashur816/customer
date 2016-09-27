@@ -110,6 +110,7 @@ $(document).ready(function () {
             success: function (response) {
                 alert(response.message);
                 $("#myModal-2").modal("hide");
+                refreshTable();
             },
             error: function () {
                 console.log("error!");
@@ -170,7 +171,6 @@ $(document).ready(function () {
             "userId": data["userId"],
             "grade": data["grade"]
         };
-        console.log(data_end.grade);
         if (data_end.endTime != "" && data_end.grade == "") {
             window.location.href = baseUrl + "/exam-detail.html?userId=" + data_end.userId + "&token=" + token;
         } else if (data_end.endTime == "") {
