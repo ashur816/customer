@@ -2,6 +2,8 @@ package com.les.service.impl;
 
 import com.les.common.MapCacheManager;
 import com.les.common.StaticConst;
+import com.les.dao.mapper.AnswerMapper;
+import com.les.dao.mapper.ExaminationMapper;
 import com.les.dao.mapper.UserMapper;
 import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
@@ -12,9 +14,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author Lydia
@@ -29,6 +29,10 @@ public class UserServiceImpl implements IUserService {
 
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private AnswerMapper answerMapper;
+    @Resource
+    private ExaminationMapper examinationMapper;
 
     @Override
     public UserResult login(String userName, String password) {
@@ -72,6 +76,12 @@ public class UserServiceImpl implements IUserService {
                     }
                 } else {//插入新记录
                     userMapper.insertUserGoal(userId, now);
+                    List<Integer> examIdList = examinationMapper.getExamIdList(userId);
+                    Iterator it = examIdList.iterator();
+                    while(it.hasNext()){
+                        Object examinationId = it.next();
+                        answerMapper.insertAnswer("",Integer.parseInt(String.valueOf(examinationId)),userId);
+                    }
                 }
                 //重定向考试页
                 userResult.setFullname(user.getFullname());

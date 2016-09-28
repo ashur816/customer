@@ -42,6 +42,7 @@ $(function () {
                     $("#userAnswer").val(Message.answerContent);
                     $("#referAnswer").text(Message.referenceAnswer);
                     $("#answerId").val(Message.answerId);
+                    $("#score").val(Message.goal);
                 },
                 error: function () {
                 }

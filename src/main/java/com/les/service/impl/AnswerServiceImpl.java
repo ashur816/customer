@@ -76,4 +76,10 @@ public class AnswerServiceImpl implements IAnswerService {
     public void gradeAnswer(int answerId, int goal) {
         answerMapper.updateAnswerGoal(answerId, goal);
     }
+
+    @Override
+    public String totalGoal(String goal) {
+
+        return null;
+    }
 }
