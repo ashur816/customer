@@ -10,7 +10,7 @@ function getInfo() {
         success: function (response) {
             console.log(response);
             $.each(response, function (i, val) {
-                $("<p><button type='button' class='btn btn-primary btn-default' id='" + val.examinationId + "' value='" + val.examinationId + "' onclick='return getvalue(this.value)'>" + qid[i] + "</button></p><br/>").appendTo("#content");
+                $("<p><button type='button' class='btn btn-primary btn-default' id='" + val.examinationId + "' value='" + val.examinationId + "' onclick='return getvalue(this.value)'>" + qid[i] + "</button></p>").appendTo("#content");
 
             });
         }

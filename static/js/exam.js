@@ -33,7 +33,7 @@ $(document).ready(function() {
             dataType: "text",
             success: function(response) {
                 $.each(JSON.parse(response),function(i,val) {
-                    $("<p><button type='button' class='btn btn-primary btn-default' id='"+ val + "' value='"+ val + "' onclick='return getvalue(this.value)'>" + qid[i] + "</button></p><br/>").appendTo("#num");
+                    $("<button type='button' class='btn btn-primary btn-default' id='"+ val + "' value='"+ val + "' onclick='return getvalue(this.value)'>" + qid[i] + "</button>&nbsp;&nbsp;&nbsp;&nbsp;").appendTo("#num");
                 });
             },
             error: function() {}
