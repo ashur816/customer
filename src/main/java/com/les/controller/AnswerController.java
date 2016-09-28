@@ -7,6 +7,7 @@ import com.les.service.IAnswerService;
 import com.les.service.IUserService;
 import com.les.utils.JsonUtils;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -68,7 +69,7 @@ public class AnswerController {
     }
 
     /**
-     * 更新评分
+     * 批量更新评分
      *
      * @param body json体 list样式：{"userId":4,"goalList":[{"answerId":22,"goal":3.0},{"answerId":25,"goal":3.0}]}
      * @return GoalInfo
@@ -76,10 +77,45 @@ public class AnswerController {
      */
     @RequestMapping(value = "/grade", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public GoalInfo grade(HttpServletRequest request, @RequestBody String body) throws Exception {
+    public GoalInfo gradeBatch(HttpServletRequest request, @RequestBody String body) throws Exception {
         Object loginUserId = request.getAttribute("loginUserId");
         GoalInfo goalInfo = JsonUtils.readValue(body, GoalInfo.class);
         goalInfo = answerService.updateAnswerBatch(Integer.parseInt(loginUserId.toString()), goalInfo);
         return goalInfo;
+    }
+
+    /**
+     * 单个更新评分
+     *
+     * @return GoalInfo
+     * @Description: 打分
+     */
+    @RequestMapping(value = "/gradeSingle", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String gradeSingle(HttpServletRequest request) throws Exception {
+        String answerId = request.getParameter("answerId");
+        String goal = request.getParameter("goal");
+        String retMsg = "{\"message\":\"保存成功\"}";
+        if (StringUtils.isBlank(answerId) || answerId.equals("null")) {
+            retMsg = "{\"message\":\"答案ID不能为空\"}";
+        } else if (StringUtils.isBlank(goal) || goal.equals("null")) {
+            retMsg = "{\"message\":\"得分不能为空\"}";
+        } else {
+            answerService.gradeAnswer(Integer.parseInt(answerId), Integer.parseInt(goal));
+        }
+        return retMsg;
+    }
+
+    /**
+     * @return List<Examination>
+     * @Description: 根据主键获取题目及用户答案
+     */
+    @RequestMapping(value = "/getUserAnswerInfo", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public UserAnswer getExamInfo(HttpServletRequest request) {
+        String userId = request.getParameter("userId");
+        String examId = request.getParameter("examId");
+        UserAnswer userAnswer = answerService.getUserExamAnswer(Integer.parseInt(examId), Integer.parseInt(userId));
+        return userAnswer;
     }
 }

@@ -26,4 +26,6 @@ public interface AnswerMapper {
 
     void updateAnswerGoal(@Param("answerId") int answerId, @Param("goal") double goal);
 
+    UserAnswer getUserExamAnswer(@Param("examId") int examId, @Param("userId") int userId);
+
 }

@@ -1,0 +1,30 @@
+.btn-pos {
+    text-align: center;
+}
+
+.btn-size-80 {
+    width: 80px;
+    padding: 10px 10px;
+    margin-right: 10px;
+}
+
+.btn-size-100 {
+    width: 100px;
+    padding: 10px 10px;
+    margin-right: 10px;
+}
+
+div#bg-photo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+div#bg-photo > img {
+    height: 100%;
+    width: 100%;
+    border: 0;
+}

@@ -49,14 +49,14 @@ public class AnswerServiceImpl implements IAnswerService {
         double totalGoal = 0.0;
         List<UserGoal> goalList = goalInfo.getGoalList();
         for (UserGoal userGoal : goalList) {
-            answerMapper.updateAnswerGoal(userGoal.getAnswerId(),userGoal.getGoal());
+            answerMapper.updateAnswerGoal(userGoal.getAnswerId(), userGoal.getGoal());
             totalGoal += userGoal.getGoal();
         }
 
         String tGoal = String.valueOf(totalGoal);
         UserResult userResults = userMapper.getUserById(loginUserId);
         String examMaker = null;
-        if(userResults != null){
+        if (userResults != null) {
             examMaker = userResults.getFullname();
             userMapper.updateUserGoal(examMaker, goalInfo.getUserId(), tGoal);
         }
@@ -65,5 +65,15 @@ public class AnswerServiceImpl implements IAnswerService {
         goalInfo.setExamMarker(examMaker);
         goalInfo.setTotalGoal(tGoal);
         return goalInfo;
+    }
+
+    @Override
+    public UserAnswer getUserExamAnswer(int examinationId, int userId) {
+        return answerMapper.getUserExamAnswer(examinationId, userId);
+    }
+
+    @Override
+    public void gradeAnswer(int answerId, int goal) {
+        answerMapper.updateAnswerGoal(answerId, goal);
     }
 }
