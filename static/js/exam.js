@@ -127,9 +127,9 @@ window.onload=function(){
             contentType: "application/json; charset=utf-8",
             success: function(Message) {
                 console.dir(Message);
-                $("#user").attr("style","color:blue").text(Message.fullname);
-                $("#school").attr("style","color:blue").text(Message.graduateInstitution);
-                $("#major").attr("style","color:blue").text(Message.major);
+                $("#user").attr("style","color:red").text(Message.fullname);
+                $("#school").attr("style","color:red").text(Message.graduateInstitution);
+                $("#major").attr("style","color:red").text(Message.major);
             },
             error: function() {
                 alert("您是非法用户请重新登录进入");

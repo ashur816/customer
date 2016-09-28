@@ -18,16 +18,21 @@
 <body class="login-body">
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-2 column"></div>
+        <div class="col-md-2 column">
+            <center>
+            <h3 style="color:black"><span>考试时间:</span><span id="clock">40:00</span></h3>
+            <div>
+                <button type="button" id="btnBegin" class="btn btn-primary btn-default">开始考试</button>
+                <button type="button" id="btnSubmit" class="btn btn-primary btn-default">交卷</button>
+            </div>
+        </center>
+        </div>
         <div class="col-md-8 column">
             <h1 class="text-center" style="color:black">欢迎进入鼐威欣考试系统</h1>
-            <center>
-                <div style="color:black"><span>考试时间:</span><span id="clock">40:00</span></div>
-                <div>
-                    <button type="button" id="btnBegin" class="btn btn-primary btn-default">开始考试</button>
-                    <button type="button" id="btnSubmit" class="btn btn-primary btn-default">交卷</button>
-                </div>
-            </center>
+        </div>
+        <div class="col-md-2 column" style="color:black">
+            <br><br>
+            <div><span>您好: </span><span id="user"></span>&nbsp;&nbsp;&nbsp;<span id="school"></span>&nbsp;&nbsp;&nbsp;<span id="major"></span></div>
         </div>
     </div>
 

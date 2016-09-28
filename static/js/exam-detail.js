@@ -1,7 +1,29 @@
+$(function () {
+getInfo();
+function getInfo() {
+    var qid = new Array("第一题", "第二题", "第三题", "第四题", "第五题", "第六题", "第七题", "第八题", "第九题", "第十题");
+    console.log(baseUrl);
+    $.ajax({
+        type: "post",
+        url: baseUrl + "/getAnswerList?token=" + token + "&userId=" + getUrlParam("userId"),
+        contentType: "application/json; cahrset=utf-8",
+        success: function (response) {
+            console.log(response);
+            $.each(response, function (i, val) {
+                $("<p><button type='button' class='btn btn-primary btn-default' id='" + val.examinationId + "' value='" + val.examinationId + "' onclick='return getvalue(this.value)'>" + qid[i] + "</button></p><br/>").appendTo("#content");
+
+            });
+        }
+    });
+}
+
+
+
 function getvalue(value) {
     var obj = {
         "examId": value
     };
+    console.log(value);
     $.ajax({
         type: "post",
         url: baseUrl + "/getAnswerList?token=" + token,
@@ -25,26 +47,7 @@ function getvalue(value) {
     });
 }
 
-function getInfo() {
-    var qid = new Array("第一题", "第二题", "第三题", "第四题", "第五题", "第六题", "第七题", "第八题", "第九题", "第十题");
 
-    $.ajax({
-        type: "post",
-        url: baseUrl + "/getAnswerList?token=" + token + "&userId=" + getUrlParam("userId"),
-        contentType: "application/json; cahrset=utf-8",
-        dataType: "json",
-        success: function (response) {
-            $.each(response, function (i, val) {
-//                var html = "<button type='button' class='btn btn-primary btn-default' name='content' id='" + val + "' value='" + val + "onclick='return getvalue(this.value)'>" + qid[i] + "</button><p></p><br/>";
-                $("<p><button type='button' class='btn btn-primary btn-default' id='"+ val + "' value='"+ val + "' onclick='return getvalue(this.value)'>" + qid[i] + "</button></p><br/>").appendTo("#num");
-            });
-        }
-    });
-}
-
-getInfo();
-
-$(function () {
     $("[name='content']").on("click", "button", function () {
         $('#myModal .modal-header .modal-title').empty().text($(this).text());
         $('#myModal').modal("show");
