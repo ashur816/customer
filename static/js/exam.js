@@ -5,43 +5,52 @@ $(document).ready(function () {
     $("#btnBegin").click(function () {
         //是否已经开始答题
         if (!isBegin) {
-            var d = new Date("1111/1/1,0:" + x + ":0");
-            interval = setInterval(function () {
-                var m = d.getMinutes();
-                var s = d.getSeconds();
-                m = m < 10 ? "0" + m : m;
-                s = s < 10 ? "0" + s : s;
-                clock.innerHTML = m + ":" + s;
-                if (m == 0 && s == 0) {
-                    clearInterval(interval);
-                    alert("时间到已强制提交，答题结束");
-                    $("#btnSubmit").click();
-                    window.location.href = baseUrl + "/login.html";
-                    return;
-                }
-                d.setSeconds(s - 1);
-            }, 1000);
-            isBegin = true;
-
+            //开始计时
             $.ajax({
                 type: "post",
                 url: baseUrl + "/getExamIdList?token=" + token,
                 contentType: "application/json; charset=utf-8",
                 dataType: "text",
                 success: function (response) {
-                    $.each(JSON.parse(response), function (i, val) {
+                    var jsonArray = JSON.parse(response);
+                    if(jsonArray.length == 0){
+                        alert("没有题目信息");
+                        return;
+                    }
+                    $.each(jsonArray, function (i, val) {
                         var html = "<button type='button' class='btn btn-primary btn-size-80' id='" + val + "' value='" + val + "' onclick='return getValue(" + (i + 1) + ",this.value)'>第" + (i + 1) + "题</button>";
                         if ((i + 1) % 10 == 0) {
                             html += "<p/>";
                         }
                         $(html).appendTo("#num");
                     });
+                    startClock();
                 },
                 error: function () {
                 }
             });
         }
     });
+
+    function startClock() {
+        var d = new Date("1111/1/1,0:" + x + ":0");
+        interval = setInterval(function () {
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+            clock.innerHTML = m + ":" + s;
+            if (m == 0 && s == 0) {
+                clearInterval(interval);
+                alert("时间到已强制提交，答题结束");
+                $("#btnSubmit").click();
+                window.location.href = baseUrl + "/login.html";
+                return;
+            }
+            d.setSeconds(s - 1);
+        }, 1000);
+        isBegin = true;
+    }
 
     <!--提交试题的答案并保存-->
     $("#btnSave").click(function () {
