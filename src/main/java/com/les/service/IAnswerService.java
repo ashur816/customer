@@ -21,5 +21,5 @@ public interface IAnswerService {
     UserAnswer getUserExamAnswer(int examinationId, int userId);
 
     void gradeAnswer(int answerId, int goal);
-    String totalGoal(String goal);
+    GoalInfo totalGoal(int userId,int loginUserId);
 }

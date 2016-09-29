@@ -78,8 +78,17 @@ public class AnswerServiceImpl implements IAnswerService {
     }
 
     @Override
-    public String totalGoal(String goal) {
-
-        return null;
+    public GoalInfo totalGoal(int userId,int loginUserId) {
+        String totalGoal = answerMapper.totalGoal(userId);
+        UserResult userResults = userMapper.getUserById(loginUserId);
+        String examMaker = null;
+        GoalInfo goalInfo = new GoalInfo();
+        if (userResults != null) {
+            examMaker = userResults.getFullname();
+            userMapper.updateUserGoal(examMaker,userId,totalGoal);
+        }
+        goalInfo.setExamMarker(examMaker);
+        goalInfo.setTotalGoal(totalGoal);
+        return goalInfo;
     }
 }

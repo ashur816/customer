@@ -67,5 +67,8 @@
             ON e.examination_id = a.examination_id
         WHERE e.examination_id = #{examId}
     </select>
+    <select id="totalGoal" resultType="java.lang.String">
+        SELECT sum(goal) AS totalGoal FROM ANSWER WHERE user_id=#{userId}
+    </select>
 
 </mapper>

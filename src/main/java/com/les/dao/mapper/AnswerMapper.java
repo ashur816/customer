@@ -28,4 +28,6 @@ public interface AnswerMapper {
 
     UserAnswer getUserExamAnswer(@Param("examId") int examId, @Param("userId") int userId);
 
+    String totalGoal(int userId);
+
 }

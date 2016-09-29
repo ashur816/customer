@@ -118,4 +118,16 @@ public class AnswerController {
         UserAnswer userAnswer = answerService.getUserExamAnswer(Integer.parseInt(examId), Integer.parseInt(userId));
         return userAnswer;
     }
+
+    /**
+     * @return String
+     * @Description: 计算考生总成绩
+    */
+    @RequestMapping(value = "/totalGoal", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public GoalInfo totalGoal(HttpServletRequest request){
+        String userId = request.getParameter("userId");
+        int loginUserId = Integer.parseInt(request.getAttribute("loginUserId").toString());
+        return answerService.totalGoal(Integer.parseInt(userId),loginUserId);
+    }
 }
