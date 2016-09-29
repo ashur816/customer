@@ -84,15 +84,7 @@ $(document).ready(function () {
             type: "get",
             url: baseUrl + "/getUserList/" + data["userId"] + "?token=" + token,
             success: function (response) {
-                $("#userId2").val(response[0]["userId"] || "");
-                $("#userName2").val(response[0]["userName"] || "");
-                $("#password2").val(response[0]["password"] || "");
-                $("#fullname2").val(response[0]["fullname"] || "");
-                $("#age2").val(response[0]["age"] || "");
-                $("#sex2").val(response[0]["sex"] || "");
-                $("#graduateInstitution2").val(response[0]["graduateInstitution"] || "");
-                $("#major2").val(response[0]["major"] || "");
-                $("#workingLife2").val(response[0]["workingLife"] || "");
+                setDataToForm("form-member-add-2", response[0]);
             },
             error: function () {
                 console.log("ERROR!");
