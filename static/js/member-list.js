@@ -148,15 +148,6 @@ $(document).ready(function () {
             type: "get",
             url: baseUrl + "/getUserList/" + data["userId"] + "?token=" + token,
             success: function (response) {
-                // $("#userName3").val(response[0]["userName"] || "");
-                // $("#password3").val(response[0]["password"] || "");
-                // $("#fullname3").val(response[0]["fullname"] || "");
-                // $("#age3").val(response[0]["age"] || "");
-                // $("#sex3").val(response[0]["sex"] || "");
-                // $("#graduateInstitution3").val(response[0]["graduateInstitution"] || "");
-                // $("#major3").val(response[0]["major"] || "");
-                // $("#workingLife3").val(response[0]["workingLife"] || "");
-
                 setDataToForm("form-member-add-3", response[0]);
             },
             error: function () {
@@ -173,12 +164,10 @@ $(document).ready(function () {
             "userId": data["userId"],
             "grade": data["grade"]
         };
-        if (data_end.endTime != "" && data_end.grade == "") {
+        if (data_end.endTime != "") {
             window.location.href = baseUrl + "/exam-detail.html?userId=" + data_end.userId + "&token=" + token;
         } else if (data_end.endTime == "") {
             alert("该人员还在答题中...");
-        } else if (data_end.grade != "") {
-            alert("已阅卷")
         }
     });
     /*新增人员*/

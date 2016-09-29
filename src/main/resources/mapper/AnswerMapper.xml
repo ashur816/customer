@@ -16,6 +16,9 @@
     <update id="updateAnswer">
         UPDATE ANSWER SET answer_content=#{answerContent} WHERE answer_id=#{answerId};
     </update>
+    <update id="updateGoal">
+        UPDATE user_goal SET exam_marker=#{examMaker},total_goal=total_goal + #{goal} where user_id=#{userId}
+    </update>
 
     <select id="getUserAnswer" resultType="com.les.po.Answer">
         SELECT * FROM answer a WHERE a.examination_id=#{examId} AND a.user_id=#{userId};
@@ -72,6 +75,9 @@
     </select>
     <select id="totalGoal" resultType="java.lang.String">
         SELECT sum(goal) AS totalGoal FROM ANSWER WHERE user_id=#{userId}
+    </select>
+    <select id="getAnswerById" resultType="com.les.po.Answer">
+        SELECT answer_id,answer_content,examination_id,goal,user_id from answer WHERE answer_id=#{answerId}
     </select>
 
 </mapper>

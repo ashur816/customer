@@ -94,6 +94,7 @@ public class AnswerController {
     @ResponseBody
     public String gradeSingle(HttpServletRequest request) throws Exception {
         String answerId = request.getParameter("answerId");
+        String loginUserId = request.getAttribute("loginUserId").toString();
         String goal = request.getParameter("goal");
         String retMsg = "{\"message\":\"保存成功\"}";
         if (StringUtils.isBlank(answerId) || answerId.equals("null")) {
@@ -101,7 +102,7 @@ public class AnswerController {
         } else if (StringUtils.isBlank(goal) || goal.equals("null")) {
             retMsg = "{\"message\":\"得分不能为空\"}";
         } else {
-            answerService.gradeAnswer(Integer.parseInt(answerId), Integer.parseInt(goal));
+            answerService.gradeAnswer(Integer.parseInt(loginUserId), Integer.parseInt(answerId), Integer.parseInt(goal));
         }
         return retMsg;
     }

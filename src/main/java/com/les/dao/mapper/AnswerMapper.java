@@ -16,6 +16,8 @@ import java.util.List;
 @Component
 public interface AnswerMapper {
 
+    Answer getAnswerById(@Param("answerId") int answerId);
+
     void insertAnswer(@Param("answerContent") String answerContent, @Param("examinationId") int examinationId, @Param("userId") int userId);
 
     void updateAnswer(@Param("answerId") int answerId, @Param("answerContent") String answerContent);
@@ -31,5 +33,7 @@ public interface AnswerMapper {
     String totalGoal(int userId);
 
     void deleteAnswer(@Param("userId") int userId, @Param("examId") int examId);
+
+    void updateGoal(@Param("userId") int userId, @Param("goal") int goal, @Param("examMaker") int examMaker);
 
 }
