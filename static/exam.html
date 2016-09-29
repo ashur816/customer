@@ -7,71 +7,80 @@
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
     <!-- Bootstrap -->
-    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/H-ui.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
+    <link href="css/H-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
     <link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css"/>
-    <link href="css/style.css" rel="stylesheet">
-
+    <link href="css/lydia.css" rel="stylesheet">
 </head>
 
-<body class="login-body">
+<body class="bg-body">
 <div class="container">
-    <div class="row clearfix">
-        <div class="col-md-2 column" style="text-align:left">
-            <h4 style="color:black;font-size: 20px"><span>考试时间:</span><span id="clock">40:00</span></h4>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1 class="text-center txt-font">欢迎进入鼐威欣考试系统</h1>
+        </div>
+        <div class="col-md-2" style="color:black;font-size: 18px">
             <div>
-                <button type="button" id="btnBegin" class="btn btn-primary btn-default">开始考试</button>
-                <button type="button" id="btnSubmit" class="btn btn-primary btn-default">交卷</button>
+                <span>您好,</span>
+                <span id="user"></span><br/>
+                <span id="school"></span><br/>
+                <span id="major"></span>
             </div>
         </div>
-        <div class="col-md-8 column">
-            <h1 class="text-center" style="color:black">欢迎进入鼐威欣考试系统</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 pos-center">
+            <h4 class="txt-font"><span>考试时间:</span><span id="clock">40:00</span></h4>
+            <button type="button" id="btnBegin" class="btn btn-primary btn-default btn-size-80">开始考试</button>
+            <button type="button" id="btnSubmit" class="btn btn-primary btn-default btn-size-80">交卷</button>
         </div>
-        <div class="col-md-2 column" style="color:black;font-size: 18px">
-            <div><span>您好: </span><span id="user"></span>&nbsp;<p id="school"></p><p id="major"></p></div>
-        </div>
+        <div class="col-md-2"></div>
     </div>
 
-    <div class="row clearfix">
-        <br><br>
-        <div class="col-md-2 column" id="num" style="text-align:left">
-        </div>
-        <div class="col-md-8 column" style="color:black">
+    <div class="row ">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" id="num" style="text-align:left"></div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" class="txt-font">
             <div id="p4">
-                <p id="title" style='font-size:20px'></p>
-                <p id="yourAnswer" style='font-size:20px' style="text-align:left">
-                </p><br/>
+                <p id="question" style="font-size:20px"></p>
             </div>
-            <center><textarea class="form-control ckeditor" name="editor1"></textarea>
-                <br/>
-                <p>
-                    <button type="button" id="btnSave" class="btn btn-primary btn-default">保存</button>
-                </p>
-            </center>
         </div>
-        <div class="col-md-2 column">
-                <pre style='background:yellow'>
-                    亲爱的考生，请点击开始考试进行答题！
-                    获取题目后点击题目得到试题再进行作答并保存！
-                    交卷或退出将影响您的考试，请慎重！
-                    祝您考试愉快！</pre>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 pos-center">
+            <textarea class="form-control ckeditor" name="yourAnswer"></textarea>
+        </div>
+        <div class="col-md-2">
+            <label class="care">
+                亲爱的考生，请点击开始考试进行答题！</br>
+                获取题目后点击题目得到试题再进行作答并保存！</br>
+                交卷或退出将影响您的考试，请慎重！</br>
+                祝您考试愉快！</label>
         </div>
     </div>
-    <i>
-        <div class="col-md-12 column">
-            <h3 class="text-center" style="color:black">欢迎您进入鼐威欣在线考试系统</h3>
+
+    <div class="row ">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 pos-center">
+            <button type="button" id="btnSave" class="btn btn-primary btn-default btn-size-80">保存</button>
         </div>
-    </i>
+        <div class="col-md-2"></div>
+    </div>
 </div>
-
-<center>
-    <footer>
-        2016 &copy; 鼐威欣
-    </footer>
-</center>
+<footer class="txt-font">
+    2016 &copy; 鼐威欣
+</footer>
 </body>
-
 </html>
 <script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.js"></script>

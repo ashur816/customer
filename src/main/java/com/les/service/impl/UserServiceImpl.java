@@ -2,8 +2,6 @@ package com.les.service.impl;
 
 import com.les.common.MapCacheManager;
 import com.les.common.StaticConst;
-import com.les.dao.mapper.AnswerMapper;
-import com.les.dao.mapper.ExaminationMapper;
 import com.les.dao.mapper.UserMapper;
 import com.les.dto.UserRegister;
 import com.les.dto.UserResult;
@@ -14,7 +12,9 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Lydia
@@ -24,15 +24,8 @@ import java.util.*;
  */
 @Service
 public class UserServiceImpl implements IUserService {
-    /*@Autowired
-    private JdbcTemplate jdbcTemplate;*/
-
     @Resource
     private UserMapper userMapper;
-    @Resource
-    private AnswerMapper answerMapper;
-    @Resource
-    private ExaminationMapper examinationMapper;
 
     @Override
     public UserResult login(String userName, String password) {
@@ -43,18 +36,18 @@ public class UserServiceImpl implements IUserService {
             int userType = user.getUserType();
             if (StaticConst.USER_TYPE_ADMIN == userType) {
                 //重定向管理页
-                if(userId==2){
+                if (userId == 2) {
                     userResult.setFullname(user.getFullname());
                     userResult.setGraduateInstitution(user.getGraduateInstitution());
                     userResult.setMajor(user.getMajor());
                     userResult.setRedirectUrl(StaticConst.PAGE_EXAM_MANAGE);
-                }else {
+                } else {
                     userResult.setFullname(user.getFullname());
                     userResult.setGraduateInstitution(user.getGraduateInstitution());
                     userResult.setMajor(user.getMajor());
                     userResult.setRedirectUrl(StaticConst.PAGE_ADMIN_MANAGE);
                 }
-            }else {
+            } else {
                 //根据userId查询用户最近一次考试结果
                 UserGoal userGoal = userMapper.getLatestUserGoal(userId);
                 Date now = new Date();
@@ -69,19 +62,13 @@ public class UserServiceImpl implements IUserService {
                         userResult.setToken("n");
                         return userResult;
                     }
-                    if(startDate != null){
+                    if (startDate != null) {
                         userResult.setMessage("您已登录，不能再次登录");
                         userResult.setToken("n");
                         return userResult;
                     }
                 } else {//插入新记录
                     userMapper.insertUserGoal(userId, now);
-                    List<Integer> examIdList = examinationMapper.getExamIdList(userId);
-                    Iterator it = examIdList.iterator();
-                    while(it.hasNext()){
-                        Object examinationId = it.next();
-                        answerMapper.insertAnswer("",Integer.parseInt(String.valueOf(examinationId)),userId);
-                    }
                 }
                 //重定向考试页
                 userResult.setFullname(user.getFullname());
@@ -96,8 +83,7 @@ public class UserServiceImpl implements IUserService {
             cacheManager.updateCache(token, String.valueOf(userId));
 
             userResult.setToken(token);
-        }
-        else {
+        } else {
             userResult.setMessage("用户名或密码错误");
             userResult.setToken("p");
         }
@@ -134,8 +120,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void updateUser(int userId, String userName, String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife,int userLevel) {
-        userMapper.updateUser(userId,userName,password,fullname,age,sex,graduateInstitution,major,workingLife,userLevel);
+    public void updateUser(int userId, String userName, String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife, int userLevel) {
+        userMapper.updateUser(userId, userName, password, fullname, age, sex, graduateInstitution, major, workingLife, userLevel);
     }
 
 
@@ -150,8 +136,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void commit(int userId,Date endDate) {
-        userMapper.commit(userId,endDate);
+    public void commit(int userId, Date endDate) {
+        userMapper.commit(userId, endDate);
     }
 
     @Override

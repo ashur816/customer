@@ -5,6 +5,9 @@
     <update id="updateAnswerGoal">
         UPDATE answer SET goal=#{goal} where answer_id=#{answerId};
     </update>
+    <delete id="deleteAnswer">
+        delete from ANSWER WHERE examination_id=#{examId} and user_id=#{userId}
+    </delete>
 
     <insert id="insertAnswer">
         INSERT INTO ANSWER(answer_content,examination_id,user_id) VALUES (#{answerContent},#{examinationId},#{userId});

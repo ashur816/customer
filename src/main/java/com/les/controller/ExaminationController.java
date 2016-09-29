@@ -53,10 +53,8 @@ public class ExaminationController {
      */
     @RequestMapping(value = "/getExamAndAnswer", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    UserAnswer getExamAndAnswer(HttpServletRequest request, @RequestBody String body) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-        String examId = JsonUtils.readValueByName(body, "examId");
+    UserAnswer getExamAndAnswer(HttpServletRequest request) throws IOException {
+        String examId = request.getParameter("examId");
         String userId = request.getAttribute("loginUserId").toString();
         return examinationService.getExamAndAnswer(Integer.parseInt(userId), Integer.parseInt(examId));
     }

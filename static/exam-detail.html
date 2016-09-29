@@ -5,50 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/lydia.css" rel="stylesheet" type="text/css"/>
-    <center>
-        <h1>阅卷</h1>
-    </center>
+    <h1 class="pos-center">阅卷</h1>
 </head>
 <body>
 <div id="bg-photo">
     <img src="http://pic.qiantucdn.com/58pic/12/37/11/94N58PIC6rR.jpg"/>
 </div>
 <div class="container">
-    <div id="content" class="btn-pos"></div>
-    <div>
-        <center>
-            <!--总分：<input type="text" id="text1" style="width:40px"><br/><br/>-->
-            <button type="button" id="btnBack" class="btn btn-primary btn-1g btn-size-100">返回</button>
-        </center>
+    <div class="row ">
+        <div class="col-md-2"></div>
+        <div id="btnNum" class="col-md-8 pos-left"></div>
+        <div class="col-md-2"></div>
     </div>
-    <!--modal-->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" style="display:none">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h2 class="modal-title"></h2>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="answerId"/>
-                    <h3><label id="question"></label></h3>
-                    <h5>参考答案:</h5>
-                    <h4><label type="text" id="referAnswer" style="color: #5ab5de"></label></h4>
-                    <h5>面试人员答案:</h5>
-                    <textarea class="form-control" type="text" id="userAnswer" cols=70 rows=8></textarea>
-                </div>
-                <div class="modal-footer">
-                    得分：<input id="score" type="number" min="0" max="10" class="score"/>
-                    <button type="button" id="btnGrade" class="btn btn-primary btn-1g btn-size-80">打分</button>
-                </div>
+
+    <div class="row ">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" class="txt-font">
+            <div id="p4">
+                <p id="question" style="font-size:20px"></p>
             </div>
         </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-2"></div>
+        <div id="referenceAnswer" class="col-md-8 pos-left"></div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-2"></div>
+        <div id="answerContent" class="col-md-8 pos-center hidden">
+            <p class="pos-left">考生答案：</p>
+            <textarea id="yourAnswer" class="form-control ckeditor"></textarea>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 pos-center">
+            <div id="divGrade" class="hidden">
+                <input id="goal" type="number" min="0" max="10" class="score" value="0"/>
+                <button type="button" id="btnGrade" class="btn btn-primary btn-size-80">打分</button>
+            </div>
+            <button type="button" id="btnBack" class="btn btn-primary btn-size-80">返回</button>
+        </div>
+        <div class="col-md-2"></div>
     </div>
 </div>
 </body>
 </html>
 <script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="lib/bootstrap-modal/2.2.4/bootstrap-modal.js"></script>
 <script type="text/javascript" src="lib/bootstrap-modal/2.2.4/bootstrap-modalmanager.js"></script>
 <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>

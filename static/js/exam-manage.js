@@ -168,26 +168,6 @@ $(document).ready(function () {
         }
     });
 
-    //将列数据写入form
-    function setDataToForm(formId, formData) {
-        if (formData) {
-            var form = $("#" + formId);
-            $.each(form.serializeArray(), function (index) {
-                var tmpObj = $("#" + formId + " [name='" + this.name + "']");
-                if (tmpObj[0].tagName == "SELECT") {
-                    tmpObj.val(formData[this.name]);
-                }
-                else if (tmpObj[0].tagName == "INPUT") {
-                    tmpObj.val(formData[this.name]);
-                }
-                else {
-
-                }
-            });
-        }
-        return formData;
-    }
-
     //表单验证
     var validator = $("#form-exam").Validform({
         tiptype: 2,

@@ -30,4 +30,6 @@ public interface AnswerMapper {
 
     String totalGoal(int userId);
 
+    void deleteAnswer(@Param("userId") int userId, @Param("examId") int examId);
+
 }

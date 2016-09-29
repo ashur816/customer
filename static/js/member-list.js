@@ -148,14 +148,16 @@ $(document).ready(function () {
             type: "get",
             url: baseUrl + "/getUserList/" + data["userId"] + "?token=" + token,
             success: function (response) {
-                $("#userName3").val(response[0]["userName"] || "");
-                $("#password3").val(response[0]["password"] || "");
-                $("#fullname3").val(response[0]["fullname"] || "");
-                $("#age3").val(response[0]["age"] || "");
-                $("#sex3").val(response[0]["sex"] || "");
-                $("#graduateInstitution3").val(response[0]["graduateInstitution"] || "");
-                $("#major3").val(response[0]["major"] || "");
-                $("#workingLife3").val(response[0]["workingLife"] || "");
+                // $("#userName3").val(response[0]["userName"] || "");
+                // $("#password3").val(response[0]["password"] || "");
+                // $("#fullname3").val(response[0]["fullname"] || "");
+                // $("#age3").val(response[0]["age"] || "");
+                // $("#sex3").val(response[0]["sex"] || "");
+                // $("#graduateInstitution3").val(response[0]["graduateInstitution"] || "");
+                // $("#major3").val(response[0]["major"] || "");
+                // $("#workingLife3").val(response[0]["workingLife"] || "");
+
+                setDataToForm("form-member-add-3", response[0]);
             },
             error: function () {
                 console.log("error!");
@@ -189,10 +191,10 @@ $(document).ready(function () {
             async: false,
             success: function (response) {
                 if (response.token != "") {
-                   $("#myModal-1").modal("hide");
-                   refreshTable();
-                   location.reload();
-                   alert(response.message);
+                    $("#myModal-1").modal("hide");
+                    refreshTable();
+                    location.reload();
+                    alert(response.message);
                 } else {
                     console.log(response.message);
                 }

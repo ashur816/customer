@@ -1,48 +1,49 @@
 var userId = getUrlParam("userId");
+var examId = 0;
+var answerId = 0;
 
 $(function () {
-    getInfo();
-    function getInfo() {
-        $.ajax({
-            type: "post",
-            url: baseUrl + "/getAnswerList?token=" + token + "&userId=" + userId,
-            contentType: "application/json; cahrset=utf-8",
-            success: function (response) {
-                if (response != null && response.length > 0) {
-                    $.each(response, function (i, val) {
-                        var btnId = "btnAnswer" + val.examinationId;
-                        var html = "<input type='button' evalue='" + val.examinationId + "' class='btn btn-default btn-size-80' id='" + btnId + "' value='第" + (i + 1) + "题'" + "</input>";
-                        if ((i + 1) % 6 == 0) {
-                            html += "<p/>";
-                        }
-                        $(html).appendTo("#content");
-                        addBtnEvent(btnId);
-                    });
-                }
-                else {
-                    alert("未获取到任何答卷信息");
-                }
+    CKEDITOR.replace('yourAnswer', {toolbarCanCollapse: true, toolbarStartupExpanded: false, toolbar: [['Smiley']]});
+    $.ajax({
+        type: "post",
+        url: baseUrl + "/getAnswerList?token=" + token + "&userId=" + userId,
+        contentType: "application/json; cahrset=utf-8",
+        success: function (response) {
+            if (response != null && response.length > 0) {
+                $.each(response, function (i, val) {
+                    var btnId = "btnAnswer" + val.examinationId;
+                    var html = "<input type='button' evalue='" + val.examinationId + "' class='btn btn-primary btn-size-80' id='" + btnId + "' value='第" + (i + 1) + "题'" + "</input>";
+                    if ((i + 1) % 10 == 0) {
+                        html += "<p/>";
+                    }
+                    $(html).appendTo("#btnNum");
+                    addBtnEvent(btnId, i + 1);
+                });
             }
-        });
-    }
+            else {
+                alert("未获取到任何答卷信息");
+            }
+        }
+    });
 
-    function addBtnEvent(btnId) {
+    function addBtnEvent(btnId, num) {
         $("#" + btnId).bind("click", function () {
-            $('#myModal .modal-header .modal-title').empty().text($(this).val());
-            $('#myModal').modal("show");
+            examId = this.getAttribute("evalue");
             $.ajax({
                 type: "get",
-                url: baseUrl + "/getUserAnswerInfo?userId=" + userId + "&examId=" + this.getAttribute("evalue") + "&token=" + token,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: null,
+                url: baseUrl + "/getUserAnswerInfo?userId=" + userId + "&examId=" + examId + "&token=" + token,
                 success: function (Message) {
-                    console.log(Message);
-                    $("#question").text(Message.examinationQuestion + "(" + Message.examinationScore + "分)");
-                    $("#userAnswer").val(Message.answerContent);
-                    $("#referAnswer").text(Message.referenceAnswer);
-                    $("#answerId").val(Message.answerId);
-                    $("#score").val(Message.goal);
+                    $("#question").html("第" + num + "题： " + Message.examinationQuestion);
+                    $("#referenceAnswer").html("参考答案： " + Message.referenceAnswer);
+                    $("#answerContent").removeClass("hidden");
+                    $("#divGrade").removeClass("hidden");
+                    $("#goal").val(Message.goal);
+                    answerId = Message.answerId;
+                    if (Message.answerContent == null) {
+                        CKEDITOR.instances.yourAnswer.setData("");
+                    } else {
+                        CKEDITOR.instances.yourAnswer.setData(Message.answerContent);
+                    }
                 },
                 error: function () {
                 }
@@ -51,14 +52,18 @@ $(function () {
     }
 
     $("#btnGrade").click(function () {
+        if (examId == 0) {
+            alert("请选中一道题进行评分");
+            return;
+        }
         $.ajax({
             type: "post",
-            url: baseUrl + "/gradeSingle?answerId=" + $("#answerId").val() + "&goal=" + $("#score").val() + "&token=" + token,
+            url: baseUrl + "/gradeSingle?answerId=" + answerId + "&goal=" + $("#goal").val() + "&token=" + token,
             success: function (data) {
-                alert(data.message);
+                $("#btnAnswer" + examId).css("background", "green");
             },
             error: function () {
-                Huimodal_alert("error", 1000);
+                alert("error");
             }
         });
     });
