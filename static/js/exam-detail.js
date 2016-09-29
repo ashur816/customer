@@ -38,9 +38,9 @@ $(function () {
                 data: null,
                 success: function (Message) {
                     console.log(Message);
-                    $("#question").text(Message.examinationQuestion + "(" + Message.examinationScore + "分)");
-                    $("#userAnswer").val(Message.answerContent);
-                    $("#referAnswer").text(Message.referenceAnswer);
+                    $("#question").html(Message.examinationQuestion + "(" + Message.examinationScore + "分)");
+                    $("#userAnswer").html(Message.answerContent);
+                    $("#referAnswer").html(Message.referenceAnswer);
                     $("#answerId").val(Message.answerId);
                     $("#score").val(Message.goal);
                 },
