@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.les</groupId>
-    <artifactId>customer</artifactId>
+    <artifactId>examSystem</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
 
     <properties>
         <!--设定java版本-->
