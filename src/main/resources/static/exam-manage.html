@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link href="css/H-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/H-ui.admin.css" rel="stylesheet" type="text/css"/>
+</head>
+<title>试题管理</title>
+
+<body>
+<nav class="breadcrumb">
+    <i class="Hui-iconfont"></i>试题管理
+</nav>
+<div class="panel-body">
+        <span class="select-box" style="width:200px">
+            <select id="selectLevel" class="select" size="1">
+                <option value="0" selected>全部</option>
+                <option value="1">初级</option>
+                <option value="2">中级</option>
+                <option value="3">高级</option>
+            </select>
+        </span>
+    <span id="btnQry" class="btn btn-primary radius">搜索</span>
+    <span id="btnAdd" class="btn btn-primary radius" data-toggle="modal">添加试题</span>
+
+    <!-- Modal-1 -->
+    <div class="modal fade  pos-center" id="exam-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:950px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">添加试题</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form-exam">
+                        <input type="hidden" name="examinationId"/>
+                        <input type="hidden" name="examinationQuestion" />
+                        <input type="hidden" name="referenceAnswer" />
+                        <div class="row cl">
+                            <label class="form-label col-1"><span class="c-red">*</span>题目：</label>
+                            <div class="formControls col-10">
+                                <textarea class="form-control ckeditor" name="examQuestion"></textarea>
+                            </div>
+                            <div class="col-1" id="divQ"></div>
+                        </div>
+                        <div class="row cl">
+                            <label class="form-label col-1"><span class="c-red">*</span>参考答案：</label>
+                            <div class="formControls col-10">
+                                <textarea class="form-control ckeditor" name="referAnswer"></textarea>
+                            </div>
+                            <div class="col-1" id="divA"></div>
+                        </div>
+                        <div class="row cl">
+                            <label class="form-label col-1"><span class="c-red">*</span>分数：</label>
+                            <div class="formControls col-10">
+                                <!--<input type="text" class="input-text" value="" placeholder="" name="examinationScore" datatype="n1-3" nullmsg="分数不能为空">-->
+                                <span class="select-box">
+                                    <select class="select" size="1" name="examinationScore">
+                                        <option value="0" selected>选择</option>
+                                        <option value="2">2</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                        <div class="row cl">
+                            <label class="form-label col-1"><span class="c-red">*</span>级别：</label>
+                            <div class="formControls col-10">
+                                <span class="select-box">
+                                    <select class="select" size="1" name="examinationLevel">
+                                        <option value="0" selected>选择</option>
+                                        <option value="1">初级</option>
+                                        <option value="2">中级</option>
+                                        <option value="3">高级</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                        <div class="row cl">
+                            <label class="form-label col-1"><span class="c-red">*</span>方向：</label>
+                            <div class="formControls col-10">
+                                <span class="select-box">
+                                    <select class="select" size="1" name="examOrientation">
+                                        <option value="0" selected>选择</option>
+                                        <option value="1">java</option>
+                                        <option value="2">js</option>
+                                        <option value="3">html</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnSave" type="submit" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-20">
+        <table id="table-list" class="table table-striped table-bordered table-hover dataTable myTable">
+        </table>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="js/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="js/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/Hui/H-ui.js"></script>
+<script type="text/javascript" src="js/Hui/H-ui.admin.js"></script>
+<script type="text/javascript" src="js/exam-manage.js"></script>
+<script type="text/javascript" src="js/tip.js"></script>

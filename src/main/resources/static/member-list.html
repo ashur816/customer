@@ -1,0 +1,541 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,member-scalable=no" />
+    -->
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <script type="text/javascript" src="lib/PIE_IE678.js"></script>
+    <![endif]-->
+    <link href="/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+    <link href="js/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+</head>
+<title>阅卷</title>
+
+<body>
+<nav class="breadcrumb">
+    <i class="Hui-iconfont"></i> <big>面试人员表 </big>
+        <span style="display:block;float: right;color: blue">
+            <span float="right">您好,</span>
+            <span float="right" id="user"></span>&nbsp;&nbsp;
+        </span>
+</nav>
+<div class="pd-20">
+    <div class="panel-body">
+        <button id="btn1" class="btn btn-default" data-toggle="modal" data-target="#myModal-1">
+            添加人员
+        </button>
+        <!-- Modal-1 -->
+        <div class="modal fade" id="myModal-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">添加人员</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <body onload="add_form();">
+                        <form id="form-member-add-1" class="valid-form">
+                            <input type="hidden" id="userId" name="userId"/>
+                            <span>
+                                <span style="font-size: medium;background: darkgray">登陆信息:</span>
+                                <span>
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>用户类型：</label>
+                                        <div class="formControls col-5">
+                                            <span class="select-box">
+                                                <select class="select" size="1" name="userType">
+                                                    <option value="1">管理员</option>
+                                                    <option value="2" selected>普通用户</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>用户等级：</label>
+                                        <div class="formControls col-5">
+                                            <span class="select-box">
+                                                <select class="select" size="1" name="userLevel">
+                                                    <option value="0" selected>选择</option>
+                                                    <option value="1">初级</option>
+                                                    <option value="2">中级</option>
+                                                    <option value="3">高级</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>用户名：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="userName" name="userName" datatype="*2-16" nullmsg="用户名不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>密码：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="password" name="password" datatype="*2-16" nullmsg="密码不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </span>
+                            </span>
+
+                            <span>
+                                <span style="font-size: medium;background: darkgray">基本信息:</span>
+                                <span>
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>姓名：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="fullname" name="fullname" datatype="*2-16" nullmsg="姓名不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>年龄：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" value="" placeholder="" id="age" name="age" datatype="n2-16" nullmsg="年龄不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>性别：</label>
+                                        <div class="formControls col-5" style="height: 25px">
+                                            <span>
+                                                <input type="radio" name="sex" value='1' checked>男&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input type="radio" name="sex" value='0'>女
+                                            </span>
+                                            <!--<span class="select-box">-->
+                                                <!--<select class="select" size="1" name="sex">-->
+                                                    <!--<option value="1" selected>男</option>-->
+                                                    <!--<option value="0">女</option>-->
+                                                <!--</select>-->
+                                            <!--</span>-->
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">邮箱：</label>
+                                        <div class="formControls col-5">
+                                            <input id="email" name="email" type="text" class="input-text" value="" placeholder="" datatype="n2-16" nullmsg="邮箱不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">电话：</label>
+                                        <div class="formControls col-5">
+                                            <input id="teleNum" name="teleNum" type="text" class="input-text" value="" placeholder="" datatype="n2-16" nullmsg="手机号码不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>专业：</label>
+                                        <div class="formControls col-5">
+                                            <input id="major" name="major" type="text" class="input-text" value="" placeholder="" datatype="*2-16" nullmsg="请输入!">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>毕业院校：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" id="graduateInstitution1" name="graduateInstitution" class="input-text" value="" placeholder=""  datatype="*2-16" nullmsg="院校不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </span>
+                            </span>
+
+                            <span>
+                                <span style="font-size: medium;background: darkgray">工作信息:</span>
+                                <span>
+                                    <div class="row cl">
+                                        <label class="form-label col-3"><span class="c-red">*</span>工作年限：</label>
+                                        <div class="formControls col-5">
+                                            <input id="workingLife1" name="workingLife" type="text" class="input-text" value="" placeholder="" datatype="n1-16" nullmsg="请输入!">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">求职方向：</label>
+                                        <div class="formControls col-5">
+                                            <span class="select-box">
+                                                <select class="select" size="1" name="orientation">
+                                                    <option value="0" selected>选择</option>
+                                                    <option value="1">java</option>
+                                                    <option value="2">js</option>
+                                                    <option value="2">html</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">工作经历：</label>
+                                        <div class="formControls col-5">
+                                            <textarea id="workingExp" name="workingExp" type="text" class="input-text"></textarea>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </span>
+                            </span>
+                        </form>
+                        </body>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn2" type="button" class="btn btn-primary">增加</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- Modal-2 -->
+        <div class="modal fade" id="myModal-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">修改信息</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <body onload="add_form();">
+                        <form id="form-member-add-2" class="valid-form">
+                            <input type="hidden" id="userId2" name="userId"/>
+                            <span>
+                                <span style="font-size: medium;background: darkgray">登陆信息:</span>
+                                <span>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">用户名：</label>
+                                        <div class="formControls col-5">
+                                            <input id="userName2" name="userName" type="text" class="input-text" value="" placeholder="" datatype="*2-16" nullmsg="用户名不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">用户等级：</label>
+                                        <div class="formControls col-5">
+                                            <span class="select-box">
+                                                <select class="select" size="1" name="userLevel">
+                                                    <option value="1" selected>初级</option>
+                                                    <option value="2">中级</option>
+                                                    <option value="3">高级</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">密码：</label>
+                                        <div class="formControls col-5">
+                                            <input id="password2" name="password" type="text" class="input-text" value="" placeholder="" datatype="*2-16" nullmsg="密码不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </span>
+                            </span>
+
+                            <span>
+                                <span style="font-size: medium;background: darkgray">基本信息:</span>
+                                <span>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">姓名：</label>
+                                        <div class="formControls col-5">
+                                            <input id="fullname2" name="fullname" type="text" class="input-text" value="" placeholder="" datatype="*2-16" nullmsg="姓名不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">年龄：</label>
+                                        <div class="formControls col-5">
+                                            <input id="age2" name="age" type="text" class="input-text" value="" placeholder="" datatype="n2-16" nullmsg="年龄不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">性别：</label>
+                                        <div class="formControls col-5" style="height: 25px">
+                                            <span>
+                                                <input type="radio" name="sex" value='1' checked>男&nbsp;&nbsp;&nbsp;
+                                                <input type="radio" name="sex" value='0'>女
+                                            </span>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">邮箱：</label>
+                                        <div class="formControls col-5">
+                                            <input id="email2" name="email" type="text" class="input-text" value="" placeholder="" datatype="n2-16" nullmsg="邮箱不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">电话：</label>
+                                        <div class="formControls col-5">
+                                            <input id="teleNum2" name="teleNum" type="text" class="input-text" value="" placeholder="" datatype="n2-16" nullmsg="手机号码不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                     <div class="row cl">
+                                        <label class="form-label col-3">专业：</label>
+                                        <div class="formControls col-5">
+                                            <input id="major2" name="major" type="text" class="input-text" value="" placeholder="" datatype="*2-16" nullmsg="专业不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">毕业院校：</label>
+                                        <div class="formControls col-5">
+                                            <input id="graduateInstitution2" name="graduateInstitution" type="text" class="input-text" value="" placeholder="" datatype="*2-16" nullmsg="毕业院校不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </span>
+                            </span>
+
+                            <span>
+                                <span style="font-size: medium;background: darkgray">工作信息:</span>
+                                <span>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">工作年限：</label>
+                                        <div class="formControls col-5">
+                                            <input id="workingLife2" name="workingLife" type="text" class="input-text" value="" placeholder="" datatype="n1-16" nullmsg="工作年限不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">求职方向：</label>
+                                        <div class="formControls col-5">
+                                            <span class="select-box">
+                                                <select class="select" size="1" name="orientation">
+                                                    <option value="0" selected>选择</option>
+                                                    <option value="1">java</option>
+                                                    <option value="2">js</option>
+                                                    <option value="2">html</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">工作经历：</label>
+                                        <div class="formControls col-5">
+                                            <textarea id="workingExp2" name="workingExp" type="text" class="input-text"></textarea>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </span>
+                            </span>
+                        </form>
+                        </body>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn3" type="button" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- Modal-3 -->
+        <div class="modal fade" id="myModal-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">查看信息</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <body onload="add_form();">
+                        <form id="form-member-add-3">
+                            <input type="hidden" id="userId3" name="userId"/>
+                            <span>
+                                <span style="font-size: medium;background: darkgray">登陆信息:</span>
+                                <span>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">用户名：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" readonly value="" placeholder="" id="userName3" name="userName" />
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">用户等级：</label>
+                                        <div class="formControls col-5">
+                                            <span class="select-box">
+                                                <select class="select" size="1" name="userLevel" disabled="disabled">
+                                                    <option value="1" selected>初级</option>
+                                                    <option value="2">中级</option>
+                                                    <option value="3">高级</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">密码：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" readonly value="" placeholder="" id="password3" name="password" datatype="*2-16">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </span>
+                            </span>
+
+                            <span>
+                                <span style="font-size: medium;background: darkgray">基本信息:</span>
+                                <span>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">姓名：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" readonly value="" placeholder="" id="fullname3" name="fullname" datatype="*2-16">
+                                        </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">年龄：</label>
+                                        <div class="formControls col-5">
+                                            <input type="text" class="input-text" readonly value="" placeholder="" id="age3" name="age" datatype="n2-16">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">性别：</label>
+                                        <div class="formControls col-5" style="height: 25px">
+                                            <span>
+                                                <input type="radio" name="sex" value='1' checked disabled>男&nbsp;&nbsp;&nbsp;
+                                                <input type="radio" name="sex" value='0' disabled>女
+                                            </span>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">邮箱：</label>
+                                        <div class="formControls col-5">
+                                            <input id="email3" name="email" type="text" class="input-text" readonly value="" placeholder="" datatype="n2-16" nullmsg="邮箱不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">电话：</label>
+                                        <div class="formControls col-5">
+                                            <input id="teleNum3" name="teleNum" type="text" class="input-text" readonly value="" placeholder="" datatype="n2-16" nullmsg="手机号码不能为空">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">专业：</label>
+                                        <div class="formControls col-5">
+                                            <input id="major3" name="major" type="text" readonly class="input-text" value="">
+                                        </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">毕业院校：</label>
+                                        <div class="formControls col-5">
+                                            <input id="graduateInstitution3" name="graduateInstitution" readonly type="text" class="input-text" value="" placeholder="" datatype="*2-16">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </span>
+                            </span>
+
+                            <span>
+                                <span style="font-size: medium;background: darkgray">工作信息:</span>
+                                <span>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">工作年限：</label>
+                                        <div class="formControls col-5">
+                                            <input id="workingLife3" name="workingLife" readonly type="text" class="input-text" value="" placeholder="" datatype="n1-16">
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">求职方向：</label>
+                                        <div class="formControls col-5">
+                                            <span class="select-box">
+                                                <select class="select" size="1" name="orientation" disabled="disabled">
+                                                    <option value="0" selected>选择</option>
+                                                    <option value="1">java</option>
+                                                    <option value="2">js</option>
+                                                    <option value="2">html</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="form-label col-3">工作经历：</label>
+                                        <div class="formControls col-5">
+                                            <textarea id="workingExp3" name="workingExp" type="text" class="input-text" readonly></textarea>
+                                        </div>
+                                        <div class="col-4"> </div>
+                                    </div>
+                                </span>
+                            </span>
+                        </form>
+                        </body>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <div class="mt-20">
+        <table id="table" class="table table-striped table-bordered table-hover dataTable myTable">
+            <thead>
+            <tr class="text-c">
+                <th width="10">ID</th>
+                <th width="10">序号</th>
+                <th width="40">姓名</th>
+                <th width="80">开始时间</th>
+                <th width="80">结束时间</th>
+                <th width="100">操作</th>
+                <th width="40">分数</th>
+                <th width="40">阅卷老师</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/icheck/jquery.icheck.min.js"></script>
+<script type="text/javascript" src="js/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="js/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="js/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/Hui/H-ui.js"></script>
+<script type="text/javascript" src="js/Hui/H-ui.admin.js"></script>
+<script type="text/javascript" src="js/tip.js"></script>
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript" src="js/member-list.js"></script>
+
