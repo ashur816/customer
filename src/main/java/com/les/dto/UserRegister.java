@@ -11,16 +11,21 @@ public class UserRegister {
     private String fullname;
     private String graduateInstitution;
     private int age;
-    private String sex;
+    private int sex;
     private String major;
     private String workingLife;
     private int userLevel;
+    private String workingExp;
+    private int orientation;
+    private String teleNum;
+    private String email;
 
 
     public UserRegister() {
     }
 
-    public UserRegister(String userName, int userType,String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife,int userLevel) {
+    public UserRegister(String userName, int userType,String password, String fullname, int age, int sex, String graduateInstitution,
+                        String major, String workingLife, int userLevel,String workingExp,int orientation,String teleNum,String email) {
         this.userName = userName;
         this.userType = userType;
         this.password = password;
@@ -31,6 +36,10 @@ public class UserRegister {
         this.major = major;
         this.workingLife = workingLife;
         this.userLevel = userLevel;
+        this.workingExp = workingExp;
+        this.orientation = orientation;
+        this.teleNum = teleNum;
+        this.email = email;
     }
 
     public String getUserName() {
@@ -73,11 +82,11 @@ public class UserRegister {
         this.age = age;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
@@ -104,4 +113,16 @@ public class UserRegister {
     public int getUserLevel() { return userLevel; }
 
     public void setUserLevel(int userLevel) { this.userLevel = userLevel; }
+
+    public String getWorkingExp() { return workingExp; }
+    public void setWorkingExp(String workingExp) { this.workingExp = workingExp; }
+
+    public int getOrientation() { return orientation; }
+    public void setOrientation(int orientation) { this.orientation = orientation; }
+
+    public String getTeleNum() { return teleNum; }
+    public void setTeleNum(String teleNum) { this.teleNum = teleNum; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }

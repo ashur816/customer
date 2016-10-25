@@ -15,10 +15,16 @@ public class StaticConst {
     public static int USER_TYPE_ADMIN = 1;
     public static int USER_TYPE_EMPLOYEE = 2;
 
+    //题目分数
+    public static int EXAMINATION_SCORE[] = {2,5,10};
+    //题目数量
+    public static int EXAMINATION_NUM1[] = {25,6,2};
+    public static int EXAMINATION_NUM2[] = {10,10,3};
+    public static int EXAMINATION_NUM3[] = {10,6,5};
+
     //页面地址
     //阅卷页面
     public static String PAGE_ADMIN_MANAGE = "/member-list.html";
-
 
     //考试页面
     public static String PAGE_EXAM = "/exam.html";

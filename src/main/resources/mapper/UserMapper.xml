@@ -3,12 +3,15 @@
 <mapper namespace="com.les.dao.mapper.UserMapper">
 
     <select id="getUserById" resultType="com.les.dto.UserResult">
-        SELECT USER_NAME,USER_TYPE,FULLNAME,GRADUATE_INSTITUTION,MAJOR FROM USER_INFO WHERE USER_ID=#{userId};
+        SELECT u.USER_NAME,u.USER_TYPE,u.FULLNAME,u.GRADUATE_INSTITUTION,u.MAJOR,u.USER_LEVEL,g.start_time FROM USER_INFO u
+         LEFT JOIN USER_GOAL g
+         ON u.user_id = g.user_id
+        WHERE u.USER_ID=#{userId};
     </select>
 
     <select id="getUserList" resultType="com.les.dto.UserResult">
         SELECT u.user_id,u.user_name,u.user_type,u.password,
-        u.fullname,u.age,u.sex,u.graduate_institution,u.major,u.working_life,u.user_level,
+        u.fullname,u.age,u.sex,u.graduate_institution,u.major,u.working_life,u.user_level,u.working_exp,u.orientation,u.tele_num,u.email,
         g.total_goal,g.start_time,g.end_time,g.exam_marker
         FROM USER_INFO u
         LEFT JOIN USER_GOAL g
@@ -23,12 +26,13 @@
     </select>
 
     <insert id="register" parameterType="com.les.dto.UserRegister">
-        INSERT INTO user_info(user_name,user_type,password,fullname,age,sex,graduate_institution,major,working_life,user_level)
-        VALUES (#{userName},#{userType},#{password},#{fullname},#{age},#{sex},#{graduateInstitution},#{major},#{workingLife},#{userLevel});
+        INSERT INTO user_info(user_name,user_type,password,fullname,age,sex,graduate_institution,major,working_life,user_level,working_exp,orientation,tele_num,email)
+        VALUES (#{userName},#{userType},#{password},#{fullname},#{age},#{sex},#{graduateInstitution},#{major},#{workingLife},#{userLevel},#{workingExp},#{orientation},#{teleNum},#{email});
     </insert>
 
     <update id="updateUser">
-        UPDATE user_info SET user_name=#{userName},password=#{password},fullname=#{fullname},age=#{age},sex=#{sex},graduate_institution=#{graduateInstitution},major=#{major},working_life=#{workingLife},user_level=#{userLevel}
+        UPDATE user_info SET user_name=#{userName},password=#{password},fullname=#{fullname},age=#{age},sex=#{sex},graduate_institution=#{graduateInstitution},major=#{major},
+        working_life=#{workingLife},user_level=#{userLevel},working_exp=#{workingExp},orientation=#{orientation},tele_num=#{teleNum},email=#{email}
         WHERE user_id=#{userId};
     </update>
 

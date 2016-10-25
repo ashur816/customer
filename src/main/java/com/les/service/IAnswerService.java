@@ -20,6 +20,5 @@ public interface IAnswerService {
 
     UserAnswer getUserExamAnswer(int examinationId, int userId);
 
-    void gradeAnswer(int examMaker, int answerId, int goal);
-    GoalInfo totalGoal(int userId,int loginUserId);
+    GoalInfo gradeAnswer(int examMaker, int answerId, int goal);
 }

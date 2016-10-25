@@ -111,6 +111,8 @@ public class UserServiceImpl implements IUserService {
             userResult.setMajor(userRegister.getMajor());
             userResult.setWorkingLife(userRegister.getWorkingLife());
             userResult.setUserLevel(userRegister.getUserLevel());
+            userResult.setWorkingExp(userRegister.getWorkingExp());
+            userResult.setOrientation(userRegister.getOrientation());
             userResult.setMessage("{\"message\":\"注册成功\"}");
         } else {
             userResult.setMessage("{\"message\":\"用户名已存在\"}");
@@ -120,8 +122,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void updateUser(int userId, String userName, String password, String fullname, int age, String sex, String graduateInstitution, String major, String workingLife, int userLevel) {
-        userMapper.updateUser(userId, userName, password, fullname, age, sex, graduateInstitution, major, workingLife, userLevel);
+    public void updateUser(int userId, String userName, String password, String fullname, int age, int sex, String graduateInstitution, String major, String workingLife, int userLevel,String workingExp,int orientation,String teleNum,String email) {
+        userMapper.updateUser(userId, userName, password, fullname, age, sex, graduateInstitution, major, workingLife, userLevel,workingExp,orientation,teleNum,email);
     }
 
 
@@ -137,7 +139,13 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void commit(int userId, Date endDate) {
+        UserGoal userGoal = userMapper.getLatestUserGoal(userId);
+        Date startDate = userGoal.getStartTime();
+        Date needEndDate = DateUtils.addMinutes(startDate, StaticConst.examTime);
+        //交卷时间 < 考试预定结束时间 可以提交，超过时间，不能提交
+//        if(endDate.compareTo(needEndDate) < 0){
         userMapper.commit(userId, endDate);
+//        }
     }
 
     @Override

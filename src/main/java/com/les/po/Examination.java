@@ -16,6 +16,7 @@ public class Examination implements Serializable {
     private String examinationScore;
     private String referenceAnswer;
     private int examinationLevel;
+    private int examOrientation;
 
     public void setExaminationId(int examinationId) {
         this.examinationId = examinationId;
@@ -44,8 +45,10 @@ public class Examination implements Serializable {
     public int getExaminationLevel() {
         return examinationLevel;
     }
-
     public void setExaminationLevel(int examinationLevel) {
         this.examinationLevel = examinationLevel;
     }
+
+    public int getExamOrientation() { return examOrientation; }
+    public void setExamOrientation(int examOrientation) { this.examOrientation = examOrientation; }
 }

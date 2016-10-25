@@ -40,11 +40,15 @@ public class AnswerServiceImpl implements IAnswerService {
     }
 
     @Override
+    /*
+    *获取试卷列表*/
     public List<UserAnswer> getAnswerList(int userId) {
         return answerMapper.getAnswerList(userId);
     }
 
     @Override
+    /*
+    *批量打分*/
     public GoalInfo updateAnswerBatch(int loginUserId, GoalInfo goalInfo) {
         double totalGoal = 0.0;
         List<UserGoal> goalList = goalInfo.getGoalList();
@@ -68,20 +72,22 @@ public class AnswerServiceImpl implements IAnswerService {
     }
 
     @Override
+    /*
+    *获取考生每一题*/
     public UserAnswer getUserExamAnswer(int examinationId, int userId) {
         return answerMapper.getUserExamAnswer(examinationId, userId);
     }
 
     @Override
-    public void gradeAnswer(int examMaker, int answerId, int goal) {
+    /*
+    *一题题打分并计算总成绩*/
+    public GoalInfo gradeAnswer(int loginUserId, int answerId, int goal) {
         answerMapper.updateAnswerGoal(answerId, goal);
         Answer answer = answerMapper.getAnswerById(answerId);
-        answerMapper.updateGoal(answer.getUserId(), goal, examMaker);
-    }
-
-    @Override
-    public GoalInfo totalGoal(int userId, int loginUserId) {
+        int userId = answer.getUserId();
         String totalGoal = answerMapper.totalGoal(userId);
+
+        //获取阅卷人的信息
         UserResult userResults = userMapper.getUserById(loginUserId);
         String examMaker = null;
         GoalInfo goalInfo = new GoalInfo();
@@ -92,5 +98,7 @@ public class AnswerServiceImpl implements IAnswerService {
         goalInfo.setExamMarker(examMaker);
         goalInfo.setTotalGoal(totalGoal);
         return goalInfo;
+
     }
+
 }

@@ -37,7 +37,6 @@ public class AnswerController {
 
     /**
      * 提交答案
-     *
      * @param body
      * @return
      */
@@ -45,8 +44,8 @@ public class AnswerController {
     @ResponseBody
     public String insertAnswer(HttpServletRequest request, @RequestBody String body) {
         String result = "保存成功";
-//        String result = "{\"message\":\"保存成功\"}";
-
+        logger.info("考生填写答案");
+        //判断时间
         Answer answer = (Answer) JSONObject.toBean(JSONObject.fromObject(body), Answer.class);
         String answerContent = answer.getAnswerContent();
         int examinationId = answer.getExaminationId();
@@ -64,6 +63,7 @@ public class AnswerController {
     @RequestMapping(value = "/getAnswerList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public List<UserAnswer> getAnswerList(HttpServletRequest request) throws Exception {
+        logger.info("获取考生试卷");
         String userId = request.getParameter("userId");
         return answerService.getAnswerList(Integer.parseInt(userId));
     }
@@ -93,6 +93,7 @@ public class AnswerController {
     @RequestMapping(value = "/gradeSingle", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String gradeSingle(HttpServletRequest request) throws Exception {
+        logger.info("打分");
         String answerId = request.getParameter("answerId");
         String loginUserId = request.getAttribute("loginUserId").toString();
         String goal = request.getParameter("goal");
@@ -118,17 +119,5 @@ public class AnswerController {
         String examId = request.getParameter("examId");
         UserAnswer userAnswer = answerService.getUserExamAnswer(Integer.parseInt(examId), Integer.parseInt(userId));
         return userAnswer;
-    }
-
-    /**
-     * @return String
-     * @Description: 计算考生总成绩
-    */
-    @RequestMapping(value = "/totalGoal", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public GoalInfo totalGoal(HttpServletRequest request){
-        String userId = request.getParameter("userId");
-        int loginUserId = Integer.parseInt(request.getAttribute("loginUserId").toString());
-        return answerService.totalGoal(Integer.parseInt(userId),loginUserId);
     }
 }

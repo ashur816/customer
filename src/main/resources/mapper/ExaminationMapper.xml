@@ -7,11 +7,11 @@
     </delete>
     <update id="updateExam">
         UPDATE examination SET examination_question=#{examQuestion},examination_score=#{examScore},
-        reference_answer=#{referenceAnswer},examination_level=#{examLevel} WHERE examination_id=#{examId};
+        reference_answer=#{referenceAnswer},examination_level=#{examLevel},exam_orientation=#{examOrientation} WHERE examination_id=#{examId};
     </update>
     <insert id="insertExam">
-        INSERT INTO examination(examination_id,examination_question,examination_score,reference_answer,examination_level)
-        VALUES (#{examId},#{examQuestion},#{examScore},#{referenceAnswer},#{examLevel});
+        INSERT INTO examination(examination_id,examination_question,examination_score,reference_answer,examination_level,exam_orientation)
+        VALUES (#{examId},#{examQuestion},#{examScore},#{referenceAnswer},#{examLevel},#{examOrientation});
     </insert>
     <select id="getExamAndAnswer" resultType="com.les.dto.UserAnswer">
        SELECT
@@ -19,6 +19,7 @@
           e.examination_question,
           e.examination_score,
           e.examination_level,
+          e.exam_orientation,
           a.answer_id,
           a.answer_content,
           a.goal
@@ -33,20 +34,21 @@
         SELECT examination_id FROM examination;
     </select>
 
-    <select id="getExamIdList" resultType="java.lang.Integer">
+    <select id="getExamByScore" resultType="java.lang.Integer">
         SELECT e.examination_id FROM examination e
         LEFT JOIN user_info u
-        ON e.examination_level=u.user_level
-        WHERE u.user_id=#{userId};
+        ON e.exam_orientation=u.orientation AND e.examination_level=u.user_level
+        WHERE e.examination_score=#{examinationScore} AND u.user_id=#{userId};
     </select>
+
     <select id="getExamList" resultType="com.les.po.Examination">
-        SELECT examination_id,examination_question,examination_score,reference_answer,examination_level FROM examination
+        SELECT examination_id,examination_question,examination_score,reference_answer,examination_level,exam_orientation FROM examination
         <if test="examLevel != 0">
             WHERE examination_level = #{examLevel}
         </if>
     </select>
     <select id="getExamInfo" resultType="com.les.po.Examination">
-        SELECT examination_id,examination_question,examination_score,reference_answer,examination_level FROM examination WHERE examination_id = #{examId}
+        SELECT examination_id,examination_question,examination_score,reference_answer,examination_level,exam_orientation FROM examination WHERE examination_id = #{examId}
     </select>
 
 </mapper>

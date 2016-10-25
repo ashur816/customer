@@ -16,68 +16,60 @@
     <update id="updateAnswer">
         UPDATE ANSWER SET answer_content=#{answerContent} WHERE answer_id=#{answerId};
     </update>
-    <update id="updateGoal">
-        UPDATE user_goal SET exam_marker=#{examMaker},total_goal=total_goal + #{goal} where user_id=#{userId}
-    </update>
 
     <select id="getUserAnswer" resultType="com.les.po.Answer">
         SELECT * FROM answer a WHERE a.examination_id=#{examId} AND a.user_id=#{userId};
     </select>
-
-    <select id="getAnswerList" resultType="com.les.dto.UserAnswer">
-        SELECT
-          e.examination_id,
-          e.examination_question,
-          e.examination_score,
-          e.reference_answer,
-          e.examination_level,
-          a.answer_id,
-          a.answer_content,
-          a.goal
-        FROM examination e
-         LEFT JOIN (SELECT
-              user_id,
-              answer_id,
-              examination_id,
-              answer_content,
-              goal
-            FROM answer
-            WHERE user_id = #{userId}) a
-            ON e.examination_id = a.examination_id
-          LEFT JOIN user_info u
-            ON u.user_id = a.user_id
-        WHERE e.examination_level IN (SELECT
-            user_level
-          FROM user_info
-          WHERE user_id = #{userId});
-    </select>
-    <select id="getUserExamAnswer" resultType="com.les.dto.UserAnswer">
-        SELECT
-          e.examination_id,
-          e.examination_question,
-          e.examination_score,
-          e.reference_answer,
-          e.examination_level,
-          a.answer_id,
-          a.answer_content,
-          a.goal
-        FROM examination e
-          LEFT JOIN (SELECT
-              user_id,
-              answer_id,
-              examination_id,
-              answer_content,
-              goal
-            FROM answer
-            WHERE user_id = #{userId}) a
-            ON e.examination_id = a.examination_id
-        WHERE e.examination_id = #{examId}
-    </select>
+    <!--<select id="getAnswerList" resultType="com.les.dto.UserAnswer">-->
+        <!--SELECT e.examination_id,e.examination_question,e.examination_score,e.reference_answer,e.examination_level,a.answer_id,a.answer_content,a.goal-->
+        <!--FROM examination eLEFT JOIN (SELECTuser_id,answer_id,examination_id,answer_content,goalFROM answerWHERE user_id = #{userId}) aON e.examination_id = a.examination_idLEFT JOIN user_info u-->
+        <!--ON u.user_id = a.user_idWHERE e.examination_level IN (SELECT user_level FROM user_info WHERE user_id = #{userId});-->
+    <!--</select>-->
+    <!--<select id="getUserExamAnswer" resultType="com.les.dto.UserAnswer">-->
+        <!--SELECT e.examination_id,e.examination_question,e.examination_score,e.reference_answer,e.examination_level,a.answer_id,a.answer_content,a.goal-->
+        <!--FROM examination eLEFT JOIN (SELECTuser_id,answer_id,examination_id,answer_content,goalFROM answerWHERE user_id = #{userId}) aON e.examination_id = a.examination_idWHERE e.examination_id = #{examId}-->
+    <!--</select>-->
     <select id="totalGoal" resultType="java.lang.String">
         SELECT sum(goal) AS totalGoal FROM ANSWER WHERE user_id=#{userId}
     </select>
     <select id="getAnswerById" resultType="com.les.po.Answer">
         SELECT answer_id,answer_content,examination_id,goal,user_id from answer WHERE answer_id=#{answerId}
+    </select>
+    <select id="getUserExamAnswer" resultType="com.les.dto.UserAnswer">
+        SELECT
+          a.user_id,
+          a.answer_id,
+          a.answer_content,
+          a.goal,
+          e.examination_id,
+          e.examination_question,
+          e.examination_score,
+          e.reference_answer,
+          e.examination_level
+        FROM answer a
+          LEFT JOIN examination e
+          ON e.examination_id = a.examination_id
+          WHERE e.examination_id = #{examId} AND a.user_id = #{userId}
+    </select>
+    <select id="getAnswerList" resultType="com.les.dto.UserAnswer">
+        SELECT
+            a.user_id,
+            a.answer_id,
+            a.answer_content,
+            a.goal,
+            e.examination_id,
+            e.examination_question,
+            e.examination_score,
+            e.reference_answer,
+            e.examination_level
+        FROM answer a
+          LEFT JOIN examination e
+          ON e.examination_id = a.examination_id
+          WHERE a.user_id = #{userId} AND
+            e.examination_level IN (SELECT
+                user_level
+              FROM user_info
+              WHERE user_id =#{userId});
     </select>
 
 </mapper>

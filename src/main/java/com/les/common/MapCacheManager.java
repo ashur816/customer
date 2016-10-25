@@ -31,7 +31,6 @@ public class MapCacheManager {
 
     /**
      * 采用单例模式获取缓存对象实例
-     *
      * @return
      */
     public static MapCacheManager getInstance() {
@@ -50,13 +49,6 @@ public class MapCacheManager {
      */
     private void loadCache() {
         this.updateFlag = true;// 正在更新
-        /********** 数据处理，将数据放入cacheMap缓存中 **begin ******/
-//        cacheMap.put("key1", "value1");
-//        cacheMap.put("key2", "value2");
-//        cacheMap.put("key3", "value3");
-//        cacheMap.put("key4", "value4");
-//        cacheMap.put("key5", "value5");
-        /********** 数据处理，将数据放入cacheMap缓存中 ***end *******/
         this.updateFlag = false;// 更新已完成
     }
 
@@ -75,7 +67,6 @@ public class MapCacheManager {
 
     /**
      * 返回缓存对象
-     *
      * @return
      */
     public Map<String, String> getMapCache() {
@@ -84,9 +75,7 @@ public class MapCacheManager {
         if (this.updateFlag) {// 前缓存正在更新
             log.info("cache is Instance .....");
             return null;
-
         }
-
         if (this.isTimeOut(currentTime)) {// 如果当前缓存正在更新或者缓存超出时限，需重新加载
             synchronized (this) {
                 this.ReLoadCache();
@@ -99,7 +88,6 @@ public class MapCacheManager {
         if((currentTime - this.updateTime) > 3000000){
             log.error("已超时，需重新登陆");
         }
-//        log.error("已超时，需重新登陆");
         return ((currentTime - this.updateTime) > 3000000);// 超过时限，超时
     }
     /**

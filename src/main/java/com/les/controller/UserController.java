@@ -51,19 +51,27 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public UserResult register(HttpServletRequest request) {
-//        String result = "{\"id\": \"u\", \"umessage\":\"注册成功\"}";
+        logger.info("注册用户");
         String userName = request.getParameter("userName");
         int userType = Integer.parseInt(request.getParameter("userType"));
         String password = request.getParameter("password");
         String fullname = request.getParameter("fullname");
         int age = Integer.parseInt(request.getParameter("age"));
-        String sex = request.getParameter("sex");
+        int sex = Integer.parseInt(request.getParameter("sex"));
         String graduateInstitution = request.getParameter("graduateInstitution");
         String major = request.getParameter("major");
         String workingLife = request.getParameter("workingLife");
         int userLevel = Integer.parseInt(request.getParameter("userLevel"));
+        String workingExp = request.getParameter("workingExp");
+        String orient = request.getParameter("orient");
+        int orientation = 0;
+        if(orient != null && orient != ""){
+            orientation = Integer.parseInt(orient);
+        }
+        String teleNum = request.getParameter("teleNum");
+        String email = request.getParameter("email");
 
-        UserRegister userRegister = new UserRegister(userName, userType, password, fullname, age, sex, graduateInstitution, major, workingLife, userLevel);
+        UserRegister userRegister = new UserRegister(userName, userType, password, fullname, age, sex, graduateInstitution, major, workingLife, userLevel,workingExp,orientation,teleNum,email);
         UserResult userResult = userService.register(userRegister);
         return userResult;
     }
@@ -71,19 +79,28 @@ public class UserController {
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String updateUser(HttpServletRequest request) {
+        logger.info("修改用户信息");
         String result = "{\"message\":\"修改成功\"}";
         int userId = Integer.parseInt(request.getParameter("userId"));
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         String fullname = request.getParameter("fullname");
         int age = Integer.parseInt(request.getParameter("age"));
-        String sex = request.getParameter("sex");
+        int sex = Integer.parseInt(request.getParameter("sex"));
         String graduateInstitution = request.getParameter("graduateInstitution");
         String major = request.getParameter("major");
         String workingLife = request.getParameter("workingLife");
         int userLevel = Integer.parseInt(request.getParameter("userLevel"));
+        String workingExp = request.getParameter("workingExp");
+        String orient = request.getParameter("orient");
+        int orientation = 0;
+        if(orient != null && orient != ""){
+            orientation = Integer.parseInt(orient);
+        }
+        String teleNum = request.getParameter("teleNum");
+        String email = request.getParameter("email");
 
-        userService.updateUser(userId, userName, password, fullname, age, sex, graduateInstitution, major, workingLife, userLevel);
+        userService.updateUser(userId, userName, password, fullname, age, sex, graduateInstitution, major, workingLife, userLevel,workingExp,orientation,teleNum,email);
         return result;
 
     }
@@ -91,6 +108,7 @@ public class UserController {
     @RequestMapping(value = "/deleteUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String deleteUser(HttpServletRequest request) {
+        logger.info("删除用户");
         String result = "{\"message\":\"删除成功\"}";
         int userId = Integer.parseInt(request.getParameter("userId"));
         userService.deleteUser(userId);
@@ -101,6 +119,7 @@ public class UserController {
     @RequestMapping(value = "/getUserById", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public UserResult getUserById(HttpServletRequest request) {
+        logger.info("获取登录人的信息");
         int userId = Integer.parseInt(request.getAttribute("loginUserId").toString());
         return userService.getUserById(userId);
     }
@@ -108,6 +127,7 @@ public class UserController {
     @RequestMapping(value = "/commit", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String commit(HttpServletRequest request) {
+        logger.info("提交考卷");
         String result = "提交成功";
 
         int userId = Integer.parseInt(request.getAttribute("loginUserId").toString());

@@ -17,11 +17,15 @@ public class User implements Serializable{
     private String password;
     private String fullname;
     private int age;
-    private String sex;
+    private int sex;
     private String graduateInstitution;
     private String major;
     private String workingLife;
     private int userLevel;
+    private String workingExp;
+    private int orientation;
+    private String teleNum;
+    private String email;
 
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
@@ -46,8 +50,8 @@ public class User implements Serializable{
     public int getAge() { return age; }
     public void setAge(int age) { this.age = age; }
 
-    public String getSex() { return sex; }
-    public void setSex(String sex) { this.sex = sex; }
+    public int getSex() { return sex; }
+    public void setSex(int sex) { this.sex = sex; }
 
     public String getGraduateInstitution() { return graduateInstitution; }
     public void setGraduateInstitution(String graduateInstitution) { this.graduateInstitution = graduateInstitution; }
@@ -61,8 +65,19 @@ public class User implements Serializable{
     public int getUserLevel() {
         return userLevel;
     }
-
     public void setUserLevel(int userLevel) {
         this.userLevel = userLevel;
     }
+
+    public String getWorkingExp() { return workingExp; }
+    public void setWorkingExp(String workingExp) { this.workingExp = workingExp; }
+
+    public int getOrientation() { return orientation; }
+    public void setOrientation(int orientation) { this.orientation = orientation; }
+
+    public String getTeleNum() { return teleNum; }
+    public void setTeleNum(String teleNum) { this.teleNum = teleNum; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }

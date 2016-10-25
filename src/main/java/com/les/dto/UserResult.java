@@ -16,10 +16,14 @@ public class UserResult implements Serializable{
     private String fullname;
     private String graduateInstitution;
     private int age;
-    private String sex;
+    private int sex;
     private String major;
     private String workingLife;
     private int userLevel;
+    private String workingExp;
+    private int orientation;
+    private String teleNum;
+    private String email;
     private String message;
     private String startTime;
     private String endTime;
@@ -61,8 +65,8 @@ public class UserResult implements Serializable{
     public int getAge() { return age; }
     public void setAge(int age) { this.age = age; }
 
-    public String getSex() { return sex; }
-    public void setSex(String sex) { this.sex = sex; }
+    public int getSex() { return sex; }
+    public void setSex(int sex) { this.sex = sex; }
 
     public String getMajor() { return major; }
     public void setMajor(String major) { this.major = major; }
@@ -80,7 +84,6 @@ public class UserResult implements Serializable{
     public String getStartTime() {
         return startTime;
     }
-
     public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
@@ -88,7 +91,6 @@ public class UserResult implements Serializable{
     public String getEndTime() {
         return endTime;
     }
-
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
@@ -108,4 +110,16 @@ public class UserResult implements Serializable{
 
     public String getTotalGoal() { return totalGoal; }
     public void setTotalGoal(String totalGoal) { this.totalGoal = totalGoal; }
+
+    public String getWorkingExp() { return workingExp; }
+    public void setWorkingExp(String workingExp) { this.workingExp = workingExp; }
+
+    public int getOrientation() { return orientation; }
+    public void setOrientation(int orientation) { this.orientation = orientation; }
+
+    public String getTeleNum() { return teleNum; }
+    public void setTeleNum(String teleNum) { this.teleNum = teleNum; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 }

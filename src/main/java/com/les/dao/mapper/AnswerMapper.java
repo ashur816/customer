@@ -34,6 +34,4 @@ public interface AnswerMapper {
 
     void deleteAnswer(@Param("userId") int userId, @Param("examId") int examId);
 
-    void updateGoal(@Param("userId") int userId, @Param("goal") int goal, @Param("examMaker") int examMaker);
-
 }

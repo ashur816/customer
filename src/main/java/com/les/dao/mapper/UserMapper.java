@@ -28,8 +28,8 @@ public interface UserMapper {
     void register(UserRegister userRegister);
 
     void updateUser(@Param("userId")int userId,@Param("userName")String userName, @Param("password")String password,
-                    @Param("fullname")String fullname,@Param("age") int age, @Param("sex") String sex,
-                    @Param("graduateInstitution")String graduateInstitution,@Param("major")String major,@Param("workingLife")String workingLife,@Param("userLevel")int userLevel);
+                    @Param("fullname")String fullname,@Param("age") int age, @Param("sex") int sex, @Param("graduateInstitution")String graduateInstitution,@Param("major")String major,
+                    @Param("workingLife")String workingLife,@Param("userLevel")int userLevel,@Param("workingExp")String workingExp,@Param("orientation")int orientation,@Param("teleNum")String teleNum,@Param("email")String email);
 
     void deleteUser(int userId);
 
