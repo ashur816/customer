@@ -1,0 +1,241 @@
+@import url('bootstrap.min.css');
+@import url('H-ui.admin.css');
+@import url('H-ui.min.css');
+@import url('font-awesome.min.css');
+
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 95%;
+}
+
+.body {
+    padding-bottom: 50px;
+}
+
+.footer {
+    height: 50px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+.care {
+    /*background: yellow;*/
+    font-size: medium;
+    color: yellow;
+}
+
+.pre-wrap {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.pos-center {
+    text-align: center;
+    MARGIN-RIGHT: auto;
+    MARGIN-LEFT: auto;
+}
+
+.pos-right {
+    text-align: right;
+}
+
+.pos-left {
+    text-align: left;
+}
+
+.pos-bottom{
+    margin-top: 5px;
+}
+
+.modal-dialog{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.modal_wapper{
+
+    display: table;
+    height: 100%;
+    margin: 0px auto
+
+}
+
+.bg-body {
+    background: #65cea7 url("../images/bg-gray.jpg") no-repeat fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.txt-font {
+    text-align: center;
+    color: black;
+}
+
+.btn-green {
+    background: green;
+}
+
+.btn-size-25 {
+    width: 25px;
+    height: 25px;
+    padding: 1px 0px;
+    margin: 2px 5px 2px 0px;
+}
+
+.btn-size-80 {
+    width: 80px;
+    padding: 2px 0px;
+    margin: 5px 10px 5px 0px;
+}
+
+.btn-size-100 {
+    width: 100px;
+    padding: 10px 10px;
+    margin-right: 10px;
+}
+
+div#bg-photo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+div#bg-photo > img {
+    height: 100%;
+    width: 100%;
+    border: 0;
+}
+
+.login-body {
+    background: #65cea7 url("../images/bg-gray.jpg") no-repeat fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/*---------------------------------
+            登陆
+----------------------------------*/
+.form-signin {
+    max-width: 330px;
+    margin: 100px auto;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.form-signin .form-signin-heading {
+    margin: 0;
+    padding: 25px 15px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.form-signin .checkbox {
+    margin-bottom: 14px;
+    font-size: 13px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+    color: #fff;
+    font-weight: normal;
+    font-family: 'Open Sans', sans-serif;
+    position: absolute;
+    bottom: -50px;
+    width: 100%;
+    left: 0;
+}
+
+.form-signin .checkbox a, .form-signin .checkbox a:hover {
+    color: #fff;
+}
+
+.form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="text"], .form-signin input[type="password"] {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #eaeaec;
+    background: #eaeaec;
+    box-shadow: none;
+    font-size: 12px;
+}
+
+.form-signin .btn-login {
+    background: #6bc5a4;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-family: 'Open Sans', sans-serif;
+    margin: 20px 0 5px;
+    padding: 5px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    font-size: 30px;
+}
+
+.form-signin .btn-login:hover {
+    background: #688ac2;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.form-signin p {
+    text-align: left;
+    color: #b6b6b6;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.form-signin a, .form-signin a:hover {
+    color: #6bc5a4;
+}
+
+.form-signin a:hover {
+    text-decoration: underline;
+}
+
+.sign-title {
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+    top: -60px;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.login-wrap {
+    padding: 20px;
+    position: relative;
+}
+
+.registration {
+    color: #c7c7c7;
+    text-align: center;
+    margin-top: 15px;
+}
