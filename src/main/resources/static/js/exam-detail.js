@@ -18,7 +18,7 @@ $(function () {
                     var goal = val.goal;
                     var btnClass = "btn btn-size-25 radius";
                     if(goal != "" && goal != null){
-                        btnClass = "btn btn-size-25 radius";
+                        btnClass = "btn btn-size-25 radius btn-success";
                     }
                     var html = "<input type='button' evalue='" + val.examinationId + "' class='" + btnClass + "' id='" + btnId + "' value='"+(i + 1)+"'" + "</input>";
                     $(html).appendTo("#btnNum");
